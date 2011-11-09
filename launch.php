@@ -1,3 +1,6 @@
+<?php
+	session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,6 +9,7 @@
 	<link type="text/css" href="stylesheets/custom.css" rel="stylesheet" />	
 </head>
 <body>
+
 	<div class="container">
 		<header>
 			<nav class="round">
@@ -18,6 +22,16 @@
 			<h1>OB Hot Soup project organizer/volunteer sign up</h1>
 			<p>
 We will contact you when we are ready to go	
+<?php
+	if( isset($_SESSION['ERRMSG_ARR']) && is_array($_SESSION['ERRMSG_ARR']) && count($_SESSION['ERRMSG_ARR']) >0 ) {
+		echo '<ul class="err">';
+		foreach($_SESSION['ERRMSG_ARR'] as $msg) {
+			echo '<li>',$msg,'</li>'; 
+		}
+		echo '</ul>';
+		unset($_SESSION['ERRMSG_ARR']);
+	}
+?>
 			</p>
 			<form id="form1" name="Update" method="get" action="signup.php">
 			  <label>

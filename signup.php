@@ -34,12 +34,6 @@ if( strcmp($password, $cpassword) != 0 ) {
 	$errmsg_arr[] = 'Passwords do not match';
 	$errflag = true;
 }
-if($errflag) {
-	$_SESSION['ERRMSG_ARR'] = $errmsg_arr;
-	session_write_close();
-	header("location: launch.php");
-	exit();
-}
 
 $db = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
 /* check connection */
@@ -47,6 +41,27 @@ if (mysqli_connect_errno()) {
     printf("Connect failed: %s\n", mysqli_connect_error());
     exit();
 }
+if($email != '') {
+	$qry = "SELECT * FROM OBsoupVolunteers WHERE email='$email'";
+	$result = $db->query($qry);
+	if($result) {
+		if($result->num_rows > 0) {
+			$errmsg_arr[] = 'Email address already registered';
+			$errflag = true;
+		}
+		@mysql_free_result($result);
+	}
+	else {
+		die("Query failed");
+	}
+}
+if($errflag) {
+	$_SESSION['ERRMSG_ARR'] = $errmsg_arr;
+	session_write_close();
+	header("location: launch.php");
+	exit();
+}
+
 $sql = "INSERT INTO `OBsoupVolunteers` (`name`, `email`, `password`) VALUES('$name','$email', '$password')";
 $db->query($sql);
 //fb($sql);

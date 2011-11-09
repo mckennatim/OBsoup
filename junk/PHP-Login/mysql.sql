@@ -9,7 +9,7 @@ CREATE TABLE `members` (
   `login` varchar(100) NOT NULL default '',
   `passwd` varchar(32) NOT NULL default '',
   PRIMARY KEY  (`member_id`)
-) TYPE=MyISAM;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=145 ;
 
 
 

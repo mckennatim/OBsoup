@@ -1,6 +1,6 @@
 <?php
 	define('DB_HOST', 'localhost');
-    define('DB_USER', 'jatinder');
-    define('DB_PASSWORD', 'mypassword');
-    define('DB_DATABASE', 'mydatabase');
+    define('DB_USER', 'pathbost_tim');
+    define('DB_PASSWORD', 'nji9ol');
+    define('DB_DATABASE', 'pathbost_ob');
 ?>
