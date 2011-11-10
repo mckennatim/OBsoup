@@ -45,3 +45,9 @@ CREATE TABLE `team` (
   `rid` int(11),
   PRIMARY KEY (`tid`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=145 ;
+
+SELECT *
+FROM prOutlines  
+LEFT JOIN roles
+USING ( oid )
+WHERE title='soup'
