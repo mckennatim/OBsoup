@@ -32,22 +32,28 @@ CREATE TABLE `projects` (
   `title` varchar(100) NOT NULL,
   `description` text,
   `info` text,
-  `date` varchar(100) NOT NULL,
+  `projdate` varchar(100) NOT NULL,
   `leadtime` varchar(100) NOT NULL,
   `location` varchar(120) NOT NULL,
   PRIMARY KEY (`pid`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=145 ;
 
 CREATE TABLE `team` (
-  `tid` int(11) NOT NULL AUTO_INCREMENT,
+  `trid` int(11) NOT NULL AUTO_INCREMENT,
   `pid` int(11),
+  `role` varchar(100) NOT NULL,
+  `roledesc` varchar(120),
+  `num` int(2),
   `id` int(11),
-  `rid` int(11),
-  PRIMARY KEY (`tid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=145 ;
+  PRIMARY KEY (`trid`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=300 ;
 
 SELECT *
 FROM prOutlines  
-LEFT JOIN roles
-USING ( oid )
-WHERE title='soup'
+WHERE oid=145
+
+SELECT *
+FROM roles  
+WHERE oid=145
+
+
