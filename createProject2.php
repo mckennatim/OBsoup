@@ -12,7 +12,7 @@ mysql_connect (DB_HOST, DB_USER, DB_PASSWORD) or die("can't even connect");
 mysql_select_db (DB_DATABASE) or die("db unavailable");	
 
 //$oid =145;
-//$pid = copyOutline($oid);
+//$pid = copyOutl ine($oid);
 //copyRoles($$pid);
 
 //displayProject($pid);

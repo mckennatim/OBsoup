@@ -56,12 +56,13 @@ $info = $row['info'];
 				<label>lead time:</label>
 				<input name="leadtime" value="<?=$leadtime?>"/>
 				<br />
+				
+				<label>location:</label><br/>
+				<textarea name="location" cols="40" rows="3"> <?=$location?></textarea>
 				<label>organizer:</label>
 				<input name="organizer" value="<?=$organizer?>"/>
 			
 
-				<label>location:</label>
-				<textarea name="location" cols="40" rows="3"> <?=$location?></textarea>
 				<br />
 				<label>description:</label><br/>
 				<textarea name="desc" cols="50" rows="3"> <?=$desc?></textarea>
