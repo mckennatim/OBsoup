@@ -10,6 +10,29 @@ CREATE TABLE `OBsoupVolunteers` (
   KEY `email` (`email`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=145 ;
 
+
+CREATE TABLE `volunteers` (
+  `id` int(11) NOT NULL auto_increment,
+  `email` varchar(100) NOT NULL,
+  `name` varchar(120) NOT NULL,
+  `password` varchar(32) NOT NULL,
+  `zipcode` varchar(12) default NULL,
+  `phone` varchar(100) default NULL,
+  `otheremail` varchar(120) default NULL,
+  PRIMARY KEY  (`id`),
+  KEY `name` (`name`),
+  KEY `email` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=302 ;
+
+-- 
+-- Dumping data for table `volunteers`
+-- 
+
+INSERT INTO `volunteers` (`id`, `email`, `name`, `password`, `town`, `phone`, `otheremail`) VALUES (300, 'mckenna.tim@gmail.com', 'Timothy S. McKenna', '3abf00fa61bfae2fff9133375e142416', NULL, NULL, NULL),
+(301, 'tim@sitebuilt.net', 'Timothy S. McKenna', '3abf00fa61bfae2fff9133375e142416', NULL, NULL, NULL);
+
+
+
 CREATE TABLE `prOutlines` (
   `oid` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,

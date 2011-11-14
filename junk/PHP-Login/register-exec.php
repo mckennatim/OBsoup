@@ -33,9 +33,8 @@
 	}
 	
 	//Sanitize the POST values
-	$fname = clean($_POST['fname']);
-	$lname = clean($_POST['lname']);
-	$login = clean($_POST['login']);
+	$name = clean($_POST['name']);
+	$email = clean($_POST['email']);
 	$password = clean($_POST['password']);
 	$cpassword = clean($_POST['cpassword']);
 	

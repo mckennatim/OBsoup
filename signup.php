@@ -8,11 +8,20 @@ ob_start(); //gotta have this
 $errmsg_arr = array();
 $errflag = false;
 
-$name=$_GET[name];
-$email=$_GET[email];
-$password=$_GET[password];
-$cpassword=$_GET[cpassword];
+function clean($str) {
+	$str = @trim($str);
+	if(get_magic_quotes_gpc()) {
+		$str = stripslashes($str);
+	}
+	return mysql_real_escape_string($str);
+}
 
+$name=clean($_POST[name]);
+$email=clean($_POST[email]);
+$password=clean($_POST[password]);
+$cpassword=clean($_POST[cpassword]);
+
+fb($password);
 //Input Validations
 if($name == '') {
 	$errmsg_arr[] = 'Name missing';
@@ -35,17 +44,14 @@ if( strcmp($password, $cpassword) != 0 ) {
 	$errflag = true;
 }
 
-$db = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
-/* check connection */
-if (mysqli_connect_errno()) {
-    printf("Connect failed: %s\n", mysqli_connect_error());
-    exit();
-}
+mysql_connect (DB_HOST, DB_USER, DB_PASSWORD) or die("can't even connect");
+mysql_select_db (DB_DATABASE) or die("db unavailable");	
+
 if($email != '') {
-	$qry = "SELECT * FROM OBsoupVolunteers WHERE email='$email'";
-	$result = $db->query($qry);
+	$qry = "SELECT * FROM volunteers WHERE email='$email'";
+	$result = mysql_query($qry);
 	if($result) {
-		if($result->num_rows > 0) {
+		if(mysql_num_rows($result) > 0) {
 			$errmsg_arr[] = 'Email address already registered';
 			$errflag = true;
 		}
@@ -62,10 +68,11 @@ if($errflag) {
 	exit();
 }
 
-$sql = "INSERT INTO `OBsoupVolunteers` (`name`, `email`, `password`) VALUES('$name','$email', '$password')";
-$db->query($sql);
-//fb($sql);
-$db->close;
+$sql = "INSERT INTO `volunteers` (`name`, `email`, `passwd`) 
+VALUES('$name','$email', '".md5($_POST['password'])."')";
+
+mysql_query($sql);
+fb($sql);
 ?>
 
 <!DOCTYPE html>

@@ -32,23 +32,6 @@ fb('how are you today');
         <script src="media/js/jquery-ui.js" type="text/javascript"></script>
         <script src="media/js/jquery.validate.js" type="text/javascript"></script>
         <script src="media/js/jquery.dataTables.editable.js" type="text/javascript"></script>
-
-		<script type="text/javascript" charset="utf-8">
-			$(document).ready( function () {
-           $('#example').dataTable({
-                                      "bProcessing": true,
-                                      "sAjaxSource": "getTeamData.php",
-					aoColumns: [ { "bVisible": false}, {"bVisible": false}, null, null]
-                                 }
-                                    ).makeEditable({
-									sUpdateURL: "UpdateData.php",
-                    				sAddURL: "AddData.php",
-									sAddHttpMethod: "GET", //Used only on google.code live example because google.code server do not support POST request
-                    				sDeleteURL: "DeleteData.php",
-									sDeleteHttpMethod: "GET", //Used only on google.code live example because google.code server do not support POST request
-										});
-			} );
-		</script>
 	</head>
 <?
 
@@ -114,18 +97,29 @@ $info = $row['info'];
 			</form>		
 		</section>
 	</div>
- <form id="formAddNewRow" action="#" title="Add new record">
-        <input type="hidden" name="trid" id="id" rel="0" value="DATAROWID" />
-        <input type="hidden" name="pid" id="pid" rel="1" value="<?=$pid?>" />
-        <label for="name">role</label><br />
-	<input type="text" name="role" id="role" rel="2" />
-        <br />
-        <label for="name">roledesc</label><br />
-	<textarea name="roledesc" id="roledesc" rel="3"></textarea>
-</form>
 <div class="container">
 <section class="round">
-<div class="add_delete_toolbar" />
+<form method=post action='checkboxPost.php'>";
+<table border='0' cellspacing='0' style='border-collapse: collapse' width='100' >
+<tr bgcolor='#ffffff'>
+<td width='25%'><input type=checkbox name=box[] value='John'></td>
+<td width='25%'>&nbsp;John</td>
+<td width='25%'><input type=checkbox name=box[] value='Mike'></td>
+<td width='25%'>&nbsp;Mike</td>
+<td width='25%'><input type=checkbox name=box[] value='Rone'></td>
+<td width='25%'>&nbsp;Rone</td>
+</tr>
+<tr bgcolor='#f1f1f1'>
+<td width='25%'><input type=checkbox name=box[] value='Mathew'></td>
+<td width='25%'>&nbsp;Mathew</td>
+<td width='25%'><input type=checkbox name=box[] value='Reid'></td>
+<td width='25%'>&nbsp;Reid</td>
+<td width='25%'><input type=checkbox name=box[] value='Simon'></td>
+<td width='25%'>&nbsp;Simon</td>
+</tr>
+
+<tr><td colspan =6 align=center><input type=submit value=Select></form></td></tr>
+</table> 
 
 <table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
 	<thead>
@@ -149,10 +143,6 @@ $info = $row['info'];
 
 	</tbody>
 </table>
-</div>
 </section>
 </div>
-
-<!DOCTYPE html>
-<html>
 

@@ -11,6 +11,6 @@
 <body>
 <h1>My Profile </h1>
 <a href="member-index.php">Home</a> | <a href="logout.php">Logout</a>
-<p>This is another secure page. </p>
+<p>Hi <?=$_SESSION['SESS_FIRST_NAME']?> This is another secure page. </p>
 </body>
 </html>
