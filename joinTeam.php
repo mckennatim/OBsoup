@@ -37,14 +37,14 @@ fb('how are you today');
 			$(document).ready( function () {
            $('#example').dataTable({
                                       "bProcessing": true,
-                                      "sAjaxSource": "getRoles.php",
+                                      "sAjaxSource": "getTeamData.php",
 					aoColumns: [ { "bVisible": false}, {"bVisible": false}, null, null]
                                  }
                                     ).makeEditable({
-									sUpdateURL: "updateTeamRec.php",
-                    				sAddURL: "addTeamRec.php",
+									sUpdateURL: "UpdateData.php",
+                    				sAddURL: "AddData.php",
 									sAddHttpMethod: "GET", //Used only on google.code live example because google.code server do not support POST request
-                    				sDeleteURL: "deleteTeamRec.php",
+                    				sDeleteURL: "DeleteData.php",
 									sDeleteHttpMethod: "GET", //Used only on google.code live example because google.code server do not support POST request
 										});
 			} );
@@ -72,7 +72,6 @@ $row = 	$arow = mysql_fetch_assoc($result);
 $projdate = $row['projdate'];
 $leadtime = $row['leadtime'];
 $location = $row['location'];
-$title = $row['title'];
 $organizer = "Fred Flintstone";
 $desc = $row['description'];
 $info = $row['info'];
@@ -88,8 +87,7 @@ $info = $row['info'];
 		</header>
 		<section class="round">
 			<h1>Create a <?echo $title ?> project</h1>
-			<form id="form1" name="Update" method="get" action="saveProject.php">	
-				<input type="hidden" name="pid"  value="<?=$pid?>" />		
+			<form id="form1" name="Update" method="get" action="saveProject.php">			
 				<label>project date:</label>
 				<input name="projdate" value="<?=$projdate?>"/>
 				
@@ -98,17 +96,17 @@ $info = $row['info'];
 				<br />
 				
 				<label>location:</label><br/>
-				<textarea name="location" cols="40" rows="3"><?=$location?></textarea>
+				<textarea name="location" cols="40" rows="3"> <?=$location?></textarea>
 				<label>organizer:</label>
 				<input name="organizer" value="<?=$organizer?>"/>
 			
 
 				<br />
 				<label>description:</label><br/>
-				<textarea name="desc" cols="50" rows="3"><?=$desc?></textarea>
+				<textarea name="desc" cols="50" rows="3"> <?=$desc?></textarea>
 				<br />
 				<label>info:</label><br/>
-				<textarea name="info" cols="50" rows="3"><?=$info?></textarea>
+				<textarea name="info" cols="50" rows="3"> <?=$info?></textarea>
 				<br />
 				<?="duck"?>
 				<br />

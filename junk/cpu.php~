@@ -1,0 +1,65 @@
+<?
+session_start();
+header("Content-type: text/plain");
+include_once('tm/dbinfo.php');
+require_once('tm/FirePHP.class.php');
+require_once('tm/fb.php');
+ob_start(); //gotta have this
+fb('how are you today');
+mysql_connect (DB_HOST, DB_USER, DB_PASSWORD) or die("can't even connect");
+mysql_select_db (DB_DATABASE) or die("db unavailable");	
+
+$oid=145;
+echo "duck";
+$pid= copyOutline($oid);
+copyRoles($oid, $pid);
+
+function copyOutline($outlid){
+	$sql="SELECT * FROM prOutlines WHERE oid=$outlid LIMIT 1"; 
+	$od = mysql_query($sql) or die("Dead getting outline");
+	$r = mysql_query($sql) or die("Dead outlid");
+	$arow = mysql_fetch_assoc($r);
+	$beg = "INSERT INTO projects ( ";
+	$vals = "VALUES ( ";
+	foreach($arow as $key=>$val){
+		if ($key=="oid"){
+			fb("in oid");
+		} else {
+			$beg.="`".$key."`, ";
+			$vals.="'".$val."', ";
+		}
+	}
+	$beg = substr($beg,0,-2).") ";
+	$vals = substr($vals,0,-2).") ";
+	$qry = $beg.$vals;
+	fb($qry);
+	mysql_query($qry) or die("dead inserting roles");
+	print_r($arow);
+	return mysql_insert_id();
+}
+function copyRoles($oid, $projid){
+	$sql="SELECT * FROM roles WHERE oid=$oid"; 
+	$od = mysql_query($sql) or die("Dead getting outline");
+	$r = mysql_query($sql) or die("Dead outlid");
+	while ($arow = mysql_fetch_assoc($r)) { //assoc not array or row if u want key vals
+		$ii=$arow['num'];
+		for ($i=1;$1<=$ii;$i++){
+			$beg = "INSERT INTO team (`pid`, ";
+			$vals = "VALUES ('".$projid."', ";
+			foreach($arow as $key=>$val){
+				if ($key=="rid" or $key=="oid" or $key=="num"){
+					fb("in rid or oid num");
+				} else {
+					$beg.="`".$key."`, ";
+					$vals.="'".$val."', ";
+				}
+			}
+			$beg = substr($beg,0,-2).") ";
+			$vals = substr($vals,0,-2).") ";
+			$qry = $beg.$vals;
+			fb($qry);
+			mysql_query($qry) or die("dead inserting roles");
+		}
+	}
+}
+?>
