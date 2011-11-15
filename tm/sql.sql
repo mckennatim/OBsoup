@@ -79,4 +79,8 @@ SELECT *
 FROM roles  
 WHERE oid=145
 
-
+SELECT willdothis, role, roledesc, name
+FROM  team 
+LEFT JOIN volunteers
+USING ( id )
+WHERE id = 1

@@ -62,8 +62,10 @@ $organizer = "Fred Flintstone";
 $desc = $row['description'];
 $info = $row['info'];
 
-$sql = "SELECT `willdothis`, `role`, `roledesc`, `id`, `trid`
+$sql = "SELECT `willdothis`, `role`, `roledesc`, `name`
 FROM team  
+LEFT JOIN volunteers
+USING ( id )
 WHERE pid='$pid'";
 fb($sql);
 $roler = mysql_query($sql) or die("Dead finding units uid");
@@ -74,12 +76,23 @@ function mkTbl($r){
 	global $volunteerID;
 	$js = '<form method=post action="postTeam.php">
 	<input type="hidden" name="vid" id="vid" value="'.$volunteerID.'"/>
-	<table><tbody>';
+	<table>	<thead>
+		<tr>
+			<th>willdothis</th>
+			<th>role</th>
+			<th>role description</th>
+			<th>team members</th>
+		</tr>
+	</thead><tbody>';
 	while ($arow = mysql_fetch_assoc($r)){
 		$rowid=$arow['trid'];
 		fb($rowid);
 		$js.='<tr>';
 		foreach($arow as $key=>$val){
+			if ($key=="name"){
+				$vv = explode(" ",$val);
+				$val = $vv[0];
+			}
 			if ($key=="willdothis" and $val==0){
 				$js.='<td><input type=checkbox name=box[] value="'.$rowid.'"</td>';
 			}elseif ($key=="willdothis" and $val==1){
@@ -91,7 +104,7 @@ function mkTbl($r){
 		$js.='</tr>';
 	}	
 	$js.='<tr><td colspan =6 align=center><input type=submit 
-	value=Select></form></td></tr></tbody></table>';
+	value="Check off your role and click here"></form></td></tr></tbody></table></section>';
 	//fb($js);
 	return $js;
 }
@@ -140,48 +153,5 @@ function mkTbl($r){
 echo $rarr; 
 fb($rarr);
 ?>
-<form method=post action='postTeam.php'>
-<table border='0' cellspacing='0' style='border-collapse: collapse' width='100' >
-<tr bgcolor='#ffffff'>
-<td width='25%'><input type=checkbox name=box[] value='345John'></td>
-<td width='25%'>&nbsp;John</td></tr><tr>
-<td width='25%'><input type=checkbox name=box[] value='122Mike'></td>
-<td width='25%'>&nbsp;Mike</td></tr><tr>
-<td width='25%'><input type=checkbox name=box[] value='432Rone'></td>
-<td width='25%'>&nbsp;Rone</td></tr><tr>
-<td width='25%'><input type=checkbox name=box[] value='565Mathew'></td>
-<td width='25%'>&nbsp;Mathew</td></tr><tr>
-<td width='25%'><input type=checkbox name=box[] value='444Reid'></td>
-<td width='25%'>&nbsp;Reid</td></tr><tr>
-<td width='25%'><input type=checkbox name=box[] value='111Simon'></td>
-<td width='25%'>&nbsp;Simon</td></tr><tr>
-</tr>
-
-<tr><td colspan =6 align=center><input type=submit value=Select></form></td></tr>
-</table> 
-
-<table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
-	<thead>
-		<tr>
-			<th>trid</th>
-			<th>pid</th>
-			<th>role</th>
-			<th>roledesc</th>
-		</tr>
-	</thead>
-	<tfoot>
-		<tr>
-			<th>trid</th>
-			<th>pid</th>
-			<th>role</th>
-			<th>roledesc</th>
-		</tr>
-
-	</tfoot>
-	<tbody>
-
-	</tbody>
-</table>
 </section>
-</div>
 
