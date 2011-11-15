@@ -6,9 +6,11 @@
 <link href="stylesheets/loginmodule.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<h1>Access Denied </h1>
+<h1>You need to be logged in </h1>
 <p align="center">&nbsp;</p>
-<h4 align="center" class="err">Access Denied!<br />
-  You do not have access to this resource.</h4>
+<h4 align="center" class="err">to access to this resource.<br />
+Please login or register OB Hot Soup</h4>
+<p align="center">&nbsp;</p>
+<p align="center">Click here to <a href="login.php">Login</a></p>
 </body>
 </html>

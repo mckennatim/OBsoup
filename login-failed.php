@@ -10,5 +10,7 @@
 <p align="center">&nbsp;</p>
 <h4 align="center" class="err">Login Failed!<br />
   Please check your username and password</h4>
+  <p align="center">Click here to <a href="login.php">Login</a>
+  Or, if you need, get a <a href="passwd-remind.php">password reminder</a></p>
 </body>
 </html>

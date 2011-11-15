@@ -1,5 +1,6 @@
 <?
 session_start();
+require_once('auth.php');
 include_once('tm/dbinfo.php');
 require_once('tm/FirePHP.class.php');
 require_once('tm/fb.php');
@@ -7,6 +8,8 @@ require_once('tm/fb.php');
 
 ob_start(); //gotta have this
 fb('how are you today');
+$volunteerID=$_SESSION['SESS_ID'];
+fb('the volid is '.$volunteerID);
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html><head>
@@ -58,6 +61,40 @@ $location = $row['location'];
 $organizer = "Fred Flintstone";
 $desc = $row['description'];
 $info = $row['info'];
+
+$sql = "SELECT `willdothis`, `role`, `roledesc`, `id`, `trid`
+FROM team  
+WHERE pid='$pid'";
+fb($sql);
+$roler = mysql_query($sql) or die("Dead finding units uid");
+
+$rarr = mkTbl($roler);
+
+function mkTbl($r){
+	global $volunteerID;
+	$js = '<form method=post action="postTeam.php">
+	<input type="hidden" name="vid" id="vid" value="'.$volunteerID.'"/>
+	<table><tbody>';
+	while ($arow = mysql_fetch_assoc($r)){
+		$rowid=$arow['trid'];
+		fb($rowid);
+		$js.='<tr>';
+		foreach($arow as $key=>$val){
+			if ($key=="willdothis" and $val==0){
+				$js.='<td><input type=checkbox name=box[] value="'.$rowid.'"</td>';
+			}elseif ($key=="willdothis" and $val==1){
+				$js.='<td></td>';
+			}else{
+				$js.='<td>'.$val.'</td>';
+			}
+		}
+		$js.='</tr>';
+	}	
+	$js.='<tr><td colspan =6 align=center><input type=submit 
+	value=Select></form></td></tr></tbody></table>';
+	//fb($js);
+	return $js;
+}
 ?>	
 <body> 
 	<div class="container">
@@ -79,17 +116,17 @@ $info = $row['info'];
 				<br />
 				
 				<label>location:</label><br/>
-				<textarea name="location" cols="40" rows="3"> <?=$location?></textarea>
+				<textarea name="location" cols="40" rows="3"><?=$location?></textarea>
 				<label>organizer:</label>
 				<input name="organizer" value="<?=$organizer?>"/>
 			
 
 				<br />
 				<label>description:</label><br/>
-				<textarea name="desc" cols="50" rows="3"> <?=$desc?></textarea>
+				<textarea name="desc" cols="50" rows="3"><?=$desc?></textarea>
 				<br />
 				<label>info:</label><br/>
-				<textarea name="info" cols="50" rows="3"> <?=$info?></textarea>
+				<textarea name="info" cols="50" rows="3"><?=$info?></textarea>
 				<br />
 				<?="duck"?>
 				<br />
@@ -99,23 +136,25 @@ $info = $row['info'];
 	</div>
 <div class="container">
 <section class="round">
-<form method=post action='checkboxPost.php'>";
+<? 
+echo $rarr; 
+fb($rarr);
+?>
+<form method=post action='postTeam.php'>
 <table border='0' cellspacing='0' style='border-collapse: collapse' width='100' >
 <tr bgcolor='#ffffff'>
-<td width='25%'><input type=checkbox name=box[] value='John'></td>
-<td width='25%'>&nbsp;John</td>
-<td width='25%'><input type=checkbox name=box[] value='Mike'></td>
-<td width='25%'>&nbsp;Mike</td>
-<td width='25%'><input type=checkbox name=box[] value='Rone'></td>
-<td width='25%'>&nbsp;Rone</td>
-</tr>
-<tr bgcolor='#f1f1f1'>
-<td width='25%'><input type=checkbox name=box[] value='Mathew'></td>
-<td width='25%'>&nbsp;Mathew</td>
-<td width='25%'><input type=checkbox name=box[] value='Reid'></td>
-<td width='25%'>&nbsp;Reid</td>
-<td width='25%'><input type=checkbox name=box[] value='Simon'></td>
-<td width='25%'>&nbsp;Simon</td>
+<td width='25%'><input type=checkbox name=box[] value='345John'></td>
+<td width='25%'>&nbsp;John</td></tr><tr>
+<td width='25%'><input type=checkbox name=box[] value='122Mike'></td>
+<td width='25%'>&nbsp;Mike</td></tr><tr>
+<td width='25%'><input type=checkbox name=box[] value='432Rone'></td>
+<td width='25%'>&nbsp;Rone</td></tr><tr>
+<td width='25%'><input type=checkbox name=box[] value='565Mathew'></td>
+<td width='25%'>&nbsp;Mathew</td></tr><tr>
+<td width='25%'><input type=checkbox name=box[] value='444Reid'></td>
+<td width='25%'>&nbsp;Reid</td></tr><tr>
+<td width='25%'><input type=checkbox name=box[] value='111Simon'></td>
+<td width='25%'>&nbsp;Simon</td></tr><tr>
 </tr>
 
 <tr><td colspan =6 align=center><input type=submit value=Select></form></td></tr>
