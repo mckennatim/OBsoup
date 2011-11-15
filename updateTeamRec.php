@@ -13,8 +13,6 @@ fb('how are you today');
   $columnId = $_REQUEST['columnId'] ;
   $rowId = $_REQUEST['rowId'] ;
 
-$oid =145;
-
 fb($column);
 fb($columnPosition);
 fb($columnid);

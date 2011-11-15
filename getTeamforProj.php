@@ -18,27 +18,8 @@ fb($sql);
 $result = mysql_query($sql) or die("Dead finding last project id");
 $pida = mysql_fetch_assoc($result);
 $pid = $pida['pid'];
-$oid = $pida['oid'];
-//get roles asociated with project outline oid
-$qry = "SELECT `role`, `roledesc`, `num`
-FROM roles 
-WHERE oid='$oid'";
-fb($qry);
-$roler = mysql_query($qry) or die("Dead copying roles");
 
-//copy roles associated with project outline oid 
-//to team associated with project pid
-while ($row = mysql_fetch_assoc($roler)) {	
-	$role =$row['role'];
-	$roledesc= $row['roledesc'];
-	$num=$row['num'];
-	for ($i=1;$i<=$num;$i++){
-		$sql="INSERT INTO team (`pid`, `role`, `roledesc`) 
-		VALUES ('$pid', '$role', '$roledesc')";
-		fb($sql);
-		mysql_query($sql)or die("Dead pasting roles into team");
-	}
-}
+//get roles asociated with project outline oid
 
 $qry = "SELECT `trid`, `pid`, `role`, `roledesc`
 FROM team

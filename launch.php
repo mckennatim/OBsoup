@@ -33,7 +33,7 @@ We will contact you when we are ready to go
 	}
 ?>
 			</p>
-			<form id="form1" name="Update" method="post" action="signup.php">
+			<form id="form1" name="Update" method="post" action="soup-signup.php">
 			  <label>
 			  name: <input type="text" name="name" id="quesfrom" size="60"/>
 			  </label>
