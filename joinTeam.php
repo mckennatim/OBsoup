@@ -4,9 +4,10 @@ require_once('auth.php');
 include_once('tm/dbinfo.php');
 require_once('tm/FirePHP.class.php');
 require_once('tm/fb.php');
-//require_once('tm/cpu.php');
-
 ob_start(); //gotta have this
+
+$pid = 7;
+$title="soup";
 fb('how are you today');
 $volunteerID=$_SESSION['SESS_ID'];
 fb('the volid is '.$volunteerID);
@@ -47,7 +48,7 @@ mysql_select_db (DB_DATABASE) or die("db unavailable");
 //copyRoles($$pid);
 
 //displayProject($pid);
-$pid = 7;
+
 
 $qry = "SELECT *
 FROM projects  
@@ -119,31 +120,22 @@ function mkTbl($r){
 			</section>
 		</header>
 		<section class="round">
-			<h1>Create a <?echo $title ?> project</h1>
-			<form id="form1" name="Update" method="get" action="saveProject.php">			
+			<h1>Volunteer for this <?echo $title ?> project</h1>			
 				<label>project date:</label>
-				<input name="projdate" value="<?=$projdate?>"/>
-				
+				<?=$projdate?>
 				<label>lead time:</label>
-				<input name="leadtime" value="<?=$leadtime?>"/>
-				<br />
-				
-				<label>location:</label><br/>
-				<textarea name="location" cols="40" rows="3"><?=$location?></textarea>
+				<?=$leadtime?>
 				<label>organizer:</label>
-				<input name="organizer" value="<?=$organizer?>"/>
-			
-
+				<?=$organizer?>
+				<br />
+				<label>location:</label>
+				<?=$location?>
 				<br />
 				<label>description:</label><br/>
-				<textarea name="desc" cols="50" rows="3"><?=$desc?></textarea>
+				<?=$desc?>
 				<br />
 				<label>info:</label><br/>
-				<textarea name="info" cols="50" rows="3"><?=$info?></textarea>
-				<br />
-				<?="duck"?>
-				<br />
-				<input class="signup_button round" type="submit" value="Create a New Soup Project" />
+				<?=$info?>
 			</form>		
 		</section>
 	</div>
