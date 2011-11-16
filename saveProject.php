@@ -35,5 +35,5 @@ SET `projdate`= '$projdate',
 WHERE pid='$pid'"; 
 fb($sql);
 mysql_query($sql) or die("Dead updating");
-header("location: soup-home.php");
+header("location: soup.php");
 ?>

@@ -6,7 +6,7 @@ require_once('tm/FirePHP.class.php');
 require_once('tm/fb.php');
 ob_start(); //gotta have this
 
-$pid = 7;
+$pid = $_GET[pid];
 fb('how are you today');
 $volunteerID=$_SESSION['SESS_ID'];
 fb('the volid is '.$volunteerID);

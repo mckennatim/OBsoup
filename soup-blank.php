@@ -22,27 +22,16 @@ fb('how are you today');
 				<img src="images/soupbanner.jpg" alt="soup banner" /> 
 			</section>
 		</header>
-<section class="round">
-<p>&nbsp;</p>
-
-<form id="loginForm" name="loginForm" method="post" action="passwd-send.php">
-  <table width="300" border="0" align="center" cellpadding="2" cellspacing="0">
-    <tr>
-      <td width="112"></td>
-      <td width="188"><b>Email: </b><input name="email" size="35" type="text" class="textfield" id="email" /></td>
-    </tr>
-    <tr>
-      <td>&nbsp;</td>
-      <td><input type="submit" name="Submit" value="get new password" /></td>
-    </tr>
-  </table>
-</form>			
-</section>
+		<section class="round">
+			
+		</section>
 	</div>
 
 <div class="container">
 <section class="round">
-
 </section>
 </div>
+
+<!DOCTYPE html>
+<html>
 

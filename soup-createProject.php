@@ -101,34 +101,29 @@ $info = $row['info'];
 				<input type="hidden" name="title"  value="<?=$title?>" />					
 				<label>project date:</label>
 				<input name="projdate" size="12"value="<?=$projdate?>"/>
-				
 				<label>lead time:</label>
-				<input name="leadtime" value="<?=$leadtime?>"/>
-				<label>organizer:</label>
-				<input name="organizer" value="<?=$organizer?>"/><br/>
-				<label>site contacts:</label>
-				<input name="sitecontacts" value="<?=$sitecontacts?>"/>				
-				<label>link:</label>
-				<input name="link" size="40" value="<?=$link?>"/>				
-			
+				<input name="leadtime" size="2" value="<?=$leadtime?>"/>days
 				<label>project id:</label>
-				<?=$pid?>
-				<br />
-				
+				<big><?=$pid?></big>
+				<br/>
+				<label>organizer:</label>
+				<input name="organizer" value="<?=$organizer?>"/>
+			
+				<label>link:</label>
+				<input name="link" size="40" value="<?=$link?>"/><br/>				
+			
 				<label>location:</label>
 				<label>zipcode: </label>
-				<input name="zipcode" size="9" value="<?=$zipcode?>"/>	<br/>
+				<input name="zipcode" size="9" value="<?=$zipcode?>"/>
+				<label>site contacts:</label>
+				<input name="sitecontacts" value="<?=$sitecontacts?>"/>		<br/>
 				<textarea name="location" cols="35" rows="2"><?=$location?></textarea>
-
-
 				<br />
 				<label>description:</label><br/>
 				<textarea name="desc" cols="50" rows="3"><?=$desc?></textarea>
 				<br />
 				<label>info:</label><br/>
 				<textarea name="info" cols="50" rows="3"><?=$info?></textarea>
-				<br />
-				<?="duck"?>
 				<br />
 				<input class="signup_button round" type="submit" value="Create a New Soup Project" />
 			</form>		

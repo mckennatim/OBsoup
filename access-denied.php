@@ -11,6 +11,6 @@
 <h4 align="center" class="err">to access to this resource.<br />
 Please login or register OB Hot Soup</h4>
 <p align="center">&nbsp;</p>
-<p align="center">Click here to <a href="login.php">Login</a></p>
+<p align="center">Click here to <a href="soup-login.php">Login</a></p>
 </body>
 </html>

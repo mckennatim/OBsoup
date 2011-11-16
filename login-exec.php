@@ -70,7 +70,7 @@ ob_start(); //gotta have this
 			$_SESSION['SESS_NAME'] = $member['name'];
 			fb($_SESSION['SESS_ID']);
 			session_write_close();
-			header("location: member-index.php");
+			header("location: soup.php");
 			exit();
 		}else {
 			fb("Login failed");

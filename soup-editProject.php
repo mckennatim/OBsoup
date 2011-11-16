@@ -8,7 +8,7 @@ ob_start(); //gotta have this
 fb('how are you today');
 $organizer=$_SESSION['SESS_NAME'];
 fb('the volid is '.$organizer);
-$pid = 7;
+$pid = $_GET[pid];
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html><head>

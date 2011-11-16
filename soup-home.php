@@ -1,5 +1,10 @@
 <?php
-	require_once('auth.php');
+//require_once('soup-home-auth.php');
+include_once('tm/dbinfo.php');
+require_once('tm/FirePHP.class.php');
+require_once('tm/fb.php');
+require_once('tm/cpu.php');
+ob_start(); //gotta have this	
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -9,13 +14,16 @@
 <link href="stylesheets/loginmodule.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
+<div>
+<?//=lginHeader();?>
 <h1>Welcome <?php echo $_SESSION['SESS_NAME'];?></h1>
 <a href="member-profile.php">My Profile</a> | <a href="logout.php">Logout</a>
 <p>This is a password protected area only accessible to members. </p>
 <a href="soup-createProject.php">Create a project</a><br/>
-<a href="soup-editProject.php">Edit a project</a><br/>
-<a href="soup-joinTeam.php">Join a Team</a><br/>
-<a href="soup-joinTeamMod.php">Edit a team</a><br/>
 <a href="tm/cpu.php">Check function</a><br/>
+</div>
+<div>
+<?=listProjects();?>
+</div>
 </body>
 </html>
