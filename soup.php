@@ -21,6 +21,7 @@ function loginHeader(){
 	}
 	return $h;
 }
+updateStatus();
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html><head>
@@ -28,6 +29,7 @@ function loginHeader(){
 	<title>Hot Soup</title>
 	<link type="text/css" href="stylesheets/blueprint/screen.css" rel="stylesheet" />	
 	<link type="text/css" href="stylesheets/custom.css" rel="stylesheet" />		
+	<link type="text/css" href="stylesheets/ob.css" rel="stylesheet" />	
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<link rel="shortcut icon" type="image/ico" href="http://www.sprymedia.co.uk/media/images/favicon.ico">
 		<title>OB Soup</title>
@@ -45,11 +47,11 @@ function loginHeader(){
 			<nav class="round">
 			</nav>
 			<section class="round">
-				<img src="images/soupbanner.jpg" alt="soup banner" /> 
+				<img src="images/soupbanner.jpg" class="stretch" alt="soup banner" /> 
 				<?echo loginHeader();?>
 			</section>
 		</header>
-		<section class="round">
+		<section class="round" id="border">
 
 		<big><a href="soup-createProject.php">Create a new project</a></big><br/>
 		</section>
@@ -57,7 +59,7 @@ function loginHeader(){
 
 <div class="container">
 <section class="round">
-<div class="add_delete_toolbar" />
+<div class="add_delete_toolbar"/>
 
 <?=listProjects();?>
 </div>

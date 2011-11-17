@@ -7,7 +7,8 @@ require_once('tm/fb.php');
 ob_start(); //gotta have this
 fb('how are you today');
 $organizer=$_SESSION['SESS_NAME'];
-fb('the volid is '.$organizer);
+$vid=$_SESSION['SESS_ID'];
+fb('the volid '.$vid.' is '.$organizer);
 $oid=145;
 $title ="soup";
 ?>
@@ -51,6 +52,9 @@ $title ="soup";
 									sDeleteHttpMethod: "GET", //Used only on google.code live example because google.code server do not support POST request
 										});
 			} );
+			$(function() {
+				$( "#projdate" ).datepicker();
+			});
 		</script>
 	</head>
 <?
@@ -59,7 +63,7 @@ $title ="soup";
 mysql_connect (DB_HOST, DB_USER, DB_PASSWORD) or die("can't even connect");
 mysql_select_db (DB_DATABASE) or die("db unavailable");	
 
-$qry = "INSERT INTO projects (`title`) VALUES ('$title')";
+$qry = "INSERT INTO projects (`title`, `vid`) VALUES ('$title', '$vid')";
 fb($qry);
 mysql_query($qry) or die("Dead inserting blank project");
 
@@ -99,8 +103,9 @@ $info = $row['info'];
 				<h1>Create a <input name="title" value="<?=$title?>"/>	project</h1>	
 				<input type="hidden" name="pid"  value="<?=$pid?>" />		
 				<input type="hidden" name="title"  value="<?=$title?>" />					
+				<input type="hidden" name="vid"  value="<?=$vid?>" />					
 				<label>project date:</label>
-				<input name="projdate" size="12"value="<?=$projdate?>"/>
+				<input name="projdate" size="12" id="projdate" value="<?=$projdate?>"/>
 				<label>lead time:</label>
 				<input name="leadtime" size="2" value="<?=$leadtime?>"/>days
 				<label>project id:</label>

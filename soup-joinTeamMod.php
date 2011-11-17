@@ -17,6 +17,7 @@ fb('the volid is '.$volunteerID);
 	<title>Hot Soup</title>
 	<link type="text/css" href="stylesheets/blueprint/screen.css" rel="stylesheet" />	
 	<link type="text/css" href="stylesheets/custom.css" rel="stylesheet" />		
+	<link type="text/css" href="stylesheets/ob.css" rel="stylesheet" />		
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<link rel="shortcut icon" type="image/ico" href="http://www.sprymedia.co.uk/media/images/favicon.ico">
 		
@@ -59,6 +60,7 @@ $sitecontacts = $row['sitecontacts'];
 $link = $row['link'];
 $zipcode = $row['zipcode'];
 $organizer = $row['organizer'];
+$status = $row['status'];
 
 $sql = "SELECT `trid`, `id`, `willdothis`, `role`, `roledesc`, `name`
 FROM team  
@@ -115,7 +117,7 @@ function mkTbl($r){
 		$js.='</tr>';
 	}	
 	$js.='<tr><td colspan =6 align=center><input type=submit 
-	value="Check off your role and click here"></form></td></tr></tbody></table></section>';
+	value="Modify your commitment & click here"></form></td></tr></tbody></table></section>';
 	//fb($js);
 	return $js;
 }
@@ -126,11 +128,13 @@ function mkTbl($r){
 			<nav class="round">
 			</nav>
 			<section class="round">
-				<img src="images/soupbanner.jpg" alt="soup banner" /> 
+				<img src="images/soupbanner.jpg" class="stretch" alt="soup banner" /> 
 			</section>
 		</header>
 		<section class="round">
-			<h1>Volunteer for this <?echo $title ?> project</h1>			
+			<h1>Volunteer for this <?echo $title ?> project</h1>
+				<label>status:</label>
+				<?=$status?><br/>				
 				<label>project date:</label>
 				<?=$projdate?>
 				<label>lead time: </label>

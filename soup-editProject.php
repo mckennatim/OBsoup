@@ -4,11 +4,14 @@ require_once('auth.php');
 include_once('tm/dbinfo.php');
 require_once('tm/FirePHP.class.php');
 require_once('tm/fb.php');
+require_once('tm/cpu.php');
 ob_start(); //gotta have this
 fb('how are you today');
 $organizer=$_SESSION['SESS_NAME'];
 fb('the volid is '.$organizer);
 $pid = $_GET[pid];
+isTeamComplete($pid);
+ontime($pid);
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html><head>
@@ -16,6 +19,7 @@ $pid = $_GET[pid];
 	<title>Hot Soup</title>
 	<link type="text/css" href="stylesheets/blueprint/screen.css" rel="stylesheet" />	
 	<link type="text/css" href="stylesheets/custom.css" rel="stylesheet" />		
+	<link type="text/css" href="stylesheets/ob.css" rel="stylesheet" />	
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<link rel="shortcut icon" type="image/ico" href="http://www.sprymedia.co.uk/media/images/favicon.ico">
 		
@@ -50,6 +54,9 @@ $pid = $_GET[pid];
 									sDeleteHttpMethod: "GET", //Used only on google.code live example because google.code server do not support POST request
 										});
 			} );
+			$(function() {
+				$( "#projdate" ).datepicker();
+			});			
 		</script>
 	</head>
 <?
@@ -79,6 +86,7 @@ $sitecontacts = $row['sitecontacts'];
 $link = $row['link'];
 $zipcode = $row['zipcode'];
 $organizer = $row['organizer'];
+$status = $row['status'];
 ?>	
 <body> 
 	<div class="container">
@@ -86,36 +94,33 @@ $organizer = $row['organizer'];
 			<nav class="round">
 			</nav>
 			<section class="round">
-				<img src="images/soupbanner.jpg" alt="soup banner" /> 
+				<img src="images/soupbanner.jpg" class="stretch" alt="soup banner" /> 
 			</section>
 		</header>
 		<section class="round">
 			<form id="form1" name="Update" method="get" action="saveProject.php">			
 				<h1>Edit this <input name="title" value="<?=$title?>"/>	project</h1>
-				<input type="hidden" name="pid"  value="<?=$pid?>" />		
+				<input type="hidden" name="pid"  value="<?=$pid?>" />
+				<label>project status:</label>
+				<big><?=$status?></big><br/>
 				<label>project date: </label>
-				<input name="projdate" size="12"value="<?=$projdate?>"/>
-				
+				<input name="projdate" size="12" id="projdate" value="<?=$projdate?>"/>
 				<label>lead time:</label>
-				<input name="leadtime" value="<?=$leadtime?>"/>
-				<label>organizer:</label>
-				<input name="organizer" value="<?=$organizer?>"/><br/>
-				<label>site contacts:</label>
-				<input name="sitecontacts" value="<?=$sitecontacts?>"/>				
-				<label>link:</label>
-				<input name="link" size="40" value="<?=$link?>"/>				
-			
+				<input name="leadtime" size="2" value="<?=$leadtime?>"/>days
 				<label>project id:</label>
-				<?=$pid?>
+				<big><?=$pid?></big><br/>
+				<label>organizer:</label>
+				<input name="organizer" value="<?=$organizer?>"/>
+				<label>link:</label>
+				<input name="link" size="40" value="<?=$link?>"/>			
 				<br />
-				
-				<label>location:....</label>
+				<label>location:..</label>
 				<label>zipcode: </label>
-				<input name="zipcode" size="9" value="<?=$zipcode?>"/>					
+				<input name="zipcode" size="9" value="<?=$zipcode?>"/>
+				<label>site contacts:</label>
+				<input name="sitecontacts" value="<?=$sitecontacts?>"/>					
 				<br/>
 				<textarea name="location" cols="30" rows="2"><?=$location?></textarea>
-
-
 				<br />
 				<label>description:</label><br/>
 				<textarea name="desc" cols="50" rows="3"><?=$desc?></textarea>

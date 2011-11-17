@@ -11,13 +11,14 @@ fb('how are you today');
 	<title>Hot Soup</title>
 	<link type="text/css" href="stylesheets/blueprint/screen.css" rel="stylesheet" />	
 	<link type="text/css" href="stylesheets/custom.css" rel="stylesheet" />		
+	<link type="text/css" href="stylesheets/ob.css" rel="stylesheet" />		
 <body> 
 	<div class="container">
 		<header>
 			<nav class="round">
 			</nav>
 			<section class="round">
-				<img src="images/soupbanner.jpg" alt="soup banner" /> 
+				<img src="images/soupbanner.jpg" class="stretch" alt="soup banner" /> 
 				
 			</section>
 		</header>

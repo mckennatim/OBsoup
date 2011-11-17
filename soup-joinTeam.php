@@ -17,6 +17,7 @@ fb('the volid is '.$volunteerID);
 	<title>Hot Soup</title>
 	<link type="text/css" href="stylesheets/blueprint/screen.css" rel="stylesheet" />	
 	<link type="text/css" href="stylesheets/custom.css" rel="stylesheet" />		
+	<link type="text/css" href="stylesheets/ob.css" rel="stylesheet" />	
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<link rel="shortcut icon" type="image/ico" href="http://www.sprymedia.co.uk/media/images/favicon.ico">
 		
@@ -66,6 +67,7 @@ $sitecontacts = $row['sitecontacts'];
 $link = $row['link'];
 $zipcode = $row['zipcode'];
 $organizer = $row['organizer'];
+$status = $row['status'];
 
 $sql = "SELECT `trid`, `willdothis`, `role`, `roledesc`, `name`
 FROM team  
@@ -81,6 +83,7 @@ function mkTbl($r){
 	global $volunteerID;
 	$js = '<form method=post action="postTeam.php">
 	<input type="hidden" name="vid" id="vid" value="'.$volunteerID.'"/>
+	<input type="hidden" name="pid" id="pid" value="'.$pid.'"/>	
 	<table>	<thead>
 		<tr>
 			<th>willdothis</th>
@@ -122,11 +125,13 @@ function mkTbl($r){
 			<nav class="round">
 			</nav>
 			<section class="round">
-				<img src="images/soupbanner.jpg" alt="soup banner" /> 
+				<img src="images/soupbanner.jpg" class="stretch" alt="soup banner" /> 
 			</section>
 		</header>
 		<section class="round">
-			<h1>Volunteer for this <?echo $title ?> project</h1>			
+			<h1>Volunteer for this <?echo $title ?> project</h1>	
+				<label>status:</label>
+				<?=$status?><br/>			
 				<label>project date:</label>
 				<?=$projdate?>
 				<label>lead time: </label>

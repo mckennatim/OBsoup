@@ -3,6 +3,7 @@ session_start();
 include_once('tm/dbinfo.php');
 require_once('tm/FirePHP.class.php');
 require_once('tm/fb.php');
+require_once('tm/cpu.php');
 ob_start(); //gotta have this
 fb('how are you today');
   
@@ -27,5 +28,7 @@ while (list ($key,$val) = @each ($box)) {
 	fb($qry);
 	$roler = mysql_query($qry) or die($trying);
 }
-header("location: soup-home.php");
+isTeamComplete($pid);
+ontime($pid);
+header("location: soup.php");
 ?>

@@ -1,0 +1,62 @@
+.container {
+  width: 80%;
+}
+.stretch {
+    width:90%;
+    height:90%;
+}
+
+
+#border {
+border-width: .2em;
+border-style: solid;
+border-color: #900;
+} 
+table
+{
+border-collapse:collapse;
+}
+table,thead
+{
+border-width:.3em
+border-color: #900;
+}
+thead.plabels
+{
+height:110%;
+font-size:160%;
+color: #00248F;
+}
+td.topp
+{
+font-size:150%;
+}
+a.signup_button {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  text-align: center;
+  width: 190px;
+  color: #fff;
+  background: #006400;
+  font-size; 150%;
+  font-weight: bold;
+  padding: 20px;
+}
+a.proj_button {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  text-align: center;
+  width: 30%;
+  color: #fff;
+  background: #FF5959;
+  font-size; 100%;
+  font-weight: bold;
+  padding: 2%;
+}
+.round {
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
