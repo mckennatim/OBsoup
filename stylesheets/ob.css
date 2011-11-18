@@ -55,6 +55,9 @@ a.proj_button {
   font-weight: bold;
   padding: 2%;
 }
+.button {
+    background: #9cf;
+}
 .round {
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;

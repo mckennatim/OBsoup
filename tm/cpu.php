@@ -322,4 +322,3 @@ function updateStatus(){
 		ontime($pid);
 	}
 }
-?>

@@ -11,7 +11,8 @@ fb('how are you today');
 
 	<title>Hot Soup</title>
 	<link type="text/css" href="stylesheets/blueprint/screen.css" rel="stylesheet" />	
-	<link type="text/css" href="stylesheets/custom.css" rel="stylesheet" />		
+	<link type="text/css" href="stylesheets/custom.css" rel="stylesheet" />	
+	<link type="text/css" href="stylesheets/ob.css" rel="stylesheet" />		
 
 <body> 
 	<div class="container">
@@ -19,7 +20,7 @@ fb('how are you today');
 			<nav class="round">
 			</nav>
 			<section class="round">
-				<img src="images/soupbanner.jpg" alt="soup banner" /> 
+				<img src="images/soupbanner.jpg" class="stretch" alt="soup banner" /> 
 			</section>
 		</header>
 <section class="round">
@@ -33,7 +34,7 @@ fb('how are you today');
     </tr>
     <tr>
       <td>&nbsp;</td>
-      <td><input type="submit" name="Submit" value="get new password" /></td>
+      <td><input type="submit" class="button" name="Submit" value="get new password" /></td>
     </tr>
   </table>
 </form>			

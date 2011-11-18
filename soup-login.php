@@ -35,7 +35,7 @@ fb('how are you today');
 			</tr>
 			<tr>
 			<td>&nbsp;</td>
-			<td><input type="submit" name="Submit" value="Login" /></td>
+			<td><input type="submit" class="button" name="Submit" value="Login" /></td>
 			</tr>
 			</table>
 			</form>
