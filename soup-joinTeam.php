@@ -81,6 +81,7 @@ $rarr = mkTbl($roler);
 
 function mkTbl($r){
 	global $volunteerID;
+	global $pid;
 	$js = '<form method=post action="postTeam.php">
 	<input type="hidden" name="vid" id="vid" value="'.$volunteerID.'"/>
 	<input type="hidden" name="pid" id="pid" value="'.$pid.'"/>	
@@ -130,8 +131,10 @@ function mkTbl($r){
 		</header>
 		<section class="round">
 			<h1>Volunteer for this <?echo $title ?> project</h1>	
-				<label>status:</label>
-				<?=$status?><br/>			
+				<label>status: </label>
+				<?=$status?>
+				<label>projectID: </label>
+				<?=$pid?><br/>			
 				<label>project date:</label>
 				<?=$projdate?>
 				<label>lead time: </label>

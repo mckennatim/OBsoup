@@ -128,7 +128,7 @@ function mkTbl($r){
 			<nav class="round">
 			</nav>
 			<section class="round">
-				<img src="images/soupbanner.jpg" class="stretch" alt="soup banner" /> 
+				<img src="images/soupbanner.jpg" class="stretch" alt="soup banner" />
 			</section>
 		</header>
 		<section class="round">
