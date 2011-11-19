@@ -38,7 +38,7 @@ fb('how are you today');
 <h1>You need to be logged in </h1>
 <p align="center">&nbsp;</p>
 <h4 align="center" class="err">to access to this resource.<br />
-Please login or register OB Hot Soup</h4>
+Please <a href="soup-login.php">login</a> or <a href="soup-signup.php">register</a> for OB Hot Soup</h4>
 <p align="center">&nbsp;</p>
 <p align="center">Click here to <a href="soup-login.php">Login</a></p>
 </section>

@@ -22,6 +22,6 @@ while (list ($key,$val) = @each ($box)) {
 	$roler = mysql_query($qry) or die("Dead finding units uid");
 }
 isTeamComplete($pid);
-ontime($pid);
+//ontime($pid); its called by soup anyway
 header("location: soup.php");
 ?>

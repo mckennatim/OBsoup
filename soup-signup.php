@@ -1,4 +1,5 @@
 <?
+//called from  launch.php
 session_start();
 include_once('tm/dbinfo.php');
 require_once('tm/FirePHP.class.php');
@@ -73,30 +74,6 @@ VALUES('$name','$email', '".md5($_POST['password'])."')";
 
 mysql_query($sql);
 fb($sql);
+header("location: soup.php"); 
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Hot Soup</title>
-	<link type="text/css" href="stylesheets/blueprint/screen.css" rel="stylesheet" />	
-	<link type="text/css" href="stylesheets/custom.css" rel="stylesheet" />	
-</head>
-<body>
-	<div class="container">
-		<header>
-			<nav class="round">
-			</nav>
-			<section class="round">
-			<img src="images/soupbanner.jpg" alt="soup banner" /> 
-			</section>
-		</header>
-		<section class="round">
-			<h1>OB Hot Soup project is starting soon</h1>
-			<p>
-Thanks, <? echo $name; ?>. We will let you know when we are ready to go.
-			</p>
-		</section>
-	</div>
-</body>
-</html>

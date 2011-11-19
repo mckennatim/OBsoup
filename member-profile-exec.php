@@ -5,7 +5,7 @@ require_once('tm/FirePHP.class.php');
 require_once('tm/fb.php');
 require_once('tm/cpu.php');
 ob_start(); //gotta have this
-fb('how are you today');
+fb('how are you today. In member-profile-exec');
 
 $id = $_GET[id];
 $email = $_GET[email];
@@ -33,9 +33,10 @@ $teamcancall = $_GET[teamcancall];
 
 $changepwd = $_GET[changepwd];
 $newpwd = $_GET[newpwd];
-
-if ($newpwd==1){
+fb("is changepwd on?");
+if ($changepwd=='on'){
 	$passwd=md5($newpwd);
+	fb($passwd); 
 }
 mysql_connect (DB_HOST, DB_USER, DB_PASSWORD) or die("can't even connect");
 mysql_select_db (DB_DATABASE) or die("db unavailable");	
