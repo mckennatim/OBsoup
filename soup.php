@@ -5,10 +5,15 @@ require_once('tm/FirePHP.class.php');
 require_once('tm/fb.php');
 require_once('tm/cpu.php');
 ob_start(); //gotta have this
-fb('how are you today');
+fb('in soup.php');
+fb($_SESSION['SESS_NAME']);
 $vol=$_SESSION['SESS_NAME'];
+fb($vol);
+$fname = explode(" ",$vol);
 fb('the volid is '.$organizer);
 function loginHeader(){
+    global $vol;
+	global $fname;
 	//Check whether the session variable SESS_MEMBER_ID is present or not
 	if(!isset($_SESSION['SESS_ID']) || (trim($_SESSION['SESS_ID']) == '')) {
 		//header("location: access-denied.php");
@@ -16,12 +21,13 @@ function loginHeader(){
 		$h= '<p align="right">Welcome '.$vol;
 		$h.='Click here to <a href="soup-login.php">Login</a><p>';
 	} else {
-		$h='<p align="right"><a href="member-profile.php">My Profile</a> | 
+		$h='<p align="right">'.$vol.'  <a href="member-profile.php">My Profile</a> | 
 		<a href="logout.php">Logout</a></p>';
 	}
 	return $h;
 }
 updateStatus();
+fb("back from updateStatus");
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html><head>
@@ -48,7 +54,19 @@ updateStatus();
 			</nav>
 			<section class="round">
 				<img src="images/soupbanner.jpg" class="stretch" alt="soup banner" /> 
-				<?echo loginHeader();?>
+				<?echo loginHeader();
+				if( isset($_SESSION['ERRMSG_ARR']) && is_array($_SESSION['ERRMSG_ARR']) && count($_SESSION['ERRMSG_ARR']) >0 ) {
+					echo '<ul class="err">';
+					foreach($_SESSION['ERRMSG_ARR'] as $msg) {
+					    $nicemessage = "You can only edit project on which you are the organizer.
+						You can organize your own project or Join a Team working on a project.";
+						echo '<li>',$nicemessage,'</li>'; 
+					}
+					echo '</ul>';
+					unset($_SESSION['ERRMSG_ARR']);
+				}								
+				?>
+				
 			</section>
 		</header>
 		<section class="round" id="border">

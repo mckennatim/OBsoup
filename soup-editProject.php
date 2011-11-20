@@ -6,12 +6,25 @@ require_once('tm/FirePHP.class.php');
 require_once('tm/fb.php');
 require_once('tm/cpu.php');
 ob_start(); //gotta have this
-fb('how are you today');
+fb('now in soup-editProject');
 $organizer=$_SESSION['SESS_NAME'];
+$id=$_SESSION['SESS_ID'];
+fb('id is '.$id);
 fb('the volid is '.$organizer);
 $pid = $_GET[pid];
-isTeamComplete($pid);
-ontime($pid);
+$vid = $_GET[vid];
+fb('vid is '.$vid);
+$errmsg_arr = array();
+
+if ($id!==$vid){
+    $errmsg_arr[] = "not the organizer";   
+	$_SESSION['ERRMSG_ARR'] = $errmsg_arr;
+	session_write_close();
+	fb("id dosn't equal");
+    header("location: soup.php");
+}
+fb($id . 'is id. '.$vid.' is vid. past error message');
+
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html><head>
@@ -94,7 +107,7 @@ $status = $row['status'];
 			<nav class="round">
 			</nav>
 			<section class="round">
-				<img src="images/soupbanner.jpg" class="stretch" alt="soup banner" /> 
+				<a href="soup.php"><img src="images/soupbanner.jpg" class="stretch" alt="soup banner" /></a>
 			</section>
 		</header>
 		<section class="round">

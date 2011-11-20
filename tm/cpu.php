@@ -4,7 +4,7 @@ include_once('dbinfo.php');
 require_once('FirePHP.class.php');
 require_once('fb.php');
 ob_start(); //gotta have this
-fb('how are you today');
+fb('in cpu');
 
 mysql_connect (DB_HOST, DB_USER, DB_PASSWORD) or die("can't even connect");
 mysql_select_db (DB_DATABASE) or die("db unavailable");	
@@ -87,7 +87,7 @@ function listProjects(){
 		$ht .= '<table bgcolor="#D7D7FF" border="1" cellpadding="10">';	
 		$ht .= '<div id="border"><tr><td></td><td class="topp">
 		<a href="soup-joinTeam.php?pid='.$pid.'">'.$arow["title"].' project</td>
-		<td><a class="proj_button round" href="soup-editProject.php?pid='.$pid.'">Edit</a></td>
+		<td><a class="proj_button round" href="soup-editProject.php?pid='.$pid.'&vid='.$arow["vid"].'">Edit</a></td>
 		<td><center>projectID:<br/> '.$pid.'</center></td>
 		<td>project date:<br/> '.$arow["projdate"].'</td>
 		<td>lead time:<br/> '.$arow["leadtime"].'</td>		
@@ -99,6 +99,7 @@ function listProjects(){
 		<tr><td></td><td colspan="6">Something come up? Need to 
 		<a href="soup-joinTeamMod.php?pid='.$pid.'">unvolunteer</a>? </td></tr>';
 		$ht.='</div></table>';
+		fb('soup-editProject.php?pid='.$pid.'&vid='.$arow["vid"]);
 	}
 	$ht .='</div>';
 	
@@ -303,10 +304,10 @@ function ontime($pid){
 	} elseif ($dif<0 and $tcompl ==1){	
 		$stat = "done";
 	}
-	shouldNotify($oldstatus, $stat);
+	//shouldNotify($oldstatus, $stat);
 	
     $trying ="udpading ".$pid." status to ". $stat; //fb($trying);	
-	$iql = "UPDATE projects SET `status`='$stat' , `priostatus` = '$oldstatus' WHERE pid='".$pid."'";
+	$iql = "UPDATE projects SET `status`='$stat' , `priorstatus` = '$oldstatus' WHERE pid='".$pid."'";
 	fb($iql);
 	mysql_query($iql) or die($trying);
 }

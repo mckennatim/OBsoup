@@ -27,8 +27,8 @@ fb('how are you today');
 		<p align="center">&nbsp;</p>
 		<h4 align="center" class="err">Login Failed!<br />
 		Please check your username and password</h4>
-		<p align="center">Click here to <a href="soup-login.php">Login</a>
-		Or, if you need, get a <a href="passwd-remind.php">password reminder</a></p>
+		<p align="center">Click here to <a href="soup-login.php">Login</a> again. 
+		Or, if you need, you can <a href="launch.php">register</a> or get a <a href="passwd-remind.php">password reminder</a></p>
 		</section>
 	</div>
 

@@ -4,6 +4,7 @@ include_once('tm/dbinfo.php');
 require_once('tm/FirePHP.class.php');
 require_once('tm/fb.php');
 ob_start(); //gotta have this
+fb("in login-exec");
 	
 	//Array to store validation errors
 	$errmsg_arr = array();
@@ -50,7 +51,7 @@ ob_start(); //gotta have this
 	if($errflag) {
 		$_SESSION['ERRMSG_ARR'] = $errmsg_arr;
 		session_write_close();
-		header("location: login.php");
+		header("location: soup-login.php");
 		exit();
 	}
 	
@@ -68,7 +69,8 @@ ob_start(); //gotta have this
 			$_SESSION['SESS_ID'] = $member['id'];
 			$_SESSION['SESS_EMAIL'] = $member['email'];
 			$_SESSION['SESS_NAME'] = $member['name'];
-			fb($_SESSION['SESS_ID']);
+			fb('seeid is '.$_SESSION['SESS_ID']);
+			fb('sees name is '.$_SESSION['SESS_NAME']);			
 			session_write_close();
 			header("location: soup.php");
 			exit();
