@@ -94,8 +94,8 @@ fb($loginurl);
 
 //$email="mckenna.tim@gmail.com";
 
-$message = "New password = soup \n Hi, the system has reset your password to 'soup'. You can login 
-at ".$loginurl. "(You may see a warning; sorry I'll try to fix that)";
+$message = "New password = 'soup'. Hi, the system has reset your password to 'soup'. You can login 
+at ".$loginurl. " (You may see a warning; sorry I'll try to fix that)";
 mail($email, 'HotSoup password', $message, $headers);
 ?>
 

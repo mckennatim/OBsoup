@@ -225,7 +225,7 @@ function listProjects(){
 	$ht .= '<table><thead class="plabels"><td colspan="4">Projects done.</td>
 	</thead></table>';
 	while ($arow = mysql_fetch_assoc($result)) {
-	    //fb($arow);
+	    //fb("in done " .$arow);
 		$pid = $arow["pid"];
 		///how many needed
 		$trying ="how many needed ".$pid." is complete"; //fb($trying);
@@ -273,6 +273,118 @@ function listProjects(){
 		Let the project organizer know.</td></tr>';
 		$ht.='</div></table>';
 	}
+/// projects late
+    $trying ="listing projects"; //fb($trying);
+	$sql = "Select * FROM projects WHERE status = 'late'";
+	$result = mysql_query($sql) or die($trying);	
+
+	$ht .= '<table><thead class="plabels"><td colspan="4">Projects late.</td>
+	</thead></table>';
+	while ($arow = mysql_fetch_assoc($result)) {
+	    //fb("in late " .$arow);
+		$pid = $arow["pid"];
+		///how many needed
+		$trying ="how many needed ".$pid." is complete"; //fb($trying);
+		$sql = "SELECT COUNT(*) FROM team WHERE pid = ".$pid." AND willdothis=0";
+		//fb($sql);
+		$hm = mysql_query($sql) or die($trying);
+		$ica = mysql_fetch_row($hm);
+		//fb($ica[0]);    	
+		$need = 'We still need '.$ica[0]. ' volunteer(s). ';
+		//fb($need);
+	///who has joined
+		$trying ="who so far"; //fb($trying);
+		$sql = "SELECT `id` , `name` FROM team LEFT JOIN volunteers
+		USING ( id )	WHERE pid = '$pid'
+		AND name IS NOT NULL";	
+		//fb($sql);
+		$who = mysql_query($sql) or die($trying);
+		$wh = "This team included ";
+		while ($whom = mysql_fetch_assoc($who)){
+			foreach ($whom as $key=>$val){
+				if ($key =="name"){
+					$vv = explode(" ",$val);
+					$val = $vv[0];
+					$wh.= $val." & ";
+				}
+			}
+		}	
+		$wh=substr($wh,0,-2);
+		$wh .= ". ";
+		//fb($wh);    	
+		$ht .= '<table bgcolor="#D7D7FF" border="1" cellpadding="10">';	
+		$ht .= '<div id="border"><tr><td></td><td class="topp">
+		<a href="soup-joinTeam.php?pid='.$pid.'">'.$arow["title"].' project</td>
+		<td><a class="proj_button round" href="soup-editProject.php?pid='.$pid.'">Edit</a></td>
+		<td><center>projectID:<br/> '.$pid.'</center></td>
+		<td>project date:<br/> '.$arow["projdate"].'</td>
+		<td>lead time:<br/> '.$arow["leadtime"].'</td>		
+		<tr><td></td><td colspan="2">organizer: '.$arow["organizer"].'</td>
+		<td>zipcode: <br/>'.$arow["zipcode"].'</td>
+		<td>status: <br/>'.$arow["status"].'</td></tr>
+		<tr><td></td>
+		<td colspan="6">'.$wh.'</tr>
+		<tr><td></td><td colspan="6">Something come up? Need to 
+		<a href="soup-joinTeamMod.php?pid='.$pid.'">unvolunteer</a>? 
+		Let the project organizer know.</td></tr>';
+		$ht.='</div></table>';
+	}
+/// projects dead
+    $trying ="listing projects"; //fb($trying);
+	$sql = "Select * FROM projects WHERE status = 'dead'";
+	$result = mysql_query($sql) or die($trying);	
+
+	$ht .= '<table><thead class="plabels"><td colspan="4">Projects dead.</td>
+	</thead></table>';
+	while ($arow = mysql_fetch_assoc($result)) {
+	    //fb("in dead " .$arow);
+		$pid = $arow["pid"];
+		///how many needed
+		$trying ="how many needed ".$pid." is complete"; //fb($trying);
+		$sql = "SELECT COUNT(*) FROM team WHERE pid = ".$pid." AND willdothis=0";
+		//fb($sql);
+		$hm = mysql_query($sql) or die($trying);
+		$ica = mysql_fetch_row($hm);
+		//fb($ica[0]);    	
+		$need = 'We still need '.$ica[0]. ' volunteer(s). ';
+		//fb($need);
+	///who has joined
+		$trying ="who so far"; //fb($trying);
+		$sql = "SELECT `id` , `name` FROM team LEFT JOIN volunteers
+		USING ( id )	WHERE pid = '$pid'
+		AND name IS NOT NULL";	
+		//fb($sql);
+		$who = mysql_query($sql) or die($trying);
+		$wh = "This team included ";
+		while ($whom = mysql_fetch_assoc($who)){
+			foreach ($whom as $key=>$val){
+				if ($key =="name"){
+					$vv = explode(" ",$val);
+					$val = $vv[0];
+					$wh.= $val." & ";
+				}
+			}
+		}	
+		$wh=substr($wh,0,-2);
+		$wh .= ". ";
+		//fb($wh);    	
+		$ht .= '<table bgcolor="#D7D7FF" border="1" cellpadding="10">';	
+		$ht .= '<div id="border"><tr><td></td><td class="topp">
+		<a href="soup-joinTeam.php?pid='.$pid.'">'.$arow["title"].' project</td>
+		<td><a class="proj_button round" href="soup-editProject.php?pid='.$pid.'">Edit</a></td>
+		<td><center>projectID:<br/> '.$pid.'</center></td>
+		<td>project date:<br/> '.$arow["projdate"].'</td>
+		<td>lead time:<br/> '.$arow["leadtime"].'</td>		
+		<tr><td></td><td colspan="2">organizer: '.$arow["organizer"].'</td>
+		<td>zipcode: <br/>'.$arow["zipcode"].'</td>
+		<td>status: <br/>'.$arow["status"].'</td></tr>
+		<tr><td></td>
+		<td colspan="6">'.$wh.'</tr>
+		<tr><td></td><td colspan="6">Something come up? Need to 
+		<a href="soup-joinTeamMod.php?pid='.$pid.'">unvolunteer</a>? 
+		Let the project organizer know.</td></tr>';
+		$ht.='</div></table>';
+	}	
 	$ht .='</div></div>';	
 	echo $ht;
 }	
@@ -304,12 +416,17 @@ function ontime($pid){
 	} elseif ($dif<0 and $tcompl ==1){	
 		$stat = "done";
 	}
-	//shouldNotify($oldstatus, $stat);
+
 	
     $trying ="udpading ".$pid." status to ". $stat; //fb($trying);	
 	$iql = "UPDATE projects SET `status`='$stat' , `priorstatus` = '$oldstatus' WHERE pid='".$pid."'";
 	fb($iql);
 	mysql_query($iql) or die($trying);
+	if ($stat=="ready" and $stat!=$oldstatus){
+		notifyReady($arow);
+	}
+	
+	//shouldNotify($oldstatus, $stat);
 }
 //called from soup.php, calls ontime() from here
 function updateStatus(){
@@ -317,6 +434,8 @@ function updateStatus(){
 	$sql = "Select * FROM projects WHERE 
 	status ='recruiting' OR 
 	status ='ready' OR 
+	status ='dead' OR 
+	status ='done' OR 	
 	status ='in process' OR 
 	status ='late'";
 	//fb($sql);
@@ -327,8 +446,69 @@ function updateStatus(){
 		ontime($pid);
 	}
 }
-function shouldNotify($old, $new){
-	if ($old==$new){
+function notifyReady($arow){
+    fb( "some project named ".$arow['pid']. " just got ready, time to notify the team");
+	//who to notify
+	//notify the organizer
+	$orgid = $arow['vid'];
+	$pid = $arow['pid'];
+	$trying ="get org email"; //fb($trying);	
+	$iql = "SELECT * FROM volunteers WHERE id = '$orgid' LIMIT 1" ;
+	fb($iql);
+	$result = mysql_query($iql) or die($trying);
+	$orow = mysql_fetch_assoc($result);
+	
+	$headers  = 'MIME-Version: 1.0' . "\r\n";
+	$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+	$headers .= 'From: mckenna.tim@gmail.com' . "\r\n";
+	$thisurl = curPageURL();
+
+	$purl = parse_url($thisurl);
+	//fb($purl);
+	$host = $purl['host'];
+	$whpath = $purl['path'];
+	//fb($whpath);
+	$pinfo = pathinfo($whpath);
+	//fb($pinfo);
+	$path = $pinfo['dirname'];
+	//fb($path);
+	$orgurl = "http://".$host.$path."/soup-teamContacts.php?pid=".$arow['pid'];
+
+	//fb($loginurl);
+
+	//$email="mckenna.tim@gmail.com"; 
+	$omessage = "Everybody has signed up for your ". $arow['projdate']. "project. 
+		your teams contact information is at " .$orgurl. 
+		" (You may see a warning; sorry I'll try to fix that)";
+	$tmessage = "The soup project you volunteered for on ". $arow['projdate']. " 
+	is ready to go. The volunteers hava all signed up. The 
+	organizer, ". $arow['organizer']. " will be in touch soon.";
+	$email= $orow['email'];
+	mail($email, 'Soup team ready', $omessage, $headers);
+	$trying ="get team emails"; //fb($trying);	
+	$sql = "SELECT `email` FROM projects
+	LEFT JOIN team
+	USING ( pid )
+	LEFT JOIN volunteers
+	USING ( id )	
+	WHERE pid = '".$pid."' AND readyemail = 'on'
+	GROUP BY email";	
+	fb($sql);
+	$result = mysql_query($sql) or die($trying);
+	while ($trow = mysql_fetch_assoc($result)) {
+		fb($trow['email']);
+		mail($trow['email'], 'Soup project ready', $tmessage, $headers);
 	}
-	else exit();
+}
+
+function curPageURL() {
+ $pageURL = 'http';
+ if ($_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
+ $pageURL .= "://";
+ if ($_SERVER["SERVER_PORT"] != "80") {
+  $pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
+ } else {
+  $pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+ }
+ return $pageURL;
 }

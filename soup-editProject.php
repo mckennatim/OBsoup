@@ -14,7 +14,7 @@ fb('the volid is '.$organizer);
 $pid = $_GET[pid];
 $vid = $_GET[vid];
 fb('vid is '.$vid);
-$errmsg_arr = array();
+/*$errmsg_arr = array();
 
 if ($id!==$vid){
     $errmsg_arr[] = "not the organizer";   
@@ -23,7 +23,7 @@ if ($id!==$vid){
 	fb("id dosn't equal");
     header("location: soup.php");
 }
-fb($id . 'is id. '.$vid.' is vid. past error message');
+fb($id . 'is id. '.$vid.' is vid. past error message');*/
 
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
@@ -99,6 +99,7 @@ $sitecontacts = $row['sitecontacts'];
 $link = $row['link'];
 $zipcode = $row['zipcode'];
 $organizer = $row['organizer'];
+$vid = $row['vid'];
 $status = $row['status'];
 ?>	
 <body> 
@@ -114,6 +115,7 @@ $status = $row['status'];
 			<form id="form1" name="Update" method="get" action="saveProject.php">			
 				<h1>Edit this <input name="title" value="<?=$title?>"/>	project</h1>
 				<input type="hidden" name="pid"  value="<?=$pid?>" />
+				<input type="hidden" name="vid"  value="<?=$vid?>" />				
 				<label>project status:</label>
 				<big><?=$status?></big><br/>
 				<label>project date: </label>
@@ -141,7 +143,8 @@ $status = $row['status'];
 				<label>info:</label><br/>
 				<textarea name="info" cols="50" rows="3"><?=$info?></textarea>
 				<br />
-				<input class="signup_button round" type="submit" value="Save your edited soup project" />
+				<input class="notify_button round" type="submit" value="Save your edited soup project" /><br />
+				<a href="notify-volunteers.php?pid=<?=$pid?>" class="notify_button round">notify volunteers</a>				
 			</form>		
 		</section>
 	</div>

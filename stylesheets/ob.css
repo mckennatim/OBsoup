@@ -43,6 +43,30 @@ a.signup_button {
   font-weight: bold;
   padding: 20px;
 }
+a.notify_button {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  text-align: center;
+  width: 195px;
+  color: #fff;
+  background: #006400;
+  font-size; 120%;
+  font-weight: bold;
+  padding: 1px;
+}
+input.notify_button {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  text-align: center;
+  width: 195px;
+  color: #fff;
+  background: #006400;
+  font-size; 120%;
+  font-weight: bold;
+  padding: 1px;
+}
 a.proj_button {
   margin-left: auto;
   margin-right: auto;

@@ -17,7 +17,8 @@ $title ="soup";
 
 	<title>Hot Soup</title>
 	<link type="text/css" href="stylesheets/blueprint/screen.css" rel="stylesheet" />	
-	<link type="text/css" href="stylesheets/custom.css" rel="stylesheet" />		
+	<link type="text/css" href="stylesheets/custom.css" rel="stylesheet" />	
+	<link type="text/css" href="stylesheets/ob.css" rel="stylesheet" />	
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<link rel="shortcut icon" type="image/ico" href="http://www.sprymedia.co.uk/media/images/favicon.ico">
 		
@@ -95,7 +96,7 @@ $info = $row['info'];
 			<nav class="round">
 			</nav>
 			<section class="round">
-				<img src="images/soupbanner.jpg" alt="soup banner" /> 
+				<a href="soup.php"><img src="images/soupbanner.jpg" class="stretch" alt="soup banner" /></a>
 			</section>
 		</header>
 		<section class="round">
@@ -130,7 +131,8 @@ $info = $row['info'];
 				<label>info:</label><br/>
 				<textarea name="info" cols="50" rows="3"><?=$info?></textarea>
 				<br />
-				<input class="signup_button round" type="submit" value="Create a New Soup Project" />
+				<input class="notify_button round" type="submit" value="Create a New Soup Project" /><br />
+				<a href="notify-volunteers.php?pid=<?=$pid?>" class="notify_button round">notify volunteers</a>
 			</form>		
 		</section>
 	</div>

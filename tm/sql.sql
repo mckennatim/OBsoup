@@ -84,3 +84,24 @@ FROM  team
 LEFT JOIN volunteers
 USING ( id )
 WHERE id = 1
+
+SELECT * FROM projects
+LEFT JOIN team
+USING ( pid )
+LEFT JOIN volunteers
+USING ( id )	
+WHERE pid = '7'
+
+SELECT `email` , `otheremail` , `name` , `role` , `roledesc` , `phone` , `mobile` , `orgcancall`
+FROM projects
+LEFT JOIN team
+USING ( pid )
+LEFT JOIN volunteers
+USING ( id )
+WHERE pid = '7'
+
+SELECT `role`, `roledesc`, `name`, `email`, `otheremail`, `phone` , `mobile` , `orgcancall`
+FROM team  
+LEFT JOIN volunteers
+USING ( id )
+WHERE pid='7'
