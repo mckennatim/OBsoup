@@ -63,12 +63,17 @@ $title ="soup";
 
 mysql_connect (DB_HOST, DB_USER, DB_PASSWORD) or die("can't even connect");
 mysql_select_db (DB_DATABASE) or die("db unavailable");	
-
-$qry = "INSERT INTO projects (`title`, `vid`) VALUES ('$title', '$vid')";
+    
+$qry="SELECT pid
+FROM projects
+ORDER BY pid 
+DESC LIMIT 1";
 fb($qry);
-mysql_query($qry) or die("Dead inserting blank project");
+$pir = mysql_query($qry) or die("Dead inserting blank project");
+$prow = mysql_fetch_assoc($pir);
 
-$pid = mysql_insert_id();
+fb('last row was '. $prow['pid']);
+$pid = $prow['pid'] +1;
 
 $qry = "UPDATE currentdata SET `pid`=$pid, `oid`=$oid WHERE cdid=1 ";
 fb($qry);
@@ -102,8 +107,7 @@ $info = $row['info'];
 		<section class="round">
 			<form id="form1" name="Update" method="get" action="saveProject.php">			
 				<h1>Create a <input name="title" value="<?=$title?>"/>	project</h1>	
-				<input type="hidden" name="pid"  value="<?=$pid?>" />		
-				<input type="hidden" name="title"  value="<?=$title?>" />					
+				<input type="hidden" name="pid"  value="<?=$pid?>" />							
 				<input type="hidden" name="vid"  value="<?=$vid?>" />					
 				<label>project date:</label>
 				<input name="projdate" size="12" id="projdate" value="<?=$projdate?>"/>
@@ -132,7 +136,6 @@ $info = $row['info'];
 				<textarea name="info" cols="50" rows="3"><?=$info?></textarea>
 				<br />
 				<input class="notify_button round" type="submit" value="Create a New Soup Project" /><br />
-				<a href="notify-volunteers.php?pid=<?=$pid?>" class="notify_button round">notify volunteers</a>
 			</form>		
 		</section>
 	</div>

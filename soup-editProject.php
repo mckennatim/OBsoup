@@ -112,7 +112,7 @@ $status = $row['status'];
 			</section>
 		</header>
 		<section class="round">
-			<form id="form1" name="Update" method="get" action="saveProject.php">			
+			<form id="form1" name="Update" method="get" action="saveEditedProject.php">			
 				<h1>Edit this <input name="title" value="<?=$title?>"/>	project</h1>
 				<input type="hidden" name="pid"  value="<?=$pid?>" />
 				<input type="hidden" name="vid"  value="<?=$vid?>" />				
@@ -143,8 +143,7 @@ $status = $row['status'];
 				<label>info:</label><br/>
 				<textarea name="info" cols="50" rows="3"><?=$info?></textarea>
 				<br />
-				<input class="notify_button round" type="submit" value="Save your edited soup project" /><br />
-				<a href="notify-volunteers.php?pid=<?=$pid?>" class="notify_button round">notify volunteers</a>				
+				<input class="notify_button round" type="submit" value="Save your edited soup project" /><br />			
 			</form>		
 		</section>
 	</div>

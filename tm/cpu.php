@@ -43,6 +43,7 @@ function isTeamComplete($pid){
 	mysql_query($iql) or die($trying);
 }
 function listProjects(){
+    cleanup(); 
 	$ht = '<div STYLE=" height: 600px; font-size: 14px; overflow: auto;">';
 	$ht.='<div id="border">';
 ///recruiting projects	
@@ -511,4 +512,22 @@ function curPageURL() {
   $pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
  }
  return $pageURL;
+}
+
+function cleanup(){
+	$qry="SELECT pid
+	FROM projects
+	ORDER BY pid 
+	DESC LIMIT 1";
+	fb($qry);
+	$pir = mysql_query($qry) or die("Dead inserting blank project");
+	$prow = mysql_fetch_assoc($pir);
+
+	fb('last row was '. $prow['pid']);
+	$lastpid = $prow['pid'];
+
+	$sql = "DELETE FROM team WHERE pid > ".$lastpid;
+	mysql_query($sql) or die("Dead inserting cleaning teams");
+	
+	
 }

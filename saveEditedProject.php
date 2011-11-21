@@ -26,12 +26,19 @@ ontime($pid);
 //mysql_connect (DB_HOST, DB_USER, DB_PASSWORD) or die("can't connect");
 //mysql_select_db (DB_DATABASE) or die("db unavailable");
 
-$sql= "INSERT INTO `projects`  
-(`pid`, `projdate`, `leadtime`, `location`, `organizer`, `description`, `sitecontacts`,
-`link`, `vid`, `zipcode`, `title`, `info` ) VALUES
-('$pid', '$projdate', '$leadtime', '$location', '$organizer', '$desc', '$sitecontacts', 
-'$link', '$vid', '$zipcode', '$title', '$info')"; 
-fb($sql);
+$sql= "UPDATE projects
+SET `projdate`= '$projdate',
+`leadtime`= '$leadtime',
+`location`= '$location',
+`organizer`= '$organizer',
+`description`= '$desc',
+`sitecontacts`= '$sitecontacts',
+`link`= '$link',
+`vid`= '$vid',
+`zipcode`= '$zipcode',
+`title`= '$title',
+`info`='$info'
+WHERE pid='$pid'"; 
 mysql_query($sql) or die("Dead inserting");
 header("location: notify-yesno.php?pid=".$pid);
 ?>

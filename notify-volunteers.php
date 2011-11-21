@@ -6,8 +6,8 @@ require_once('tm/fb.php');
 ob_start(); //gotta have this
 fb('in cpu');
 
+exec(notify-saveProject.php);
 $pid=$_GET[pid];
-
 
 mysql_connect (DB_HOST, DB_USER, DB_PASSWORD) or die("can't even connect");
 mysql_select_db (DB_DATABASE) or die("db unavailable");	
