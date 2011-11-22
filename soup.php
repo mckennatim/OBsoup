@@ -19,7 +19,7 @@ function loginHeader(){
 		//header("location: access-denied.php");
 		//exit();
 		$h= '<p align="right">Welcome '.$vol;
-		$h.='Click here to <a href="soup-login.php">Login</a><p>';
+		$h.='You can <a href="soup-login.php">Login</a> or <a href="launch.php">Register</a><p>';
 	} else {
 		$h='<p align="right">'.$vol.'  <a href="member-profile.php">My Profile</a> | 
 		<a href="logout.php">Logout</a></p>';

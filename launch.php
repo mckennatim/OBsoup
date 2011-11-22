@@ -16,7 +16,7 @@
 			<nav class="round">
 			</nav>
 			<section class="round">
-			<img src="images/soupbanner.jpg" class="stretch" alt="soup banner" /> 
+			<a href="soup.php"><img src="images/soupbanner.jpg" class="stretch" alt="soup banner" /> </a>
 			</section>
 		</header>
 		<section class="round">

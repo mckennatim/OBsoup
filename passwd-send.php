@@ -5,10 +5,10 @@ include_once('tm/dbinfo.php');
 require_once('tm/FirePHP.class.php');
 require_once('tm/fb.php');
 ob_start(); //gotta have this
-
+fb("in passwd-send.php");
 $errmsg_arr = array();
 $errflag = false;
-
+/* this clean shit doesn't work
 function clean($str) {
 	$str = @trim($str);
 	if(get_magic_quotes_gpc()) {
@@ -17,16 +17,16 @@ function clean($str) {
 	return mysql_real_escape_string($str);
 }
 
-$name=clean($_POST[name]);
-$email=clean($_POST[email]);
-$password=clean($_POST[password]);
-$cpassword=clean($_POST[cpassword]);
+//$email=clean($_GET[email]);
+*/
+$email=$_GET[email];
 
-fb($password);
-//Input Validations
+
+fb($email);
+fb("put Validations");
 
 if($email == '') {
-	$errmsg_arr[] = 'Email missing';
+	$errmsg_arr[] = 'Email address not entered';
 	$errflag = true;
 }
 
@@ -76,7 +76,7 @@ function curPageURL() {
 
 $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-$headers .= 'From: mckenna.tim@gmail.com' . "\r\n";
+$headers .= 'From: perimckenna@yahoo.com.com' . "\r\n";
 $thisurl = curPageURL();
 
 $purl = parse_url($thisurl);
@@ -97,6 +97,7 @@ fb($loginurl);
 $message = "New password = 'soup'. Hi, the system has reset your password to 'soup'. You can login 
 at ".$loginurl. " (You may see a warning; sorry I'll try to fix that)";
 mail($email, 'HotSoup password', $message, $headers);
+//mail($email, 'HotSoup password', $message);
 ?>
 
 <!DOCTYPE html>
@@ -113,7 +114,7 @@ mail($email, 'HotSoup password', $message, $headers);
 			<nav class="round">
 			</nav>
 			<section class="round">
-			<img src="images/soupbanner.jpg" class="stretch" alt="soup banner" /> 
+			<a href="soup.php"><img src="images/soupbanner.jpg" class="stretch" alt="soup banner" /></a> 
 			</section>
 		</header>
 		<section class="round">

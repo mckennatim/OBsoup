@@ -52,6 +52,7 @@ fb("in login-exec");
 		$_SESSION['ERRMSG_ARR'] = $errmsg_arr;
 		session_write_close();
 		header("location: soup-login.php");
+		fb($errmsg_arr);
 		exit();
 	}
 	

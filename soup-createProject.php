@@ -80,7 +80,7 @@ fb($qry);
 mysql_query($qry) or die("Dead writing currentdata");
 
 $qry = "SELECT *
-FROM prOutlines 
+FROM proutlines 
 WHERE oid='$oid' limit 1";
 fb($qry);
 $result = mysql_query($qry) or die("Dead finding units uid");

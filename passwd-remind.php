@@ -20,7 +20,7 @@ fb('how are you today');
 			<nav class="round">
 			</nav>
 			<section class="round">
-				<img src="images/soupbanner.jpg" class="stretch" alt="soup banner" /> 
+				<a href="soup.php"><img src="images/soupbanner.jpg" class="stretch" alt="soup banner" /></a>
 			</section>
 		</header>
 <section class="round">
@@ -36,7 +36,7 @@ fb('how are you today');
 ?>
 <p>&nbsp;</p>
 
-<form id="loginForm" name="loginForm" method="post" action="passwd-send.php">
+<form id="loginForm" name="loginForm" method="get" action="passwd-send.php">
   <table width="300" border="0" align="center" cellpadding="2" cellspacing="0">
     <tr>
       <td width="112"></td>
