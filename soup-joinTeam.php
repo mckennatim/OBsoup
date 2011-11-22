@@ -130,27 +130,26 @@ function mkTbl($r){
 			</section>
 		</header>
 		<section class="round">
-			<h1>Volunteer for this <?echo $title ?> project</h1>	
+			<h1>Volunteer for this <?=$projdate?> <?echo $title ?> project</h1>	
 				<label>status: </label>
 				<?=$status?>
+				<label>organizer: </label>
+				<?=$organizer?>				
 				<label>projectID: </label>
 				<?=$pid?><br/>			
-				<label>project date:</label>
-				<?=$projdate?>
-				<label>lead time: </label>
-				<?=$leadtime?>
-				<label>organizer: </label>
-				<?=$organizer?>
-				<br />
+				<label>Team needs to be in place </label>
+				<big><?=$leadtime?></big> 
+				<label>day before project date:</label>
+				<?=$projdate?><br/>
 				<label>site contacts: </label>
 				<?=$sitecontacts?>
 				<label>link: </label>
 				<a href=<?=$link?>><?=$link?></a>
-				<label>zip: </label>
-				<?=$zipcode?>
 				<br />				
 				<label>location:</label>
 				<?=$location?>
+				<label>zip: </label>
+				<?=$zipcode?>
 				<br />
 				<label>description:</label><br/>
 				<?=$desc?>

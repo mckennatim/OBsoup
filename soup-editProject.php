@@ -117,26 +117,32 @@ $status = $row['status'];
 				<input type="hidden" name="pid"  value="<?=$pid?>" />
 				<input type="hidden" name="vid"  value="<?=$vid?>" />				
 				<label>project status:</label>
-				<big><?=$status?></big><br/>
-				<label>project date: </label>
-				<input name="projdate" size="12" id="projdate" value="<?=$projdate?>"/>
-				<label>lead time:</label>
-				<input name="leadtime" size="2" value="<?=$leadtime?>"/>days
+				<big><?=$status?></big>
 				<label>project id:</label>
-				<big><?=$pid?></big><br/>
+				<big><?=$pid?></big><br/>				
+				<label>The team needs to be in place :</label>
+				<input name="leadtime" size="2" class="cen" value="<?=$leadtime?>"/>
+				<label>days before </label>	
+				<label>project date:</label>
+				<input name="projdate" size="12" id="projdate" value="<?=$projdate?>"/>
+				<br/>
+				<label>project id:</label>
+				<big><?=$pid?></big>
+				<br/>
 				<label>organizer:</label>
 				<input name="organizer" value="<?=$organizer?>"/>
+			
 				<label>link:</label>
-				<input name="link" size="40" value="<?=$link?>"/>			
-				<br />
-				<label>location:..</label>
+				<input name="link" size="40" value="<?=$link?>"/><br/>				
+			
 				<label>zipcode: </label>
 				<input name="zipcode" size="9" value="<?=$zipcode?>"/>
-				<label>site contacts:</label>
-				<input name="sitecontacts" value="<?=$sitecontacts?>"/>					
-				<br/>
-				<textarea name="location" cols="30" rows="2"><?=$location?></textarea>
+				<label>occupy contacts:</label>
+				<input name="sitecontacts" value="<?=$sitecontacts?>"/>		<br/>
+				<label>location: (neighborhood)</label><br/>
+				<textarea name="location" cols="35" rows="1"><?=$location?></textarea>
 				<br />
+				Change any of the following text to suit your particular project.<br/>
 				<label>description:</label><br/>
 				<textarea name="desc" cols="50" rows="3"><?=$desc?></textarea>
 				<br />
@@ -159,7 +165,7 @@ $status = $row['status'];
 <div class="container">
 <section class="round">
 <div class="add_delete_toolbar" />
-
+Edit cells by double clicking, plus you can add or delete roles for your project.
 <table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
 	<thead>
 		<tr>
