@@ -141,6 +141,7 @@ $info = $row['info'];
 				<textarea name="info" cols="50" rows="3"><?=$info?></textarea>
 				<br />
 				<input class="notify_button round" type="submit" value="Create a New Soup Project" /><br />
+				<p align="center>Press this button to save what you've created</p>
 			</form>		
 		</section>
 	</div>

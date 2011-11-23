@@ -161,6 +161,8 @@ function mkTbl($r){
 	</div>
 <div class="container">
 <section class="round">
+If you would like to be on this SoupTeam, select a role for yourself and click below. The organizer will contact 
+you when the SoupTeam is complete
 <? 
 echo $rarr; 
 fb($rarr);

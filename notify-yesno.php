@@ -3,11 +3,66 @@ session_start();
 include_once('tm/dbinfo.php');
 require_once('tm/FirePHP.class.php');
 require_once('tm/fb.php');
+require_once('tm/cpu.php');
+
 ob_start(); //gotta have this
-fb('how are you today');
+fb('how are you toda y');
 $pid=$_GET[pid];
 
- 
+$thisurl = curPageURL();//in cpu
+$purl = parse_url($thisurl);
+//fb($purl);
+$host = $purl['host'];
+$whpath = $purl['path'];
+//fb($whpath);
+$pinfo = pathinfo($whpath);
+//fb($pinfo);
+$path = $pinfo['dirname'];
+//fb($path);
+$joinurl = "http://".$host.$path."/soup-joinTeam.php?pid=".$pid;
+$homeurl = "http://".$host.$path."/soup.php";
+
+mysql_connect (DB_HOST, DB_USER, DB_PASSWORD) or die("can't even connect");
+mysql_select_db (DB_DATABASE) or die("db unavailable");	
+
+$trying ="get organizer vid"; //fb($trying);	
+$sql = "SELECT `vid`, `location`, `title`, `organizer` ,`projdate`, `leadtime`
+FROM projects 
+WHERE pid = '$pid' LIMIT 1";	
+fb($sql);
+$result = mysql_query($sql) or die($trying);
+$ida = mysql_fetch_assoc($result);
+
+$vid =$ida['vid'];
+$location =$ida['location'];
+$title =$ida['title'];
+$organizer =$ida['organizer'];
+$projdate =$ida['projdate'];
+$leadtime =$ida['leadtime'];
+$sprojdate= strtotime($projdate);
+$timestr = $sprojdate-$leadtime*86400;
+fb($timestr);
+$teamby = date("l\, m/d/Y",$timestr);
+$projdate = date("l\, m/d/Y",$sprojdate);
+fb($teamby);
+
+$trying ="get organizer data"; //fb($trying);	
+$sql = "SELECT `email`
+FROM volunteers 
+WHERE id = '$vid' LIMIT 1";	
+fb($sql);
+$result = mysql_query($sql) or die($trying);
+$vinfo = mysql_fetch_assoc($result);
+$email =$vinfo['email'];
+
+$tmessage = "Hi SoupTeam members,<br/>
+I am organizing an OccupyBoston ".$title." Soup project for <b>".$projdate. "</b>. It will takeplace in ".$location.". In order to pull this off I need a team in place by <b>".$teamby. "</b>.  If you are interested in perhaps volunteering check out the project and the roles you mighttake on here at ".$joinurl.". The listing of all projects is on the home page: ".$homeurl. "<br/><br/>Thanks,<br/>"
+.$organizer."<br/>";
+$junk="  ";
+
+$fmessage = "Hi, <br/>
+I support the <b>Occupy Wall Street</b> movement and have come up with a way to help them. Would you consider working with me on this project? SoupTeam is helping me form a team. The following message announces the creation of my project. It is easy to register and join my team. <br/><br/>";
+fb($tmessage);
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html><head>
@@ -34,27 +89,33 @@ $pid=$_GET[pid];
 		Besides the current SoupTeam members, consider letting some friends know 
 		about your project. Make it a party. Adding their emails below will send them your message plus
 		a link to your project page. </p></h4>
-<form id="form1" name="Update" method="get" action="notify-volunteers.php">
+<form id="form1" name="Update" method="post" action="notify-volunteers.php">
 	<input type="hidden" name="pid" id="pid" value="<?=$pid?>" />	
 	<input class="notify_button round" type="submit" value="YES, notify SoupTm&friends" />
-  type email addressess separated by commas	<br/>
+	<p align="center">Thsi will take a minute</p>
+	
+  Type email addressess of friends, separated by commas.	<br/>
   <label>
-  to: <textarea name="emails" id="emails" cols="50" rows="2"><?=$estr?></textarea>
+  to: <textarea name="emails" id="emails" cols="50" rows="2"></textarea>
   </label>
   <br/>
   <label>
-  from: <input type="text" name="from" id="from" size=35"/>
+  from: <input type="text" name="from" id="from" size=35" value="<?=$email?>"/>
   </label>
   <br/>
   <label>
-  subject: <input type="text" name="subject" id="subject" size="25"/>
+  subject: <input type="text" name="subject" id="subject" size="30" value="<?='SoupTeam-'.$title?>"/>
   </label>
   <br />
+  Here is some template text that you can change however you want. But please try to leave the url links in.
+  <br/>
   <label>
-  note to friends:<br> <textarea name="friend" id="friend" cols="50" rows="4"></textarea>
+  note to friends:<br> 
+  <textarea name="friend" id="friend" cols="60" rows="5"><?=$fmessage?></textarea>
   </label><br/>
   <label>
-  note to friends & SoupTeam members: <br/><textarea name="everyone" id="everyone" cols="50" rows="4"></textarea>
+  note to friends & SoupTeam members: <br/>
+  <textarea name="everyone" id="everyone" cols="60" rows="10"><?=$tmessage?></textarea>
   </label><br/>
 </form>
 

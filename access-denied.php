@@ -25,7 +25,7 @@ fb('how are you today');
 			<nav class="round">
 			</nav>
 			<section class="round">
-				<img src="images/soupbanner.jpg" class="stretch" alt="soup banner" /> 
+				<a href="soup.php"><img src="images/soupbanner.jpg" class="stretch" alt="soup banner" /></a> 
 			</section>
 		</header>
 		<section class="round">
@@ -35,10 +35,12 @@ fb('how are you today');
 
 <div class="container">
 <section class="round">
-<h1>You need to be logged in </h1>
+<h1 align="center"> You need to be logged in </h1>
+
+<h4 align="center" class="err">to access this resource.<br />
 <p align="center">&nbsp;</p>
-<h4 align="center" class="err">to access to this resource.<br />
-Please <a href="soup-login.php">login</a> or <a href="soup-signup.php">register</a> for OB Hot Soup</h4>
+You can login once you have registered to be a SoupTeam potential volunteer. Registering doesn't commit you to anything.
+Please <a href="soup-login.php">login</a> or <a href="soup-signup.php">register</a> for SoupTeam</h4>
 <p align="center">&nbsp;</p>
 <p align="center">Click here to <a href="soup-login.php">Login</a></p>
 </section>

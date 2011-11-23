@@ -89,9 +89,9 @@ function listProjects(){
 		$ht .= '<div id="border"><tr><td></td><td class="topp">
 		<a href="soup-joinTeam.php?pid='.$pid.'">'.$arow["title"].' project</td>
 		<td><a class="proj_button round" href="soup-editProject.php?pid='.$pid.'&vid='.$arow["vid"].'">Edit</a></td>
-		<td><center>projectID:<br/> '.$pid.'</center></td>
+		<td><small><center>projectID:<br/> '.$pid.'</center></small></td>
 		<td>project date:<br/> '.$arow["projdate"].'</td>
-		<td>lead time:<br/> '.$arow["leadtime"].'</td>		
+		<td>lead time:<br/> '.$arow["leadtime"].' days</td>		
 		<tr><td></td><td colspan="2">organizer: '.$arow["organizer"].'</td>
 		<td>zipcode: <br/>'.$arow["zipcode"].'</td>
 		<td>status: <br/>'.$arow["status"].'</td></tr>
@@ -147,9 +147,9 @@ function listProjects(){
 		$ht .= '<div id="border"><tr><td></td><td class="topp">
 		<a href="soup-joinTeam.php?pid='.$pid.'">'.$arow["title"].' project</td>
 		<td><a class="proj_button round" href="soup-editProject.php?pid='.$pid.'">Edit</a></td>
-		<td><center>projectID:<br/> '.$pid.'</center></td>
+		<td><small><center>projectID:<br/> '.$pid.'</center></small></td>
 		<td>project date:<br/> '.$arow["projdate"].'</td>
-		<td>lead time:<br/> '.$arow["leadtime"].'</td>		
+		<td>lead time:<br/> '.$arow["leadtime"].'days</td>		
 		<tr><td></td><td colspan="2">organizer: '.$arow["organizer"].'</td>
 		<td>zipcode: <br/>'.$arow["zipcode"].'</td>
 		<td>status: <br/>'.$arow["status"].'</td></tr>
@@ -204,9 +204,9 @@ function listProjects(){
 		$ht .= '<div id="border"><tr><td></td><td class="topp">
 		<a href="soup-joinTeam.php?pid='.$pid.'">'.$arow["title"].' project</td>
 		<td><a class="proj_button round" href="soup-editProject.php?pid='.$pid.'">Edit</a></td>
-		<td><center>projectID:<br/> '.$pid.'</center></td>
+		<td><small><center>projectID:<br/> '.$pid.'</center></small></td>
 		<td>project date:<br/> '.$arow["projdate"].'</td>
-		<td>lead time:<br/> '.$arow["leadtime"].'</td>		
+		<td>lead time:<br/> '.$arow["leadtime"].' days</td>		
 		<tr><td></td><td colspan="2">organizer: '.$arow["organizer"].'</td>
 		<td>zipcode: <br/>'.$arow["zipcode"].'</td>
 		<td>status: <br/>'.$arow["status"].'</td></tr>
@@ -261,9 +261,9 @@ function listProjects(){
 		$ht .= '<div id="border"><tr><td></td><td class="topp">
 		<a href="soup-joinTeam.php?pid='.$pid.'">'.$arow["title"].' project</td>
 		<td><a class="proj_button round" href="soup-editProject.php?pid='.$pid.'">Edit</a></td>
-		<td><center>projectID:<br/> '.$pid.'</center></td>
+		<td><small><center>projectID:<br/> '.$pid.'</center></small></td>
 		<td>project date:<br/> '.$arow["projdate"].'</td>
-		<td>lead time:<br/> '.$arow["leadtime"].'</td>		
+		<td>lead time:<br/> '.$arow["leadtime"].'days</td>		
 		<tr><td></td><td colspan="2">organizer: '.$arow["organizer"].'</td>
 		<td>zipcode: <br/>'.$arow["zipcode"].'</td>
 		<td>status: <br/>'.$arow["status"].'</td></tr>
@@ -317,9 +317,9 @@ function listProjects(){
 		$ht .= '<div id="border"><tr><td></td><td class="topp">
 		<a href="soup-joinTeam.php?pid='.$pid.'">'.$arow["title"].' project</td>
 		<td><a class="proj_button round" href="soup-editProject.php?pid='.$pid.'">Edit</a></td>
-		<td><center>projectID:<br/> '.$pid.'</center></td>
+		<td><small><center>projectID:<br/> '.$pid.'</center></small></td>
 		<td>project date:<br/> '.$arow["projdate"].'</td>
-		<td>lead time:<br/> '.$arow["leadtime"].'</td>		
+		<td>lead time:<br/> '.$arow["leadtime"].'days</td>		
 		<tr><td></td><td colspan="2">organizer: '.$arow["organizer"].'</td>
 		<td>zipcode: <br/>'.$arow["zipcode"].'</td>
 		<td>status: <br/>'.$arow["status"].'</td></tr>
@@ -373,8 +373,8 @@ function listProjects(){
 		$ht .= '<div id="border"><tr><td></td><td class="topp">
 		<a href="soup-joinTeam.php?pid='.$pid.'">'.$arow["title"].' project</td>
 		<td><a class="proj_button round" href="soup-editProject.php?pid='.$pid.'">Edit</a></td>
-		<td><center>projectID:<br/> '.$pid.'</center></td>
-		<td>project date:<br/> '.$arow["projdate"].'</td>
+		<td><small><center>projectID:<br/> '.$pid.'</center></small></td>
+		<td>project date:<br/> '.$arow["projdate"].'days</td>
 		<td>lead time:<br/> '.$arow["leadtime"].'</td>		
 		<tr><td></td><td colspan="2">organizer: '.$arow["organizer"].'</td>
 		<td>zipcode: <br/>'.$arow["zipcode"].'</td>
