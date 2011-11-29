@@ -8,9 +8,28 @@ ob_start(); //gotta have this
 fb('how are you today');
 $organizer=$_SESSION['SESS_NAME'];
 $vid=$_SESSION['SESS_ID'];
+$oemailjjj=$_SESSION['SESS_EMAIL'];
 fb('the volid '.$vid.' is '.$organizer);
 $oid=145;
 $title ="soup";
+
+mysql_connect (DB_HOST, DB_USER, DB_PASSWORD) or die("can't even connect");
+mysql_select_db (DB_DATABASE) or die("db unavailable");	
+//create a pid one greter than whatjever is in current data and update current data    
+$qry="SELECT pid
+FROM currentdata
+ORDER BY pid 
+DESC LIMIT 1";
+fb($qry);
+$pir = mysql_query($qry) or die("Dead lookin up currentdata");
+$prow = mysql_fetch_assoc($pir);
+
+fb('last row was '. $prow['pid']);
+$pid = $prow['pid'] +1;
+
+$qry = "UPDATE currentdata SET `pid`=$pid, `oid`=$oid WHERE cdid=1 ";
+fb($qry);
+mysql_query($qry) or die("Dead writing currentdata");
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html><head>
@@ -40,18 +59,31 @@ $title ="soup";
 
 		<script type="text/javascript" charset="utf-8">
 			$(document).ready( function () {
-           $('#example').dataTable({
-                                      "bProcessing": true,
-                                      "sAjaxSource": "getRoles.php",
+				$('#example').dataTable({
+					"bProcessing": true,
+                    "sAjaxSource": "getRoles.php",
 					aoColumns: [ { "bVisible": false}, {"bVisible": false}, null, null]
-                                 }
-                                    ).makeEditable({
-									sUpdateURL: "updateTeamRec.php",
-                    				sAddURL: "addTeamRec.php",
-									sAddHttpMethod: "GET", //Used only on google.code live example because google.code server do not support POST request
-                    				sDeleteURL: "deleteTeamRec.php",
-									sDeleteHttpMethod: "GET", //Used only on google.code live example because google.code server do not support POST request
-										});
+				}).makeEditable({
+					sUpdateURL: "updateTeamRec.php",
+                    sAddURL: "addTeamRec.php",
+					sAddHttpMethod: "GET", //Used only on google.code live example because google.code server do not support POST request
+                    sDeleteURL: "deleteTeamRec.php",
+					sDeleteHttpMethod: "GET", //Used only on google.code live example because google.code server do not support POST request
+				});
+				$("#zipcode").blur(function() 
+				{ 				
+					$.get(  
+						"tm/zcompl.php",  //url
+						{zip: $("#zipcode").val()},  //data
+						function(data) {  //success
+							//alert(data.city);
+							var loc = data.city + ', ' + data.state;
+							$("#location").val(loc);
+						},
+						"json"	//dataType
+					); 
+				});
+					
 			} );
 			$(function() {
 				$( "#projdate" ).datepicker();
@@ -61,23 +93,8 @@ $title ="soup";
 <?
 
 
-mysql_connect (DB_HOST, DB_USER, DB_PASSWORD) or die("can't even connect");
-mysql_select_db (DB_DATABASE) or die("db unavailable");	
-    
-$qry="SELECT pid
-FROM projects
-ORDER BY pid 
-DESC LIMIT 1";
-fb($qry);
-$pir = mysql_query($qry) or die("Dead inserting blank project");
-$prow = mysql_fetch_assoc($pir);
 
-fb('last row was '. $prow['pid']);
-$pid = $prow['pid'] +1;
 
-$qry = "UPDATE currentdata SET `pid`=$pid, `oid`=$oid WHERE cdid=1 ";
-fb($qry);
-mysql_query($qry) or die("Dead writing currentdata");
 
 $qry = "SELECT *
 FROM proutlines 
@@ -127,11 +144,11 @@ $info = $row['info'];
 				<input name="link" size="40" value="<?=$link?>"/><br/>				
 			
 				<label>zipcode: </label>
-				<input name="zipcode" size="9" value="<?=$zipcode?>"/>
+				<input name="zipcode" id="zipcode" size="9" value="<?=$zipcode?>"/>
 				<label>occupy contacts:</label>
 				<input name="sitecontacts" value="<?=$sitecontacts?>"/>		<br/>
 				<label>location: (neighborhood)</label><br/>
-				<textarea name="location" cols="35" rows="1"><?=$location?></textarea>
+				<input name="location" id="location" value="<?=$location?>"/>
 				<br />
 				Change any of the following text to suit your particular project.<br/>
 				<label>description:</label><br/>
@@ -141,7 +158,7 @@ $info = $row['info'];
 				<textarea name="info" cols="50" rows="3"><?=$info?></textarea>
 				<br />
 				<input class="notify_button round" type="submit" value="Create a New Soup Project" /><br />
-				<p align="center>Press this button to save what you've created</p>
+				<p align="center">Press this button to save what you've created</p>
 			</form>		
 		</section>
 	</div>

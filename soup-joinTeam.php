@@ -69,6 +69,13 @@ $zipcode = $row['zipcode'];
 $organizer = $row['organizer'];
 $status = $row['status'];
 
+$sprojdate= strtotime($projdate);
+$timestr = $sprojdate-$leadtime*86400;
+fb($timestr);
+$teamby = date("l\, m/d/Y",$timestr);
+$projdate = date("l\, m/d/Y",$sprojdate);
+fb($teamby);
+
 $sql = "SELECT `trid`, `willdothis`, `role`, `roledesc`, `name`
 FROM team  
 LEFT JOIN volunteers
@@ -137,20 +144,17 @@ function mkTbl($r){
 				<?=$organizer?>				
 				<label>projectID: </label>
 				<?=$pid?><br/>			
-				<label>Team needs to be in place </label>
-				<big><?=$leadtime?></big> 
-				<label>day before project date:</label>
-				<?=$projdate?><br/>
+				Team needs to be in place by
+				<big><b><?=$teamby?>, <?=$leadtime?></b></big> 
+				days before project date of
+				<big><b><?=$projdate?></b></big> <br/>
 				<label>site contacts: </label>
 				<?=$sitecontacts?>
 				<label>link: </label>
 				<a href=<?=$link?>><?=$link?></a>
 				<br />				
 				<label>location:</label>
-				<?=$location?>
-				<label>zip: </label>
-				<?=$zipcode?>
-				<br />
+				<?=$location?>, <?=$zipcode?><br />
 				<label>description:</label><br/>
 				<?=$desc?>
 				<br />
@@ -161,8 +165,8 @@ function mkTbl($r){
 	</div>
 <div class="container">
 <section class="round">
-If you would like to be on this SoupTeam, select a role for yourself and click below. The organizer will contact 
-you when the SoupTeam is complete
+<i>If you would like to be on this SoupTeam, select a role for yourself and click below. The organizer will contact 
+you when the SoupTeam is complete</i>
 <? 
 echo $rarr; 
 fb($rarr);

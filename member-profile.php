@@ -75,7 +75,6 @@ $facebook = $r['facebook'];
 <form id="loginForm" name="loginForm" method="get" action="member-profile-exec.php">
 
 <input type="hidden" name="id" id="id" rel="1" value="<?=$id?>" />
-<input type="hidden" name="email" id="email" rel="1" value="<?=$email?>" />
 <input type="hidden" name="passwd" id="passwd" rel="1" value="<?=$passwd?>" />
 <table width="90%" border="0" align="center" cellpadding="1" cellspacing="0">
 
@@ -85,19 +84,19 @@ $facebook = $r['facebook'];
 </td><td><label>id: </label><?=$id?></td></tr>
 
 <tr><td><label>email: </label></td>
-<td colspan="3"><?=$email?></td><td>
-<input type=checkbox name="useemail" id="useemail" size="1" 
-<?if ($useemail=='on') echo "checked=\"checked\"";?></>(use this)</td></tr>
-
+<td colspan="3"><input name="email" id="email" size="28" value="<?=$email?>" /></td><td>
+<!--<input type=checkbox name="useemail" id="useemail" size="1" 
+<?//if ($useemail=='on') echo "checked=\"checked\"";?></>(use this)</td></tr>
+<!--
 <tr><td><label>other email: </label></td>
 <td colspan="3"><input name="otheremail" id="otheremail" size="28" value="<?=$otheremail?>"/>
 </td><td>
 <input type=checkbox name="useoemail" id="useoemail" size="1" 
-<?if ($useoemail=='on') echo "checked=\"checked\"";?></>(use this)</td></tr>
-
+<?//if ($useoemail=='on') echo "checked=\"checked\"";?></>(use this)</td></tr>
+-->
 <tr><td colspan="5">check to
 <input type=checkbox name="changepwd" id="changepwd" size="1" </>
-change passord to 
+change password to 
 <input name="newpwd" id="newpwd" size="14"/>
 </td>
 </tr>

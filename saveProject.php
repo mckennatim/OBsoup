@@ -27,11 +27,11 @@ ontime($pid);
 //mysql_select_db (DB_DATABASE) or die("db unavailable");
 
 $sql= "INSERT INTO `projects`  
-(`projdate`, `leadtime`, `location`, `organizer`, `description`, `sitecontacts`,
+(`pid`, `projdate`, `leadtime`, `location`, `organizer`, `description`, `sitecontacts`,
 `link`, `vid`, `zipcode`, `title`, `info` ) VALUES
-('$projdate', '$leadtime', '$location', '$organizer', '$desc', '$sitecontacts', 
+('$pid', '$projdate', '$leadtime', '$location', '$organizer', '$desc', '$sitecontacts', 
 '$link', '$vid', '$zipcode', '$title', '$info')"; 
 fb($sql);
-mysql_query($sql) or die("Dead inserting");
+mysql_query($sql) or die("Dead inserting new project");
 header("location: notify-yesno.php?pid=".$pid);
 ?>

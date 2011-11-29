@@ -29,7 +29,7 @@ function copyRoles($projid){
 function isTeamComplete($pid){
     $trying ="checking whether team ".$pid." is complete"; fb($trying);
 	$sql = "SELECT COUNT(*) FROM team WHERE pid = ".$pid." AND willdothis=0";
-	fb($sql);
+	//fb($sql);
 	$result = mysql_query($sql) or die($trying);
 	$ica = mysql_fetch_row($result);
 	fb($ica[0]);
@@ -39,7 +39,7 @@ function isTeamComplete($pid){
 	}else $ic=0;	
     $trying ="udpading ".$pid." iscomplete"; fb($trying);	
 	$iql = "UPDATE projects SET `teamcomplete`='$ic' WHERE pid='".$pid."'";
-	fb($iql);
+	//fb($iql);
 	mysql_query($iql) or die($trying);
 }
 function listProjects(){
@@ -93,7 +93,7 @@ function listProjects(){
 		<td>project date:<br/> '.$arow["projdate"].'</td>
 		<td>lead time:<br/> '.$arow["leadtime"].' days</td>		
 		<tr><td></td><td colspan="2">organizer: '.$arow["organizer"].'</td>
-		<td>zipcode: <br/>'.$arow["zipcode"].'</td>
+		<td>location: <br/>'.$arow["location"].'</td>
 		<td>status: <br/>'.$arow["status"].'</td></tr>
 		<tr><td></td>
 		<td colspan="6">'.$wh.$need.'<a href="soup-joinTeam.php?pid='.$pid.'">Join a Team</a></td></tr>
@@ -151,7 +151,7 @@ function listProjects(){
 		<td>project date:<br/> '.$arow["projdate"].'</td>
 		<td>lead time:<br/> '.$arow["leadtime"].'days</td>		
 		<tr><td></td><td colspan="2">organizer: '.$arow["organizer"].'</td>
-		<td>zipcode: <br/>'.$arow["zipcode"].'</td>
+		<td>location: <br/>'.$arow["location"].'</td>
 		<td>status: <br/>'.$arow["status"].'</td></tr>
 		<tr><td></td>
 		<td colspan="6">'.$wh.'</tr>
@@ -208,7 +208,7 @@ function listProjects(){
 		<td>project date:<br/> '.$arow["projdate"].'</td>
 		<td>lead time:<br/> '.$arow["leadtime"].' days</td>		
 		<tr><td></td><td colspan="2">organizer: '.$arow["organizer"].'</td>
-		<td>zipcode: <br/>'.$arow["zipcode"].'</td>
+		<td>location: <br/>'.$arow["location"].'</td>
 		<td>status: <br/>'.$arow["status"].'</td></tr>
 		<tr><td></td>
 		<td colspan="6">'.$wh.'</tr>
@@ -265,7 +265,7 @@ function listProjects(){
 		<td>project date:<br/> '.$arow["projdate"].'</td>
 		<td>lead time:<br/> '.$arow["leadtime"].'days</td>		
 		<tr><td></td><td colspan="2">organizer: '.$arow["organizer"].'</td>
-		<td>zipcode: <br/>'.$arow["zipcode"].'</td>
+		<td>location: <br/>'.$arow["location"].'</td>
 		<td>status: <br/>'.$arow["status"].'</td></tr>
 		<tr><td></td>
 		<td colspan="6">'.$wh.'</tr>
@@ -321,7 +321,7 @@ function listProjects(){
 		<td>project date:<br/> '.$arow["projdate"].'</td>
 		<td>lead time:<br/> '.$arow["leadtime"].'days</td>		
 		<tr><td></td><td colspan="2">organizer: '.$arow["organizer"].'</td>
-		<td>zipcode: <br/>'.$arow["zipcode"].'</td>
+		<td>location: <br/>'.$arow["location"].'</td>
 		<td>status: <br/>'.$arow["status"].'</td></tr>
 		<tr><td></td>
 		<td colspan="6">'.$wh.'</tr>
@@ -374,10 +374,10 @@ function listProjects(){
 		<a href="soup-joinTeam.php?pid='.$pid.'">'.$arow["title"].' project</td>
 		<td><a class="proj_button round" href="soup-editProject.php?pid='.$pid.'">Edit</a></td>
 		<td><small><center>projectID:<br/> '.$pid.'</center></small></td>
-		<td>project date:<br/> '.$arow["projdate"].'days</td>
-		<td>lead time:<br/> '.$arow["leadtime"].'</td>		
+		<td>project date:<br/> '.$arow["projdate"].'</td>
+		<td>lead time:<br/> '.$arow["leadtime"].'days</td>		
 		<tr><td></td><td colspan="2">organizer: '.$arow["organizer"].'</td>
-		<td>zipcode: <br/>'.$arow["zipcode"].'</td>
+		<td>location: <br/>'.$arow["location"].'</td>
 		<td>status: <br/>'.$arow["status"].'</td></tr>
 		<tr><td></td>
 		<td colspan="6">'.$wh.'</tr>
@@ -421,7 +421,7 @@ function ontime($pid){
 	
     $trying ="udpading ".$pid." status to ". $stat; //fb($trying);	
 	$iql = "UPDATE projects SET `status`='$stat' , `priorstatus` = '$oldstatus' WHERE pid='".$pid."'";
-	fb($iql);
+	//fb($iql);
 	mysql_query($iql) or die($trying);
 	if ($stat=="ready" and $stat!=$oldstatus){
 		notifyReady($arow);
@@ -455,7 +455,7 @@ function notifyReady($arow){
 	$pid = $arow['pid'];
 	$trying ="get org email"; //fb($trying);	
 	$iql = "SELECT * FROM volunteers WHERE id = '$orgid' LIMIT 1" ;
-	fb($iql);
+	//fb($iql);
 	$result = mysql_query($iql) or die($trying);
 	$orow = mysql_fetch_assoc($result);
 	
@@ -519,11 +519,11 @@ function cleanup(){
 	FROM projects
 	ORDER BY pid 
 	DESC LIMIT 1";
-	fb($qry);
+	//fb($qry);
 	$pir = mysql_query($qry) or die("Dead inserting blank project");
 	$prow = mysql_fetch_assoc($pir);
 
-	fb('last row was '. $prow['pid']);
+	//fb('last row was '. $prow['pid']);
 	$lastpid = $prow['pid'];
 
 	$sql = "DELETE FROM team WHERE pid > ".$lastpid;

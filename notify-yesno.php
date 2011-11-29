@@ -26,7 +26,7 @@ mysql_connect (DB_HOST, DB_USER, DB_PASSWORD) or die("can't even connect");
 mysql_select_db (DB_DATABASE) or die("db unavailable");	
 
 $trying ="get organizer vid"; //fb($trying);	
-$sql = "SELECT `vid`, `location`, `title`, `organizer` ,`projdate`, `leadtime`
+$sql = "SELECT `vid`, `location`, `title`, `organizer` ,`projdate`, `leadtime`, `zipcode`
 FROM projects 
 WHERE pid = '$pid' LIMIT 1";	
 fb($sql);
@@ -39,6 +39,7 @@ $title =$ida['title'];
 $organizer =$ida['organizer'];
 $projdate =$ida['projdate'];
 $leadtime =$ida['leadtime'];
+$zip =$ida['zipcode'];
 $sprojdate= strtotime($projdate);
 $timestr = $sprojdate-$leadtime*86400;
 fb($timestr);
@@ -91,6 +92,7 @@ fb($tmessage);
 		a link to your project page. </p></h4>
 <form id="form1" name="Update" method="post" action="notify-volunteers.php">
 	<input type="hidden" name="pid" id="pid" value="<?=$pid?>" />	
+	<input type="hidden" name="zip" id="zip" value="<?=$zip?>" />	
 	<input class="notify_button round" type="submit" value="YES, notify SoupTm&friends" />
 	<p align="center">Thsi will take a minute</p>
 	

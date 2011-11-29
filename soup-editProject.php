@@ -54,22 +54,36 @@ fb($id . 'is id. '.$vid.' is vid. past error message');*/
 
 		<script type="text/javascript" charset="utf-8">
 			$(document).ready( function () {
-           $('#example').dataTable({
-                                      "bProcessing": true,
-                                      "sAjaxSource": "getTeamforProj.php",
+				$('#example').dataTable({
+                    "bProcessing": true,
+					"sAjaxSource": "getTeamforProj.php",
 					aoColumns: [ { "bVisible": false}, {"bVisible": false}, null, null]
-                                 }
-                                    ).makeEditable({
-									sUpdateURL: "updateTeamRec.php",
-                    				sAddURL: "addTeamRec.php",
-									sAddHttpMethod: "GET", //Used only on google.code live example because google.code server do not support POST request
-                    				sDeleteURL: "deleteTeamRec.php",
-									sDeleteHttpMethod: "GET", //Used only on google.code live example because google.code server do not support POST request
-										});
-			} );
+						 })
+						 .makeEditable({
+							sUpdateURL: "updateTeamRec.php",
+							sAddURL: "addTeamRec.php",
+							sAddHttpMethod: "GET", //Used only on google.code live example because google.code server do not support POST request
+							sDeleteURL: "deleteTeamRec.php",
+							sDeleteHttpMethod: "GET", //Used only on google.code live example because google.code server do not support POST request
+				});
+				$("#zipcode").blur(function() 
+				{ 				
+					$.get(  
+						"tm/zcompl.php",  //url
+						{zip: $("#zipcode").val()},  //data
+						function(data) {  //success
+							//alert(data.city);
+							var loc = data.city + ', ' + data.state;
+							$("#location").val(loc);
+						},
+						"json"	//dataType
+					); 
+				}); 
+			});
 			$(function() {
 				$( "#projdate" ).datepicker();
-			});			
+			});	
+			
 		</script>
 	</head>
 <?
@@ -136,11 +150,11 @@ $status = $row['status'];
 				<input name="link" size="40" value="<?=$link?>"/><br/>				
 			
 				<label>zipcode: </label>
-				<input name="zipcode" size="9" value="<?=$zipcode?>"/>
+				<input id="zipcode" name="zipcode" size="9" value="<?=$zipcode?>"/>
 				<label>occupy contacts:</label>
 				<input name="sitecontacts" value="<?=$sitecontacts?>"/>		<br/>
 				<label>location: (neighborhood)</label><br/>
-				<textarea name="location" cols="35" rows="1"><?=$location?></textarea>
+				<input id="location" name="location" size="20" value="<?=$location?>"/>
 				<br />
 				Change any of the following text to suit your particular project.<br/>
 				<label>description:</label><br/>
