@@ -27,17 +27,17 @@ function copyRoles($projid){
 	}
 }
 function isTeamComplete($pid){
-    $trying ="checking whether team ".$pid." is complete"; fb($trying);
+    $trying ="checking whether team ".$pid." is complete"; //fb($trying);
 	$sql = "SELECT COUNT(*) FROM team WHERE pid = ".$pid." AND willdothis=0";
 	//fb($sql);
 	$result = mysql_query($sql) or die($trying);
 	$ica = mysql_fetch_row($result);
-	fb($ica[0]);
+	//fb($ica[0]);
 	if ($ica[0]==0){
-		$trying ="team is complete"; fb($trying);
+		$trying ="team is complete"; //fb($trying);
 		$ic=1;
 	}else $ic=0;	
-    $trying ="udpading ".$pid." iscomplete"; fb($trying);	
+    $trying ="udpading ".$pid." iscomplete"; //fb($trying);	
 	$iql = "UPDATE projects SET `teamcomplete`='$ic' WHERE pid='".$pid."'";
 	//fb($iql);
 	mysql_query($iql) or die($trying);
@@ -54,10 +54,10 @@ function listProjects(){
 	$ht .= '<table><thead class="plabels"><td colspan="4">Projects in need of volunteers</td>
 	</thead></table>';
 	while ($arow = mysql_fetch_assoc($result)) {
-	    fb($arow);
+	    //fb($arow);
 		$pid = $arow["pid"];
 		///how many needed
-		$trying ="how many needed ".$pid." is complete"; fb($trying);
+		$trying ="how many needed ".$pid." is complete"; //fb($trying);
 		$sql = "SELECT COUNT(*) FROM team WHERE pid = ".$pid." AND willdothis=0";
 		//fb($sql);
 		$hm = mysql_query($sql) or die($trying);
@@ -100,7 +100,7 @@ function listProjects(){
 		<tr><td></td><td colspan="6">Something come up? Need to 
 		<a href="soup-joinTeamMod.php?pid='.$pid.'">unvolunteer</a>? </td></tr>';
 		$ht.='</div></table>';
-		fb('soup-editProject.php?pid='.$pid.'&vid='.$arow["vid"]);
+		//fb('soup-editProject.php?pid='.$pid.'&vid='.$arow["vid"]);
 	}
 	$ht .='</div>';
 	
@@ -115,16 +115,16 @@ function listProjects(){
 	    //fb($arow);
 		$pid = $arow["pid"];
 		///how many needed
-		$trying ="how many needed ".$pid." is complete"; fb($trying);
+		$trying ="how many needed ".$pid." is complete"; //fb($trying);
 		$sql = "SELECT COUNT(*) FROM team WHERE pid = ".$pid." AND willdothis=0";
 		//fb($sql);
 		$hm = mysql_query($sql) or die($trying);
 		$ica = mysql_fetch_row($hm);
-		fb($ica[0]);    	
+		//fb($ica[0]);    	
 		$need = 'We still need '.$ica[0]. ' volunteer(s). ';
 		//fb($need);
 	///who has joined
-		$trying ="who so far"; fb($trying);
+		$trying ="who so far"; //fb($trying);
 		$sql = "SELECT `id` , `name` FROM team LEFT JOIN volunteers
 		USING ( id )	WHERE pid = '$pid'
 		AND name IS NOT NULL";	
@@ -431,7 +431,7 @@ function ontime($pid){
 }
 //called from soup.php, calls ontime() from here
 function updateStatus(){
-	$trying ="listing projects not done or dead"; fb($trying);
+	$trying ="listing projects not done or dead"; //fb($trying);
 	$sql = "Select * FROM projects WHERE 
 	status ='recruiting' OR 
 	status ='ready' OR 
@@ -474,18 +474,21 @@ function notifyReady($arow){
 	$path = $pinfo['dirname'];
 	//fb($path);
 	$orgurl = "http://".$host.$path."/soup-teamContacts.php?pid=".$arow['pid'];
+	$projurl = "http://".$host.$path."/soup-teamContacts.php?pid=".$arow['pid'];	
 
 	//fb($loginurl);
 
 	//$email="mckenna.tim@gmail.com"; 
-	$omessage = "Everybody has signed up for your ". $arow['projdate']. "project. 
+	$omessage = "Everybody has signed up for your ". $arow['projdate']. " ".$arow['title'] ."project. 
 		your teams contact information is at " .$orgurl. 
 		" (You may see a warning; sorry I'll try to fix that)";
 	$tmessage = "The soup project you volunteered for on ". $arow['projdate']. " 
 	is ready to go. The volunteers hava all signed up. The 
-	organizer, ". $arow['organizer']. " will be in touch soon.";
+	organizer, ". $arow['organizer']. " will be in touch soon. (You may see a 
+	warning; sorry I'll try to fix that)";
 	$email= $orow['email'];
-	mail($email, 'Soup team ready', $omessage, $headers);
+	fb('about to email organizer '.$email. ' with '.$omessage);
+	mail('mckenna.tim@gmail.com', 'Soup team ready', $omessage, $headers);
 	$trying ="get team emails"; //fb($trying);	
 	$sql = "SELECT `email` FROM projects
 	LEFT JOIN team
