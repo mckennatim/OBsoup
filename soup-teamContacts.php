@@ -176,41 +176,42 @@ function mkTbl($r){
 			}
 			?>
 	
-			<h1>Team for this <?echo $title ?> project</h1>	
-				<label>status: </label>
-				<?=$status?>
-				<label>projectID: </label>
-				<?=$pid?>			
-				<label>project date:</label>
-				<?=$projdate?>
-				<label>lead time: </label>
-				<?=$leadtime?>
-				<br/>
-				<label>organizer: </label>
-				<?=$organizer?>
-				<br />
-				<label>organizer's email: </label>
-				<?=$gemails?>
-				<br/>
-				<label>organizer's phone: </label>
-				<?=$gphones?>
-				<br />
-				<label>site contacts: </label>
-				<?=$sitecontacts?>
+		<table><tbody>
+		<tr><th colspan="3">
+			<h3>Volunteer for the <big><b><?echo $title ?></b></big> project</h3>
+		</th></tr><tr><td>	
+			Project date: <big><b><?=$projdate?></b></big> 
+		</td><td colspan="2">
+				location:
+				<big><b><?=$location?>, <?=$zipcode?></b></big>		
+		</td>
+		</tr><tr><td> 
+				organizer: 
+				<big><b><?=$organizer?></b></big></td><td>		
+				status: 
+				<big><b><?=$status?></b></big></td><td>				
+				projID: 
+				<?=$pid?></td><td>
+		</tr><tr><td colspan="3">			
+				Team needs to be in place by
+				<big><b><?=$teamby?>, <?=$leadtime?></b></big> 
+				days before project date of
+				<big><b><?=$projdate?></b></big> <br/>
+		</td></tr><tr><td>		
 				<label>link: </label>
-				<a href=<?=$link?>><?=$link?></a>
-				<label>zip: </label>
-				<?=$zipcode?>
-				<br />				
-				<label>location:</label>
-				<?=$location?>
-				<br />
+				<a href=<?=$link?>><?=$link?></a></td><td>
+				ocupy site contact(s): 
+				<?=$sitecontacts?></td><td>				
+				</tr>							
+		<tr><td align="top">
 				<label>description:</label><br/>
-				<?=$desc?>
-				<br />
+				<p align="justify"><?=$desc?></p>
+		</td><td align="top" colspan="2">		
 				<label>info:</label><br/>
-				<?=$info?>
-			</form>		
+				<p align="justify"><?=$info?></p>
+		<td>
+		</tbody>	
+		</table>	
 		</section>
 	</div>
 <div class="container">

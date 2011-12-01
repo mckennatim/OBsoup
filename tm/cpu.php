@@ -90,7 +90,7 @@ function listProjects(){
 		<a href="soup-joinTeam.php?pid='.$pid.'">'.$arow["title"].' project</td>
 		<td><a class="proj_button round" href="soup-editProject.php?pid='.$pid.'&vid='.$arow["vid"].'">Edit</a></td>
 		<td><small><center>projectID:<br/> '.$pid.'</center></small></td>
-		<td>project date:<br/> '.$arow["projdate"].'</td>
+		<td>project date:<br/> '.fdate($arow["projdate"]).'</td>
 		<td>lead time:<br/> '.$arow["leadtime"].' days</td>		
 		<tr><td></td><td colspan="2">organizer: '.$arow["organizer"].'</td>
 		<td>location: <br/>'.$arow["location"].'</td>
@@ -148,7 +148,7 @@ function listProjects(){
 		<a href="soup-joinTeam.php?pid='.$pid.'">'.$arow["title"].' project</td>
 		<td><a class="proj_button round" href="soup-editProject.php?pid='.$pid.'">Edit</a></td>
 		<td><small><center>projectID:<br/> '.$pid.'</center></small></td>
-		<td>project date:<br/> '.$arow["projdate"].'</td>
+		<td>project date:<br/> '.fdate($arow["projdate"]).'</td>
 		<td>lead time:<br/> '.$arow["leadtime"].'days</td>		
 		<tr><td></td><td colspan="2">organizer: '.$arow["organizer"].'</td>
 		<td>location: <br/>'.$arow["location"].'</td>
@@ -205,7 +205,7 @@ function listProjects(){
 		<a href="soup-joinTeam.php?pid='.$pid.'">'.$arow["title"].' project</td>
 		<td><a class="proj_button round" href="soup-editProject.php?pid='.$pid.'">Edit</a></td>
 		<td><small><center>projectID:<br/> '.$pid.'</center></small></td>
-		<td>project date:<br/> '.$arow["projdate"].'</td>
+		<td>project date:<br/> '.fdate($arow["projdate"]).'</td>
 		<td>lead time:<br/> '.$arow["leadtime"].' days</td>		
 		<tr><td></td><td colspan="2">organizer: '.$arow["organizer"].'</td>
 		<td>location: <br/>'.$arow["location"].'</td>
@@ -262,7 +262,7 @@ function listProjects(){
 		<a href="soup-joinTeam.php?pid='.$pid.'">'.$arow["title"].' project</td>
 		<td><a class="proj_button round" href="soup-editProject.php?pid='.$pid.'">Edit</a></td>
 		<td><small><center>projectID:<br/> '.$pid.'</center></small></td>
-		<td>project date:<br/> '.$arow["projdate"].'</td>
+		<td>project date:<br/> '.fdate($arow["projdate"]).'</td>
 		<td>lead time:<br/> '.$arow["leadtime"].'days</td>		
 		<tr><td></td><td colspan="2">organizer: '.$arow["organizer"].'</td>
 		<td>location: <br/>'.$arow["location"].'</td>
@@ -318,7 +318,7 @@ function listProjects(){
 		<a href="soup-joinTeam.php?pid='.$pid.'">'.$arow["title"].' project</td>
 		<td><a class="proj_button round" href="soup-editProject.php?pid='.$pid.'">Edit</a></td>
 		<td><small><center>projectID:<br/> '.$pid.'</center></small></td>
-		<td>project date:<br/> '.$arow["projdate"].'</td>
+		<td>project date:<br/> '.fdate($arow["projdate"]).'</td>
 		<td>lead time:<br/> '.$arow["leadtime"].'days</td>		
 		<tr><td></td><td colspan="2">organizer: '.$arow["organizer"].'</td>
 		<td>location: <br/>'.$arow["location"].'</td>
@@ -374,7 +374,7 @@ function listProjects(){
 		<a href="soup-joinTeam.php?pid='.$pid.'">'.$arow["title"].' project</td>
 		<td><a class="proj_button round" href="soup-editProject.php?pid='.$pid.'">Edit</a></td>
 		<td><small><center>projectID:<br/> '.$pid.'</center></small></td>
-		<td>project date:<br/> '.$arow["projdate"].'</td>
+		<td>project date:<br/> '.fdate($arow["projdate"]).'</td>
 		<td>lead time:<br/> '.$arow["leadtime"].'days</td>		
 		<tr><td></td><td colspan="2">organizer: '.$arow["organizer"].'</td>
 		<td>location: <br/>'.$arow["location"].'</td>
@@ -531,6 +531,10 @@ function cleanup(){
 
 	$sql = "DELETE FROM team WHERE pid > ".$lastpid;
 	mysql_query($sql) or die("Dead inserting cleaning teams");
-	
-	
+}
+function fdate($date){
+	return date("m/d/Y",strtotime($date));
+}
+function mdate($date){
+	return date("Y-m-d",strtotime($date));
 }

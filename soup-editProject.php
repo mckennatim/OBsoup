@@ -103,7 +103,7 @@ fb($qry);
 $result = mysql_query($qry) or die("Dead finding units uid");
 $row = 	$arow = mysql_fetch_assoc($result);
 $projdate = $row['projdate'];
-$projdate = $row['projdate'];
+$projdate = fdate($row['projdate']);
 $leadtime = $row['leadtime'];
 $location = $row['location'];
 $title = $row['title'];

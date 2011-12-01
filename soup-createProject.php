@@ -5,7 +5,12 @@ include_once('tm/dbinfo.php');
 require_once('tm/FirePHP.class.php');
 require_once('tm/fb.php');
 ob_start(); //gotta have this
-fb('how are you today');
+fb('in soup-createProject');
+
+if (isset($_GET[month])){
+	$projdate=$_GET[month].'/'.printf("[%02s]",$_GET[day]).'/'.$_GET[year];
+}
+
 $organizer=$_SESSION['SESS_NAME'];
 $vid=$_SESSION['SESS_ID'];
 $oemailjjj=$_SESSION['SESS_EMAIL'];
@@ -20,11 +25,11 @@ $qry="SELECT pid
 FROM currentdata
 ORDER BY pid 
 DESC LIMIT 1";
-fb($qry);
+//fb($qry);
 $pir = mysql_query($qry) or die("Dead lookin up currentdata");
 $prow = mysql_fetch_assoc($pir);
 
-fb('last row was '. $prow['pid']);
+//fb('last row was '. $prow['pid']);
 $pid = $prow['pid'] +1;
 
 $qry = "UPDATE currentdata SET `pid`=$pid, `oid`=$oid WHERE cdid=1 ";
@@ -102,7 +107,6 @@ WHERE oid='$oid' limit 1";
 fb($qry);
 $result = mysql_query($qry) or die("Dead finding units uid");
 $row = mysql_fetch_assoc($result);
-$projdate = $row['projdate'];
 $leadtime = $row['leadtime'];
 $location = $row['location'];
 $sitecontacts =$row['sitecontacts'];

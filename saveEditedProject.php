@@ -9,7 +9,7 @@ fb('how are you today');
 
 $pid= $_GET[pid];
 $vid= $_GET[vid];
-$projdate= $_GET[projdate];
+$projdate= mdate($_GET[projdate]);
 $leadtime= $_GET[leadtime];
 $location= $_GET[location];
 $organizer= $_GET[organizer];

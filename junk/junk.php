@@ -1,21 +1,33 @@
 <?
-//echo header("Content-type: text/plain");
-include_once('tm/dbinfo.php');
-require_once('tm/FirePHP.class.php');
-require_once('tm/fb.php');
+echo header("Content-type: text/plain");
+include_once('../tm/dbinfo.php');
+require_once('../tm/FirePHP.class.php');
+require_once('../tm/fb.php');
+require_once('../tm/cpu.php');
 ob_start(); //gotta have this
 
-$name=$_GET[name];
-$email=$_GET[email];
+$trying ="changing date ".$pid." is complete"; //fb($trying);
+$sql = "SELECT projdate, projdat, pid FROM projects WHERE projdate<='2011-11-30'";
+//fb($sql);
+$result = mysql_query($sql) or die($trying);
+while ($ica = mysql_fetch_assoc($result)){
 
-$db = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
-/* check connection */
-if (mysqli_connect_errno()) {
-    printf("Connect failed: %s\n", mysqli_connect_error());
-    exit();
+	$prdate= mdate($ica['projdat']);
+	//$trying ="update date "; //fb($trying);
+	//$sql = "UPDATE projects SET `projdate`='$prdate' WHERE pid='".$ica['pid']."'";
+	//fb($sql);
+	//mysql_query($sql) or die($trying);
+	echo $prdate .'  '. date("d",strtotime($ica['projdate'])).'  '. fdate($prdate).'  '. mdate($prdate). "\n";
 }
-$sql = "INSERT INTO `OBsoupVolunteers` (`name`, `email`) VALUES('$name','$email')";
-$db->query($sql);
-fb($sql);
+
+
+
+echo "dog";
+$dt= date();
+$month = date("m");
+$year = date("Y");
+echo ($month.'   ' .$year.'  hjiddddd ' .$dt ) ;
+
+
 
 ?>
