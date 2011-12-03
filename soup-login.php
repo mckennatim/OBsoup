@@ -4,7 +4,13 @@ include_once('tm/dbinfo.php');
 require_once('tm/FirePHP.class.php');
 require_once('tm/fb.php');
 ob_start(); //gotta have this
-fb('how are you today');
+fb('in soup-login');
+
+$pid=$_GET[pid];
+$pg=$_GET[pg];
+
+fb('this should say the page '.$pg);
+
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html><head>
@@ -33,6 +39,8 @@ fb('how are you today');
 		</header>
 		<section class="round">
 			<form id="loginForm" name="loginForm" method="post" action="login-exec.php">
+			<input name="pid"  type="hidden"  id="pid" value="<?=$pid?>"/>
+			<input name="pg"  type="hidden"  id="pg" value="<?=$pg?>"/>
 			<table width="200" border="0" align="center" cellpadding="2" cellspacing="0">
 			<tr>
 			<td width="80"><b></b></td>

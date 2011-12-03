@@ -7,6 +7,15 @@ require_once('tm/cpu.php');
 ob_start(); //gotta have this
 fb('how are you today. In member-profile-exec');
 
+$pid=$_REQUEST['pid'];
+$pg=$_REQUEST['pg'];
+fb($pg.'  page ' . $pid);
+if (strlen($pg)>3){
+	$backto = "location: ".$pg.".php?pid=".$pid;	
+}else{
+	$backto = "location: soup.php";
+}
+
 $id = $_GET[id];
 $email = $_GET[email];
 $name = $_GET[name];
@@ -38,8 +47,8 @@ if ($changepwd=='on'){
 	$passwd=md5($newpwd);
 	fb($passwd); 
 }
-mysql_connect (DB_HOST, DB_USER, DB_PASSWORD) or die("can't even connect");
-mysql_select_db (DB_DATABASE) or die("db unavailable");	
+//mysql_connect (DB_HOST, DB_USER, DB_PASSWORD) or die("can't even connect");
+//mysql_select_db (DB_DATABASE) or die("db unavailable");	
 
 $trying ="update profile"; fb($trying);
 $sql="UPDATE volunteers SET
@@ -66,6 +75,6 @@ $sql="UPDATE volunteers SET
 `orgcancall` = '$orgcancall',
 `teamcancall` = '$teamcancall'
 WHERE id = '$id'";
-fb($sql);
+//fb($sql);
 $result = mysql_query($sql) or die($trying);
-header("location: soup.php");
+header($backto);

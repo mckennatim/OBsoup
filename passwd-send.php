@@ -8,6 +8,9 @@ ob_start(); //gotta have this
 fb("in passwd-send.php");
 $errmsg_arr = array();
 $errflag = false;
+$pid=$_REQUEST['pid'];
+$pg=$_REQUEST['pg'];
+$qstr = '?pg='.$pg.'&pid='.$pid;
 /* this clean shit doesn't work
 function clean($str) {
 	$str = @trim($str);
@@ -121,7 +124,7 @@ mail($email, 'HotSoup password', $message, $headers);
 			<h1>Check your email</h1>
 			<p>
 There you should find a new temporary password. Login with it on 
-<a href="soup-login.php">this page</a>. From there
+<a href="soup-login.php<?=$qstr?>">this page</a>. From there
 you can go to your profile and change your password.
 			</p>
 		</section>

@@ -123,18 +123,10 @@ function mkTbl($r){
 			if ($arow['orgcancall'] == 'on'){
 				$hphone = str_replace(" ","-",$arow['phone']);
 				$mphone = str_replace(" ","-",$arow['mobile']);				
-				$phones = "<td>".$hphone. "(h)<br/>".$mphone."(m)</td>";
+				$phones = "<td width=\"120\">".$hphone. "(h)<br/>".$mphone."(m)</td>";
 			}	
-			if ($arow['useemail'] == 'on'){
-				$emails = "<td>".$arow['email']. "<br/>";
-				
-				if ($arow['useoemail'] == 'on'){
-					$emails .= $arow['otheremail']."</td>";
-					
-				}else {
-					$emails.= "</td>";
-				}	
-			}
+			
+			$emails = "<td>".$arow['email']. "</td>";				
 			if ($key=='role' or $key=='roledesc' or $key=='name'){	
 				$js.='<td>'.$val.'</td>';
 			}

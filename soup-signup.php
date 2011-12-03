@@ -6,6 +6,15 @@ require_once('tm/FirePHP.class.php');
 require_once('tm/fb.php');
 ob_start(); //gotta have this
 
+$pid=$_POST['pid'];
+$pg=$_POST['pg'];
+$qstr = '?pg='.$pg.'&pid='.$pid;
+fb($pg.'  page ' . $pid);
+if (strlen($pg)>3){
+	$backto = "location: ".$pg.".php?pid=".$pid;	
+}else{
+	$backto = "location: soup.php";
+}
 $errmsg_arr = array();
 $errflag = false;
 
@@ -54,7 +63,8 @@ if($email != '') {
 	$result = mysql_query($qry);
 	if($result) {
 		if(mysql_num_rows($result) > 0) {
-			$errmsg_arr[] = 'Email address already registered';
+			$errmsg_arr[] = 'Email address already registered. Try to <a href="soup-login.php'.$qstr.'">login</a>
+			or get a <a href="passwd-remind.php">password reminder</a>';
 			$errflag = true;
 		}
 		@mysql_free_result($result);
@@ -66,7 +76,7 @@ if($email != '') {
 if($errflag) {
 	$_SESSION['ERRMSG_ARR'] = $errmsg_arr;
 	session_write_close();
-	header("location: launch.php");
+	header("location: launch.php".$qstr);
 	exit();
 }
 
@@ -74,7 +84,19 @@ $sql = "INSERT INTO `volunteers` (`name`, `email`, `passwd`)
 VALUES('$name','$email', '".md5($_POST['password'])."')";
 
 mysql_query($sql);
+$id = mysql_insert_id();
+
+session_regenerate_id();
+$_SESSION['SESS_ID'] = $id;
+$_SESSION['SESS_EMAIL'] = $email;
+$_SESSION['SESS_NAME'] = $name;
+fb('seeid is '.$_SESSION['SESS_ID']);
+fb('sees name is '.$_SESSION['SESS_NAME']);			
+session_write_close();
+header($backto);
+exit();
 fb($sql);
-header("location: soup.php"); 
+fb($backto);
+header($backto);
 ?>
 

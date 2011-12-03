@@ -1,6 +1,6 @@
 <?
 session_start();
-require_once('auth.php');
+//require_once('auth.php');
 include_once('tm/dbinfo.php');
 require_once('tm/FirePHP.class.php');
 require_once('tm/fb.php');
@@ -8,7 +8,8 @@ ob_start(); //gotta have this
 fb('how are you today');
 
 $id=$_SESSION['SESS_ID'];
-
+$pid=$_REQUEST['pid'];
+$pg=$_REQUEST['pg'];
 
 mysql_connect (DB_HOST, DB_USER, DB_PASSWORD) or die("can't even connect");
 mysql_select_db (DB_DATABASE) or die("db unavailable");	
@@ -37,6 +38,8 @@ $cancemail = $r['cancemail'];
 $canctxt = $r['canctxt'];
 $orgeachemail = $r['orgeachemail'];
 $orgeachtxt = $r['orgeachtxt'];
+$everytxt = $r['everytxt'];
+$everyemail = $r['everyemail'];
 $orgcancall = $r['orgcancall'];
 $teamcancall = $r['teamcancall'];
 $twitter = $r['twitter'];
@@ -56,7 +59,7 @@ $facebook = $r['facebook'];
 			<nav class="round">
 			</nav>
 			<section class="round">
-				<img src="images/soupbanner.jpg" class="stretch" alt="soup banner" /> 
+				<a href="soup.php"><img src="images/soupbanner.jpg" class="stretch" alt="soup banner" /></a>
 				<p align="right">
 				
 				<a href="soup.php">Home</a> | <a href="logout.php">Logout</a></p>
@@ -73,7 +76,8 @@ $facebook = $r['facebook'];
 <div class="add_delete_toolbar" />
 
 <form id="loginForm" name="loginForm" method="get" action="member-profile-exec.php">
-
+<input type="hidden" name="pid" id="pid" value="<?=$pid?>"/>
+<input type="hidden" name="pg" id="pg" value="<?=$pg?>"/>
 <input type="hidden" name="id" id="id" rel="1" value="<?=$id?>" />
 <input type="hidden" name="passwd" id="passwd" rel="1" value="<?=$passwd?>" />
 <table width="90%" border="0" align="center" cellpadding="1" cellspacing="0">

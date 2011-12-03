@@ -82,7 +82,7 @@ function listProjects(){
 				}
 			}
 		}	
-		$wh=substr($wh,0,-2);
+		$wh=substr($wh,0,-1);
 		$wh .= ". ";
 		//fb($wh);    	
 		$ht .= '<table bgcolor="#D7D7FF" border="1" cellpadding="10">';	
@@ -461,7 +461,7 @@ function notifyReady($arow){
 	
 	$headers  = 'MIME-Version: 1.0' . "\r\n";
 	$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-	$headers .= 'From: mckenna.tim@gmail.com' . "\r\n";
+	$headers .= 'From: OBsoup@soupteam.com' . "\r\n";
 	$thisurl = curPageURL();
 
 	$purl = parse_url($thisurl);
@@ -488,7 +488,7 @@ function notifyReady($arow){
 	warning; sorry I'll try to fix that)";
 	$email= $orow['email'];
 	fb('about to email organizer '.$email. ' with '.$omessage);
-	mail('mckenna.tim@gmail.com', 'Soup team ready', $omessage, $headers);
+	mail($email, 'Soup team ready', $omessage, $headers);
 	$trying ="get team emails"; //fb($trying);	
 	$sql = "SELECT `email` FROM projects
 	LEFT JOIN team

@@ -4,7 +4,10 @@ include_once('tm/dbinfo.php');
 require_once('tm/FirePHP.class.php');
 require_once('tm/fb.php');
 ob_start(); //gotta have this
-fb('how are you today');
+fb('in login-failed');
+$pid=$_REQUEST['pid'];
+$pg=$_REQUEST['pg'];
+$qstr = '?pg='.$pg.'&pid='.$pid;
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html><head>
@@ -18,7 +21,7 @@ fb('how are you today');
 			<nav class="round">
 			</nav>
 			<section class="round">
-				<img src="images/soupbanner.jpg" class="stretch" alt="soup banner" /> 
+				<a href="soup.php"><img src="images/soupbanner.jpg" class="stretch" alt="soup banner" /></a> 
 				
 			</section>
 		</header>
@@ -28,7 +31,7 @@ fb('how are you today');
 		<h4 align="center" class="err">Login Failed!<br />
 		Please check your username and password</h4>
 		<p align="center">Click here to <a href="soup-login.php">Login</a> again. 
-		Or, if you need, you can <a href="launch.php">register</a> or get a <a href="passwd-remind.php">password reminder</a></p>
+		Or, if you need, you can <a href="launch.php<?=$qstr?>">register</a> or get a <a href="passwd-remind.php<?=$qstr?>">password reminder</a></p>
 		</section>
 	</div>
 

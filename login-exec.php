@@ -6,6 +6,15 @@ require_once('tm/fb.php');
 ob_start(); //gotta have this
 fb("in login-exec");
 	
+$pid=$_POST['pid'];
+$pg=$_POST['pg'];
+$qstr = '?pg='.$pg.'&pid='.$pid;
+if (strlen($pg)>4){
+	$backto = "location: ".$pg.".php?pid=".$pid;	
+}else{
+	$backto = "location: soup.php";
+}
+	fb($backto);	
 	//Array to store validation errors
 	$errmsg_arr = array();
 	
@@ -73,11 +82,11 @@ fb("in login-exec");
 			fb('seeid is '.$_SESSION['SESS_ID']);
 			fb('sees name is '.$_SESSION['SESS_NAME']);			
 			session_write_close();
-			header("location: soup.php");
+			header($backto);
 			exit();
 		}else {
 			fb("Login failed");
-			header("location: login-failed.php");
+			header("location: login-failed.php".$qstr);
 			exit();
 		}
 	}else {

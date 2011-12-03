@@ -1,6 +1,6 @@
 <?
 session_start();
-require_once('auth.php');
+//require_once('auth.php');
 include_once('tm/dbinfo.php');
 require_once('tm/FirePHP.class.php');
 require_once('tm/fb.php');
@@ -9,7 +9,27 @@ ob_start(); //gotta have this
 $pid = $_GET[pid];
 fb('how are you today');
 $volunteerID=$_SESSION['SESS_ID'];
+$vol=$_SESSION['SESS_NAME'];
 fb('the volid is '.$volunteerID);
+function loginHeader(){
+    global $vol;
+	global $fname;
+	global $pid;
+	//Check whether the session variable SESS_MEMBER_ID is present or not
+	if(!isset($_SESSION['SESS_ID']) || (trim($_SESSION['SESS_ID']) == '')) {
+		//header("location: access-denied.php");
+		//exit();
+		$h= '<p align="right">Welcome! '.$vol.' You can volunteer for this project if you are logged in. ';
+	$h.='You can <a href="soup-login.php?pg=soup-joinTeam&pid='.$pid.'">Login</a>
+	if you\'ve <a href="launch.php?pg=soup-joinTeam&pid='.$pid.'">Register</a>ed<p>';
+	} else {
+		$h='<p align="right">Hi <b>'.$vol.'</b>. Setup how SoupTeam contacts you by editing your 
+		<a href="member-profile.php?pg=soup-joinTeam&pid='.$pid.'">Profile</a> | 
+		<a href="logout.php">Logout</a></p>';
+	}
+	return $h;
+}
+
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html><head>
@@ -91,7 +111,8 @@ function mkTbl($r){
 	global $pid;
 	$js = '<form method=post action="postTeam.php">
 	<input type="hidden" name="vid" id="vid" value="'.$volunteerID.'"/>
-	<input type="hidden" name="pid" id="pid" value="'.$pid.'"/>	
+	<input type="hidden" name="pid" id="pid" value="'.$pid.'"/>
+	<input type="hidden" name="pg" id="pg" value="soup-joinTeam"/>	
 	<table>	<thead>
 		<tr>
 			<th>willdothis</th>
@@ -134,6 +155,18 @@ function mkTbl($r){
 			</nav>
 			<section class="round">
 				<a href="soup.php"><img src="images/soupbanner.jpg" class="stretch" alt="soup banner" /></a>
+				<?echo loginHeader();
+				if( isset($_SESSION['ERRMSG_ARR']) && is_array($_SESSION['ERRMSG_ARR']) && count($_SESSION['ERRMSG_ARR']) >0 ) {
+					echo '<ul class="err">';
+					foreach($_SESSION['ERRMSG_ARR'] as $msg) {
+					    $nicemessage = "You can only edit project on which you are the organizer.
+						You can organize your own project or Join a Team working on a project.";
+						echo '<li>',$nicemessage,'</li>'; 
+					}
+					echo '</ul>';
+					unset($_SESSION['ERRMSG_ARR']);
+				}								
+				?>
 			</section>
 		</header>
 		<section class="round">

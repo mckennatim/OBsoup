@@ -18,17 +18,32 @@ function loginHeader(){
 	if(!isset($_SESSION['SESS_ID']) || (trim($_SESSION['SESS_ID']) == '')) {
 		//header("location: access-denied.php");
 		//exit();
-		$h= '<p align="right">Welcome! Find out '.$vol.' <a href="http://wiki.occupyboston.org/wiki/soup">
+		$h= '<p align="right">Welcome! Find out '.$vol.' <a href="http://wiki.occupyboston.org/wiki/user:soupTeam">
 			 About SoupTeam</a>';
 		$h.='. You can <a href="soup-login.php">Login</a> if you\'ve <a href="launch.php">Register</a>ed<p>';
 	} else {
-		$h='<p align="right">'.$vol.'  <a href="member-profile.php">My Profile</a> | 
+		$h='<p align="right">Hi <b>'.$vol.'</b>. Setup how SoupTeam contacts you by editing your <a href="member-profile.php">Profile</a> | 
 		<a href="logout.php">Logout</a></p>';
 	}
 	return $h;
 }
 updateStatus();
 fb("back from updateStatus");
+//this is a hack on pid
+$qry="SELECT pid
+FROM team
+ORDER BY pid
+DESC LIMIT 1";
+//fb($qry);
+$pir = mysql_query($qry) or die("Dead lookin up last team pid");
+$prow = mysql_fetch_assoc($pir);
+
+//fb('last row was '. $prow['pid']);
+$pid = $prow['pid'];
+
+$qry = "UPDATE currentdata SET `pid`=$pid WHERE cdid=1 ";
+fb($qry);
+mysql_query($qry) or die("Dead writing currentdata");
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html><head>

@@ -106,7 +106,7 @@ fb($tmessage);
   </label>
   <br/>
   <label>
-  subject: <input type="text" name="subject" id="subject" size="30" value="<?='SoupTeam-'.$title?>"/>
+  subject: <input type="text" name="subject" id="subject" size="30" value="<?='New Soup Project -'.$title?>"/>
   </label>
   <br />
   Here is some template text that you can change however you want. But please try to leave the url links in.

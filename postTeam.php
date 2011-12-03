@@ -1,14 +1,17 @@
 <?
 session_start();
+
 include_once('tm/dbinfo.php');
 require_once('tm/FirePHP.class.php');
 require_once('tm/fb.php');
 require_once('tm/cpu.php');
 ob_start(); //gotta have this
-fb('how are you today');
+fb('in post team');
   
-// This is to collect box array value as global_variables is set off in PHP5 by default
 $pid=$_REQUEST['pid'];
+$pg=$_REQUEST['pg'];
+
+require_once('auth.php');
 $vid=$_REQUEST['vid'];
 $box=$_REQUEST['box'];
 fb("pid is ".$pid);

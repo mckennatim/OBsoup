@@ -1,10 +1,11 @@
 <?
 session_start();
-require_once('auth.php');
+
 include_once('tm/dbinfo.php');
 require_once('tm/FirePHP.class.php');
 require_once('tm/fb.php');
 ob_start(); //gotta have this
+require_once('auth.php');
 fb('in soup-createProject');
 
 if (isset($_GET[month])){
@@ -178,7 +179,8 @@ $info = $row['info'];
 <div class="container">
 <section class="round">
 <div class="add_delete_toolbar" />
-Edit cells by dbl.clicking, enter when done, plus you can add or delete roles for your project.
+<i>Customize the roles you need for your project by adding deleting or changing(editing) the roles listed below. 
+Edit cells by dbl.clicking, enter when done; there are buttons to add or delete roles.<i>
 <table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
 	<thead>
 		<tr>

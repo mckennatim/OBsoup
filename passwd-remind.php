@@ -5,6 +5,10 @@ require_once('tm/FirePHP.class.php');
 require_once('tm/fb.php');
 ob_start(); //gotta have this
 fb('how are you today');
+$pid=$_REQUEST['pid'];
+$pg=$_REQUEST['pg'];
+$qstr = '?pg='.$pg.'&pid='.$pid;
+fb($qstr);
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html><head>
@@ -37,6 +41,8 @@ fb('how are you today');
 <p>&nbsp;</p>
 
 <form id="loginForm" name="loginForm" method="get" action="passwd-send.php">
+	<input type="hidden" name="pg" id="pg" value="<?=$pg?>"/>	
+	<input type="hidden" name="pid" id="pid" value="<?=$pid?>"/>
   <table width="300" border="0" align="center" cellpadding="2" cellspacing="0">
     <tr>
       <td width="112"></td>

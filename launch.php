@@ -1,5 +1,7 @@
 <?php
 	session_start();
+$pid=$_REQUEST['pid'];
+$pg=$_REQUEST['pg'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -34,6 +36,8 @@
 ?>
 			</p>
 			<form id="form1" name="Update" method="post" action="soup-signup.php">
+				<input type="hidden" name="pid" id="pid" value="<?=$pid?>"/>
+				<input type="hidden" name="pg" id="pg" value="<?=$pg?>"/>
 			  <label>
 			  name: <input type="text" name="name" id="quesfrom" size="32"/>
 			  </label>

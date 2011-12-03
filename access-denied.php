@@ -10,7 +10,11 @@ include_once('tm/dbinfo.php');
 require_once('tm/FirePHP.class.php');
 require_once('tm/fb.php');
 ob_start(); //gotta have this
-fb('how are you today');
+fb('in access denied');
+$pg=$_REQUEST['pg'];
+$pid=$_REQUEST['pid'];
+$qstr='?pg='.$pg.'&pid='.$pid;
+fb($qstr);
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html><head>
@@ -40,8 +44,8 @@ fb('how are you today');
 <h4 align="center" class="err">to access this resource.<br />
 <p align="center">&nbsp;</p>
 You can login once you have registered to be a SoupTeam potential volunteer. Registering doesn't commit you to anything.
-Please <a href="soup-login.php">login</a> or <a href="soup-signup.php">register</a> for SoupTeam</h4>
+Please <a href="soup-login.php<?=$qstr?>">login</a> or <a href="soup-signup.php<?=$qstr?>">register</a> for SoupTeam</h4>
 <p align="center">&nbsp;</p>
-<p align="center">Click here to <a href="soup-login.php">Login</a></p>
+<p align="center">Click here to <a href="soup-login.php<?=$qstr?>">Login</a></p>
 </section>
 </div>
