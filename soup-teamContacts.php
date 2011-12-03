@@ -1,9 +1,9 @@
 <?
 session_start();
-require_once('auth.php');
 include_once('tm/dbinfo.php');
 require_once('tm/FirePHP.class.php');
 require_once('tm/fb.php');
+//require_once('auth.php');
 ob_start(); //gotta have this
 
 $pid = $_GET[pid];
@@ -170,7 +170,7 @@ function mkTbl($r){
 	
 		<table><tbody>
 		<tr><th colspan="3">
-			<h3>Volunteer for the <big><b><?echo $title ?></b></big> project</h3>
+			<h3>Team info for the <big><b><?echo $title ?></b></big> project</h3>
 		</th></tr><tr><td>	
 			Project date: <big><b><?=$projdate?></b></big> 
 		</td><td colspan="2">
@@ -185,8 +185,8 @@ function mkTbl($r){
 				projID: 
 				<?=$pid?></td><td>
 		</tr><tr><td colspan="3">			
-				Team needs to be in place by
-				<big><b><?=$teamby?>, <?=$leadtime?></b></big> 
+				Team needed to be in place by
+				<big><b><?=$teamby?> <?=$leadtime?></b></big> 
 				days before project date of
 				<big><b><?=$projdate?></b></big> <br/>
 		</td></tr><tr><td>		

@@ -64,7 +64,7 @@ if($email != '') {
 	if($result) {
 		if(mysql_num_rows($result) > 0) {
 			$errmsg_arr[] = 'Email address already registered. Try to <a href="soup-login.php'.$qstr.'">login</a>
-			or get a <a href="passwd-remind.php">password reminder</a>';
+			or get a <a href="passwd-remind.php'.$qstr.'">password reminder</a>';
 			$errflag = true;
 		}
 		@mysql_free_result($result);

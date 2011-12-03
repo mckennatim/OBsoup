@@ -62,7 +62,7 @@ I am organizing an OccupyBoston ".$title." Soup project for <b>".$projdate. "</b
 $junk="  ";
 
 $fmessage = "Hi, <br/>
-I support the <b>Occupy Wall Street</b> movement and have come up with a way to help them. Would you consider working with me on this project? SoupTeam is helping me form a team. The following message announces the creation of my project. It is easy to register and join my team. <br/><br/>";
+I support the <b>Occupy</b> movement and have come up with a way to help them. Would you consider working with me on this project? SoupTeam is helping me form a team. The following message announces the creation of my project. It is easy to register and join my team. <br/><br/>";
 fb($tmessage);
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">

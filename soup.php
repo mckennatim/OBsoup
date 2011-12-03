@@ -39,8 +39,11 @@ $pir = mysql_query($qry) or die("Dead lookin up last team pid");
 $prow = mysql_fetch_assoc($pir);
 
 //fb('last row was '. $prow['pid']);
+if (!isset($prow['pid'])){
+ $pid = 1;
+}else{
 $pid = $prow['pid'];
-
+}
 $qry = "UPDATE currentdata SET `pid`=$pid WHERE cdid=1 ";
 fb($qry);
 mysql_query($qry) or die("Dead writing currentdata");

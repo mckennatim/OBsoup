@@ -1,10 +1,10 @@
 <?
 session_start();
-require_once('auth.php');
 include_once('tm/dbinfo.php');
 require_once('tm/FirePHP.class.php');
 require_once('tm/fb.php');
 require_once('tm/cpu.php');
+require_once('auth.php');
 ob_start(); //gotta have this
 fb('now in soup-editProject');
 $organizer=$_SESSION['SESS_NAME'];

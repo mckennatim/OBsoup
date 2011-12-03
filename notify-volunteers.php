@@ -13,7 +13,7 @@ $friend=$_POST[friend];
 $subject=$_POST[subject];
 $everyone=$_POST[everyone];
 $pzip=$_POST[zip]; 
-$frev = $friend.$everyone;
+$frev = $friend."<br/><br/>".$everyone;
 
 $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
