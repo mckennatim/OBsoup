@@ -18,12 +18,13 @@ function loginHeader(){
 	if(!isset($_SESSION['SESS_ID']) || (trim($_SESSION['SESS_ID']) == '')) {
 		//header("location: access-denied.php");
 		//exit();
-		$h= '<p align="right">Welcome! Find out '.$vol.' <a href="http://wiki.occupyboston.org/wiki/user:soupTeam">
-			 About SoupTeam</a>';
+		$h= '<p align="right">Welcome! Find out '.$vol.' 
+		<a href="http://wiki.occupyboston.org/wiki/user:soupTeam"> About SoupTeam</a>';
 		$h.='. You can <a href="soup-login.php">Login</a> if you\'ve <a href="launch.php">Register</a>ed<p>';
 	} else {
 		$h='<p align="right">Hi <b>'.$vol.'</b>. Setup how SoupTeam contacts you by editing your <a href="member-profile.php">Profile</a> | 
-		<a href="logout.php">Logout</a></p>';
+		<a href="logout.php">Logout</a> 
+		<a href="http://wiki.occupyboston.org/wiki/user:soupTeam">| About SoupTeam</a></p>';
 	}
 	return $h;
 }

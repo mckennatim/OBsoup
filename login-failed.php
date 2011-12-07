@@ -30,7 +30,7 @@ $qstr = '?pg='.$pg.'&pid='.$pid;
 		<p align="center">&nbsp;</p>
 		<h4 align="center" class="err">Login Failed!<br />
 		Please check your username and password</h4>
-		<p align="center">Click here to <a href="soup-login.php">Login</a> again. 
+		<p align="center">Click here to <a href="soup-login.php<?=$qstr?>">Login</a> again. 
 		Or, if you need, you can <a href="launch.php<?=$qstr?>">register</a> or get a <a href="passwd-remind.php<?=$qstr?>">password reminder</a></p>
 		</section>
 	</div>

@@ -21,11 +21,13 @@ function loginHeader(){
 		//exit();
 		$h= '<p align="right">Welcome! '.$vol.' You can volunteer for this project if you are logged in. ';
 	$h.='You can <a href="soup-login.php?pg=soup-joinTeam&pid='.$pid.'">Login</a>
-	if you\'ve <a href="launch.php?pg=soup-joinTeam&pid='.$pid.'">Register</a>ed<p>';
+	if you\'ve <a href="launch.php?pg=soup-joinTeam&pid='.$pid.'">Register</a>ed
+	<a href="http://wiki.occupyboston.org/wiki/user:soupTeam">| About SoupTeam</a></p>';
 	} else {
 		$h='<p align="right">Hi <b>'.$vol.'</b>. Setup how SoupTeam contacts you by editing your 
 		<a href="member-profile.php?pg=soup-joinTeam&pid='.$pid.'">Profile</a> | 
-		<a href="logout.php">Logout</a></p>';
+		<a href="logout.php">Logout</a>
+		<a href="http://wiki.occupyboston.org/wiki/user:soupTeam">| About SoupTeam</a></p>';
 	}
 	return $h;
 }
