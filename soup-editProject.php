@@ -17,7 +17,7 @@ fb('vid is '.$vid);
 /*$errmsg_arr = array();
 
 if ($id!==$vid){
-    $errmsg_arr[] = "not the organizer";   
+    $errmsg_arr[] = "not the organizer";
 	$_SESSION['ERRMSG_ARR'] = $errmsg_arr;
 	session_write_close();
 	fb("id dosn't equal");
@@ -30,12 +30,12 @@ fb($id . 'is id. '.$vid.' is vid. past error message');*/
 <html><head>
 
 	<title>Hot Soup</title>
-	<link type="text/css" href="stylesheets/blueprint/screen.css" rel="stylesheet" />	
-	<link type="text/css" href="stylesheets/custom.css" rel="stylesheet" />		
-	<link type="text/css" href="stylesheets/ob.css" rel="stylesheet" />	
+	<link type="text/css" href="stylesheets/blueprint/screen.css" rel="stylesheet" />
+	<link type="text/css" href="stylesheets/custom.css" rel="stylesheet" />
+	<link type="text/css" href="stylesheets/ob.css" rel="stylesheet" />
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<link rel="shortcut icon" type="image/ico" href="http://www.sprymedia.co.uk/media/images/favicon.ico">
-		
+
 		<title>Using DataTable with Editable plugin - Getting the data source via ajax request</title>
 		<style type="text/css" title="currentStyle">
 			@import "media/css/demo_page.css";
@@ -66,9 +66,9 @@ fb($id . 'is id. '.$vid.' is vid. past error message');*/
 							sDeleteURL: "deleteTeamRec.php",
 							sDeleteHttpMethod: "GET", //Used only on google.code live example because google.code server do not support POST request
 				});
-				$("#zipcode").blur(function() 
-				{ 				
-					$.get(  
+				$("#zipcode").blur(function()
+				{
+					$.get(
 						"tm/zcompl.php",  //url
 						{zip: $("#zipcode").val()},  //data
 						function(data) {  //success
@@ -77,27 +77,27 @@ fb($id . 'is id. '.$vid.' is vid. past error message');*/
 							$("#location").val(loc);
 						},
 						"json"	//dataType
-					); 
-				}); 
+					);
+				});
 			});
 			$(function() {
 				$( "#projdate" ).datepicker();
-			});	
-			
+			});
+
 		</script>
 	</head>
 <?
 
 
 mysql_connect (DB_HOST, DB_USER, DB_PASSWORD) or die("can't even connect");
-mysql_select_db (DB_DATABASE) or die("db unavailable");	
+mysql_select_db (DB_DATABASE) or die("db unavailable");
 
 $qry = "UPDATE currentdata SET `pid`=$pid";
 fb($qry);
 mysql_query($qry) or die("Dead writing currentdata");
 
 $qry = "SELECT *
-FROM projects  
+FROM projects
 WHERE pid='$pid' limit 1";
 fb($qry);
 $result = mysql_query($qry) or die("Dead finding units uid");
@@ -115,8 +115,8 @@ $zipcode = $row['zipcode'];
 $organizer = $row['organizer'];
 $vid = $row['vid'];
 $status = $row['status'];
-?>	
-<body> 
+?>
+<body>
 	<div class="container">
 		<header>
 			<nav class="round">
@@ -126,17 +126,17 @@ $status = $row['status'];
 			</section>
 		</header>
 		<section class="round">
-			<form id="form1" name="Update" method="get" action="saveEditedProject.php">			
+			<form id="form1" name="Update" method="get" action="saveEditedProject.php">
 				<h1>Edit this <input name="title" value="<?=$title?>"/>	project</h1>
 				<input type="hidden" name="pid"  value="<?=$pid?>" />
-				<input type="hidden" name="vid"  value="<?=$vid?>" />				
+				<input type="hidden" name="vid"  value="<?=$vid?>" />
 				<label>project status:</label>
 				<big><?=$status?></big>
 				<label>project id:</label>
-				<big><?=$pid?></big><br/>				
-				<label>The team needs to be in place :</label>
+				<big><?=$pid?></big><br/>
+				<label>The team needs to be in place by:</label>
 				<input name="leadtime" size="2" class="cen" value="<?=$leadtime?>"/>
-				<label>days before </label>	
+				<label>days before </label>
 				<label>project date:</label>
 				<input name="projdate" size="12" id="projdate" value="<?=$projdate?>"/>
 				<br/>
@@ -145,10 +145,10 @@ $status = $row['status'];
 				<br/>
 				<label>organizer:</label>
 				<input name="organizer" value="<?=$organizer?>"/>
-			
+
 				<label>link:</label>
-				<input name="link" size="40" value="<?=$link?>"/><br/>				
-			
+				<input name="link" size="40" value="<?=$link?>"/><br/>
+
 				<label>zipcode: </label>
 				<input id="zipcode" name="zipcode" size="9" value="<?=$zipcode?>"/>
 				<label>occupy contacts:</label>
@@ -163,8 +163,8 @@ $status = $row['status'];
 				<label>info:</label><br/>
 				<textarea name="info" cols="50" rows="3"><?=$info?></textarea>
 				<br />
-				<input class="notify_button round" type="submit" value="Save your edited soup project" /><br />			
-			</form>		
+				<input class="notify_button round" type="submit" value="Save your edited soup project" /><br />
+			</form>
 		</section>
 	</div>
  <form id="formAddNewRow" action="#" title="Add new record">
@@ -208,4 +208,3 @@ Edit cells by double clicking, plus you can add or delete roles for your project
 
 <!DOCTYPE html>
 <html>
-
