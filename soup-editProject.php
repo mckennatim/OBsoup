@@ -134,7 +134,7 @@ $status = $row['status'];
 				<big><?=$status?></big>
 				<label>project id:</label>
 				<big><?=$pid?></big><br/>
-				<label>The team needs to be in place by:</label>
+				<label>The team needs to be in place by </label>
 				<input name="leadtime" size="2" class="cen" value="<?=$leadtime?>"/>
 				<label>days before </label>
 				<label>project date:</label>
