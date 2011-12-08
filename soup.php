@@ -10,7 +10,6 @@ fb($_SESSION['SESS_NAME']);
 $vol=$_SESSION['SESS_NAME'];
 fb($vol);
 $fname = explode(" ",$vol);
-fb('the volid is '.$organizer);
 function loginHeader(){
     global $vol;
 	global $fname;
@@ -18,12 +17,12 @@ function loginHeader(){
 	if(!isset($_SESSION['SESS_ID']) || (trim($_SESSION['SESS_ID']) == '')) {
 		//header("location: access-denied.php");
 		//exit();
-		$h= '<p align="right">Welcome! Find out '.$vol.' 
+		$h= '<p align="right">Welcome! Find out '.$vol.'
 		<a href="http://wiki.occupyboston.org/wiki/user:soupTeam"> About SoupTeam</a>';
 		$h.='. You can <a href="soup-login.php">Login</a> if you\'ve <a href="launch.php">Register</a>ed<p>';
 	} else {
-		$h='<p align="right">Hi <b>'.$vol.'</b>. Setup how SoupTeam contacts you by editing your <a href="member-profile.php">Profile</a> | 
-		<a href="logout.php">Logout</a> 
+		$h='<p align="right">Hi <b>'.$vol.'</b>. Setup how SoupTeam contacts you by editing your <a href="member-profile.php">Profile</a> |
+		<a href="logout.php">Logout</a>
 		<a href="http://wiki.occupyboston.org/wiki/user:soupTeam">| About SoupTeam</a></p>';
 	}
 	return $h;
@@ -53,9 +52,9 @@ mysql_query($qry) or die("Dead writing currentdata");
 <html><head>
 
 	<title>Hot Soup</title>
-	<link type="text/css" href="stylesheets/blueprint/screen.css" rel="stylesheet" />	
-	<link type="text/css" href="stylesheets/custom.css" rel="stylesheet" />		
-	<link type="text/css" href="stylesheets/ob.css" rel="stylesheet" />	
+	<link type="text/css" href="stylesheets/blueprint/screen.css" rel="stylesheet" />
+	<link type="text/css" href="stylesheets/custom.css" rel="stylesheet" />
+	<link type="text/css" href="stylesheets/ob.css" rel="stylesheet" />
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<link rel="shortcut icon" type="image/ico" href="http://www.sprymedia.co.uk/media/images/favicon.ico">
 		<title>OB Soup</title>
@@ -67,26 +66,26 @@ mysql_query($qry) or die("Dead writing currentdata");
         <script src="media/js/jquery.dataTables.editable.js" type="text/javascript"></script>
 
 
-<body> 
+<body>
 	<div class="container">
 		<header>
 			<nav class="round">
 			</nav>
 			<section class="round">
-				<img src="images/soupbanner.jpg" class="stretch" alt="soup banner" /> 
+				<img src="images/soupbanner.jpg" class="stretch" alt="soup banner" />
 				<?echo loginHeader();
 				if( isset($_SESSION['ERRMSG_ARR']) && is_array($_SESSION['ERRMSG_ARR']) && count($_SESSION['ERRMSG_ARR']) >0 ) {
 					echo '<ul class="err">';
 					foreach($_SESSION['ERRMSG_ARR'] as $msg) {
 					    $nicemessage = "You can only edit project on which you are the organizer.
 						You can organize your own project or Join a Team working on a project.";
-						echo '<li>',$nicemessage,'</li>'; 
+						echo '<li>',$nicemessage,'</li>';
 					}
 					echo '</ul>';
 					unset($_SESSION['ERRMSG_ARR']);
-				}								
+				}
 				?>
-				
+
 			</section>
 		</header>
 		<section class="round" id="border">
@@ -106,4 +105,3 @@ mysql_query($qry) or die("Dead writing currentdata");
 
 <!DOCTYPE html>
 <html>
-
