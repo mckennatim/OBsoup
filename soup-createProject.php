@@ -8,8 +8,8 @@ ob_start(); //gotta have this
 require_once('auth.php');
 fb('in soup-createProject');
 
-if (isset($_GET[month])){
-	$projdate=$_GET[month].'/'.printf("[%02s]",$_GET[day]).'/'.$_GET[year];
+if (isset($_GET['month'])){
+	$projdate=$_GET['month'].'/'.printf("[%02s]",$_GET['day']).'/'.$_GET['year'];
 }
 
 $organizer=$_SESSION['SESS_NAME'];
@@ -20,11 +20,11 @@ $oid=145;
 $title ="soup";
 
 mysql_connect (DB_HOST, DB_USER, DB_PASSWORD) or die("can't even connect");
-mysql_select_db (DB_DATABASE) or die("db unavailable");	
-//create a pid one greter than whatjever is in current data and update current data    
+mysql_select_db (DB_DATABASE) or die("db unavailable");
+//create a pid one greter than whatjever is in current data and update current data
 $qry="SELECT pid
 FROM currentdata
-ORDER BY pid 
+ORDER BY pid
 DESC LIMIT 1";
 //fb($qry);
 $pir = mysql_query($qry) or die("Dead lookin up currentdata");
@@ -41,12 +41,12 @@ mysql_query($qry) or die("Dead writing currentdata");
 <html><head>
 
 	<title>Hot Soup</title>
-	<link type="text/css" href="stylesheets/blueprint/screen.css" rel="stylesheet" />	
-	<link type="text/css" href="stylesheets/custom.css" rel="stylesheet" />	
-	<link type="text/css" href="stylesheets/ob.css" rel="stylesheet" />	
+	<link type="text/css" href="stylesheets/blueprint/screen.css" rel="stylesheet" />
+	<link type="text/css" href="stylesheets/custom.css" rel="stylesheet" />
+	<link type="text/css" href="stylesheets/ob.css" rel="stylesheet" />
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<link rel="shortcut icon" type="image/ico" href="http://www.sprymedia.co.uk/media/images/favicon.ico">
-		
+
 		<title>Using DataTable with Editable plugin - Getting the data source via ajax request</title>
 		<style type="text/css" title="currentStyle">
 			@import "media/css/demo_page.css";
@@ -76,9 +76,9 @@ mysql_query($qry) or die("Dead writing currentdata");
                     sDeleteURL: "deleteTeamRec.php",
 					sDeleteHttpMethod: "GET", //Used only on google.code live example because google.code server do not support POST request
 				});
-				$("#zipcode").blur(function() 
-				{ 				
-					$.get(  
+				$("#zipcode").blur(function()
+				{
+					$.get(
 						"tm/zcompl.php",  //url
 						{zip: $("#zipcode").val()},  //data
 						function(data) {  //success
@@ -87,9 +87,9 @@ mysql_query($qry) or die("Dead writing currentdata");
 							$("#location").val(loc);
 						},
 						"json"	//dataType
-					); 
+					);
 				});
-					
+
 			} );
 			$(function() {
 				$( "#projdate" ).datepicker();
@@ -103,21 +103,19 @@ mysql_query($qry) or die("Dead writing currentdata");
 
 
 $qry = "SELECT *
-FROM proutlines 
+FROM proutlines
 WHERE oid='$oid' limit 1";
 fb($qry);
 $result = mysql_query($qry) or die("Dead finding units uid");
 $row = mysql_fetch_assoc($result);
-$leadtime = $row['leadtime'];
-$location = $row['location'];
 $sitecontacts =$row['sitecontacts'];
 $link =$row['link'];
 
 $title = $row['title'];
 $desc = $row['description'];
 $info = $row['info'];
-?>	
-<body> 
+?>
+<body>
 	<div class="container">
 		<header>
 			<nav class="round">
@@ -127,33 +125,33 @@ $info = $row['info'];
 			</section>
 		</header>
 		<section class="round">
-			<form id="form1" name="Update" method="get" action="saveProject.php">	
-				<input type="hidden" name="pid"  value="<?=$pid?>" />							
-				<input type="hidden" name="vid"  value="<?=$vid?>" />			
+			<form id="form1" name="Update" method="get" action="saveProject.php">
+				<input type="hidden" name="pid"  value="<?=$pid?>" />
+				<input type="hidden" name="vid"  value="<?=$vid?>" />
 				<h1>Create a <input name="title" value="<?=$title?>"/>	project</h1>
-				
+
 				<p></p>
 				<label>The team needs to be in place :</label>
-				<input name="leadtime" size="2" class="cen" value="<?=$leadtime?>"/>
-				<label>days before </label>	
+				<input name="leadtime" size="2" class="cen" value=""/>
+				<label>days before </label>
 				<label>project date:</label>
-				<input name="projdate" size="12" id="projdate" value="<?=$projdate?>"/>
+				<input name="projdate" size="12" id="projdate" value=""/>
 				<br/>
 				<label>project id:</label>
 				<big><?=$pid?></big>
 				<br/>
 				<label>organizer:</label>
 				<input name="organizer" value="<?=$organizer?>"/>
-			
+
 				<label>link:</label>
-				<input name="link" size="40" value="<?=$link?>"/><br/>				
-			
+				<input name="link" size="40" value="<?=$link?>"/><br/>
+
 				<label>zipcode: </label>
-				<input name="zipcode" id="zipcode" size="9" value="<?=$zipcode?>"/>
+				<input name="zipcode" id="zipcode" size="9" value=""/>
 				<label>occupy contacts:</label>
 				<input name="sitecontacts" value="<?=$sitecontacts?>"/>		<br/>
 				<label>location: (neighborhood)</label><br/>
-				<input name="location" id="location" value="<?=$location?>"/>
+				<input name="location" id="location" value=""/>
 				<br />
 				Change any of the following text to suit your particular project.<br/>
 				<label>description:</label><br/>
@@ -163,8 +161,8 @@ $info = $row['info'];
 				<textarea name="info" cols="50" rows="3"><?=$info?></textarea>
 				<br />
 				<p align="center">Customize your team below and press this button to save what you've created</p>
-				<input class="notify_button round" type="submit" value="Create a New Soup Project" /><br />				
-			</form>		
+				<input class="notify_button round" type="submit" value="Create a New Soup Project" /><br />
+			</form>
 		</section>
 	</div>
  <form id="formAddNewRow" action="#" title="Add new record">
@@ -179,7 +177,7 @@ $info = $row['info'];
 <div class="container">
 <section class="round">
 <div class="add_delete_toolbar" />
-<i>Customize the roles you need for your project by adding deleting or changing(editing) the roles listed below. 
+<i>Customize the roles you need for your project by adding deleting or changing(editing) the roles listed below.
 Edit cells by dbl.clicking, enter when done; there are buttons to add or delete roles.<i>
 <table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
 	<thead>
@@ -209,4 +207,3 @@ Edit cells by dbl.clicking, enter when done; there are buttons to add or delete 
 
 <!DOCTYPE html>
 <html>
-
