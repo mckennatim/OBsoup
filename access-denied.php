@@ -1,7 +1,7 @@
 <?php
 	//Start session
 	session_start();
-	
+
 	//Unset the variables stored in session
 	unset($_SESSION['SESS_ID']);
 	unset($_SESSION['SESS_NAME']);
@@ -11,8 +11,10 @@ require_once('tm/FirePHP.class.php');
 require_once('tm/fb.php');
 ob_start(); //gotta have this
 fb('in access denied');
-$pg=$_REQUEST['pg'];
-$pid=$_REQUEST['pid'];
+$pid="";
+$pg="";
+If (isset($_REQUEST['pg'])) $pg=$_REQUEST['pg'];
+If (isset($_REQUEST['pid'])) $pid=$_REQUEST['pid'];
 $qstr='?pg='.$pg.'&pid='.$pid;
 fb($qstr);
 ?>
@@ -20,20 +22,20 @@ fb($qstr);
 <html><head>
 
 	<title>Hot Soup</title>
-	<link type="text/css" href="stylesheets/blueprint/screen.css" rel="stylesheet" />	
-	<link type="text/css" href="stylesheets/custom.css" rel="stylesheet" />		
-	<link type="text/css" href="stylesheets/ob.css" rel="stylesheet" />	
-<body> 
+	<link type="text/css" href="stylesheets/blueprint/screen.css" rel="stylesheet" />
+	<link type="text/css" href="stylesheets/custom.css" rel="stylesheet" />
+	<link type="text/css" href="stylesheets/ob.css" rel="stylesheet" />
+<body>
 	<div class="container">
 		<header>
 			<nav class="round">
 			</nav>
 			<section class="round">
-				<a href="soup.php"><img src="images/soupbanner.jpg" class="stretch" alt="soup banner" /></a> 
+				<a href="soup.php"><img src="images/soupbanner.jpg" class="stretch" alt="soup banner" /></a>
 			</section>
 		</header>
 		<section class="round">
-			
+
 		</section>
 	</div>
 

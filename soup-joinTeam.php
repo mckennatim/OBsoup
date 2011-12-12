@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 //require_once('auth.php');
 include_once('tm/dbinfo.php');
@@ -6,11 +6,8 @@ require_once('tm/FirePHP.class.php');
 require_once('tm/fb.php');
 ob_start(); //gotta have this
 
-$pid = $_GET[pid];
+$pid = $_GET['pid'];
 fb('how are you today');
-$volunteerID=$_SESSION['SESS_ID'];
-$vol=$_SESSION['SESS_NAME'];
-fb('the volid is '.$volunteerID);
 function loginHeader(){
     global $vol;
 	global $fname;
@@ -24,8 +21,10 @@ function loginHeader(){
 	if you\'ve <a href="launch.php?pg=soup-joinTeam&pid='.$pid.'">Register</a>ed
 	<a href="http://wiki.occupyboston.org/wiki/user:soupTeam">| About SoupTeam</a></p>';
 	} else {
-		$h='<p align="right">Hi <b>'.$vol.'</b>. Setup how SoupTeam contacts you by editing your 
-		<a href="member-profile.php?pg=soup-joinTeam&pid='.$pid.'">Profile</a> | 
+		$volunteerID=$_SESSION['SESS_ID'];
+		$vol=$_SESSION['SESS_NAME'];
+		$h='<p align="right">Hi <b>'.$vol.'</b>. Setup how SoupTeam contacts you by editing your
+		<a href="member-profile.php?pg=soup-joinTeam&pid='.$pid.'">Profile</a> |
 		<a href="logout.php">Logout</a>
 		<a href="http://wiki.occupyboston.org/wiki/user:soupTeam">| About SoupTeam</a></p>';
 	}
@@ -37,12 +36,12 @@ function loginHeader(){
 <html><head>
 
 	<title>Hot Soup</title>
-	<link type="text/css" href="stylesheets/blueprint/screen.css" rel="stylesheet" />	
-	<link type="text/css" href="stylesheets/custom.css" rel="stylesheet" />		
-	<link type="text/css" href="stylesheets/ob.css" rel="stylesheet" />	
+	<link type="text/css" href="stylesheets/blueprint/screen.css" rel="stylesheet" />
+	<link type="text/css" href="stylesheets/custom.css" rel="stylesheet" />
+	<link type="text/css" href="stylesheets/ob.css" rel="stylesheet" />
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<link rel="shortcut icon" type="image/ico" href="http://www.sprymedia.co.uk/media/images/favicon.ico">
-		
+
 		<title>Using DataTable with Editable plugin - Getting the data source via ajax request</title>
 		<style type="text/css" title="currentStyle">
 			@import "media/css/demo_page.css";
@@ -63,7 +62,7 @@ function loginHeader(){
 
 
 mysql_connect (DB_HOST, DB_USER, DB_PASSWORD) or die("can't even connect");
-mysql_select_db (DB_DATABASE) or die("db unavailable");	
+mysql_select_db (DB_DATABASE) or die("db unavailable");
 
 //$oid =145;
 //$pid = copyOutline($oid);
@@ -73,7 +72,7 @@ mysql_select_db (DB_DATABASE) or die("db unavailable");
 
 
 $qry = "SELECT *
-FROM projects  
+FROM projects
 WHERE pid='$pid' limit 1";
 fb($qry);
 $result = mysql_query($qry) or die("Dead finding units uid");
@@ -99,7 +98,7 @@ $projdate = date("l\, m/d/Y",$sprojdate);
 //fb($teamby);
 
 $sql = "SELECT `trid`, `willdothis`, `role`, `roledesc`, `name`
-FROM team  
+FROM team
 LEFT JOIN volunteers
 USING ( id )
 WHERE pid='$pid'";
@@ -114,7 +113,7 @@ function mkTbl($r){
 	$js = '<form method=post action="postTeam.php">
 	<input type="hidden" name="vid" id="vid" value="'.$volunteerID.'"/>
 	<input type="hidden" name="pid" id="pid" value="'.$pid.'"/>
-	<input type="hidden" name="pg" id="pg" value="soup-joinTeam"/>	
+	<input type="hidden" name="pg" id="pg" value="soup-joinTeam"/>
 	<table>	<thead>
 		<tr>
 			<th>willdothis</th>
@@ -137,20 +136,20 @@ function mkTbl($r){
 			}elseif ($key=="willdothis" and $val==1){
 				$js.='<td></td>';
 			}elseif ($key=="trid"){
-				$js=$js; //do nothing	
+				$js=$js; //do nothing
 			}else{
 				$js.='<td>'.$val.'</td>';
 			}
 		}
 		$js.='</tr>';
-	}	
-	$js.='<tr><td colspan =6 align=center><input type=submit 
+	}
+	$js.='<tr><td colspan =6 align=center><input type=submit
 	value="Check off your role and click here"></form></td></tr></tbody></table></section>';
 	//fb($js);
 	return $js;
 }
-?>	
-<body> 
+?>
+<body>
 	<div class="container">
 		<header>
 			<nav class="round">
@@ -163,11 +162,11 @@ function mkTbl($r){
 					foreach($_SESSION['ERRMSG_ARR'] as $msg) {
 					    $nicemessage = "You can only edit project on which you are the organizer.
 						You can organize your own project or Join a Team working on a project.";
-						echo '<li>',$nicemessage,'</li>'; 
+						echo '<li>',$nicemessage,'</li>';
 					}
 					echo '</ul>';
 					unset($_SESSION['ERRMSG_ARR']);
-				}								
+				}
 				?>
 			</section>
 		</header>
@@ -175,48 +174,47 @@ function mkTbl($r){
 		<table><tbody>
 		<tr><th colspan="3">
 			<h3>Volunteer for the <big><b><?echo $title ?></b></big> project</h3>
-		</th></tr><tr><td>	
-			Project date: <big><b><?=$projdate?></b></big> 
+		</th></tr><tr><td>
+			Project date: <big><b><?=$projdate?></b></big>
 		</td><td colspan="2">
 				location:
-				<big><b><?=$location?>, <?=$zipcode?></b></big>		
+				<big><b><?=$location?>, <?=$zipcode?></b></big>
 		</td>
-		</tr><tr><td> 
-				organizer: 
-				<big><b><?=$organizer?></b></big></td><td>		
-				status: 
-				<big><b><?=$status?></b></big></td><td>				
-				projID: 
+		</tr><tr><td>
+				organizer:
+				<big><b><?=$organizer?></b></big></td><td>
+				status:
+				<big><b><?=$status?></b></big></td><td>
+				projID:
 				<?=$pid?></td><td>
-		</tr><tr><td colspan="3">			
+		</tr><tr><td colspan="3">
 				Team needs to be in place by
-				<big><b><?=$teamby?>, <?=$leadtime?></b></big> 
+				<big><b><?=$teamby?>, <?=$leadtime?></b></big>
 				days before project date of
 				<big><b><?=$projdate?></b></big> <br/>
-		</td></tr><tr><td>		
+		</td></tr><tr><td>
 				<label>link: </label>
 				<a href=<?=$link?>><?=$link?></a></td><td>
-				ocupy site contact(s): 
-				<?=$sitecontacts?></td><td>				
-				</tr>							
+				ocupy site contact(s):
+				<?=$sitecontacts?></td><td>
+				</tr>
 		<tr><td align="top">
 				<label>description:</label><br/>
 				<p align="justify"><?=$desc?></p>
-		</td><td align="top" colspan="2">		
+		</td><td align="top" colspan="2">
 				<label>info:</label><br/>
 				<p align="justify"><?=$info?></p>
 		<td>
-		</tbody>	
+		</tbody>
 		</table>
 		</section>
 	</div>
 <div class="container">
 <section class="round">
-<i>If you would like to be on this SoupTeam, select a role for yourself and click below. The organizer will contact 
+<i>If you would like to be on this SoupTeam, select a role for yourself and click below. The organizer will contact
 you when the SoupTeam is complete</i>
-<? 
-echo $rarr; 
+<?
+echo $rarr;
 fb($rarr);
 ?>
 </section>
-

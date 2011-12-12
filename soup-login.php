@@ -6,8 +6,10 @@ require_once('tm/fb.php');
 ob_start(); //gotta have this
 fb('in soup-login');
 
-$pid=$_GET[pid];
-$pg=$_GET[pg];
+ $pid="";
+ $pg="";
+if (isset($_GET['pid'])) $pid=$_GET['pid'];
+if (isset($_GET['pid'])) $pg=$_GET['pg'];
 
 fb('this should say the page '.$pg);
 
@@ -15,10 +17,10 @@ fb('this should say the page '.$pg);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html><head>
 	<title>Hot Soup</title>
-	<link type="text/css" href="stylesheets/blueprint/screen.css" rel="stylesheet" />	
-	<link type="text/css" href="stylesheets/custom.css" rel="stylesheet" />		
-	<link type="text/css" href="stylesheets/ob.css" rel="stylesheet" />		
-<body> 
+	<link type="text/css" href="stylesheets/blueprint/screen.css" rel="stylesheet" />
+	<link type="text/css" href="stylesheets/custom.css" rel="stylesheet" />
+	<link type="text/css" href="stylesheets/ob.css" rel="stylesheet" />
+<body>
 	<div class="container">
 		<header>
 			<nav class="round">
@@ -29,12 +31,12 @@ fb('this should say the page '.$pg);
 					if( isset($_SESSION['ERRMSG_ARR']) && is_array($_SESSION['ERRMSG_ARR']) && count($_SESSION['ERRMSG_ARR']) >0 ) {
 						echo '<ul class="err">';
 						foreach($_SESSION['ERRMSG_ARR'] as $msg) {
-							echo '<li>',$msg,'</li>'; 
+							echo '<li>',$msg,'</li>';
 						}
 						echo '</ul>';
 						unset($_SESSION['ERRMSG_ARR']);
 					}
-				?>				
+				?>
 			</section>
 		</header>
 		<section class="round">

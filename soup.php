@@ -6,10 +6,7 @@ require_once('tm/fb.php');
 require_once('tm/cpu.php');
 ob_start(); //gotta have this
 fb('in soup.php');
-fb($_SESSION['SESS_NAME']);
-$vol=$_SESSION['SESS_NAME'];
-fb($vol);
-$fname = explode(" ",$vol);
+
 function loginHeader(){
     global $vol;
 	global $fname;
@@ -21,6 +18,8 @@ function loginHeader(){
 		<a href="http://wiki.occupyboston.org/wiki/user:soupTeam"> About SoupTeam</a>';
 		$h.='. You can <a href="soup-login.php">Login</a> if you\'ve <a href="launch.php">Register</a>ed<p>';
 	} else {
+		$vol=$_SESSION['SESS_NAME'];
+		$fname = explode(" ",$vol);
 		$h='<p align="right">Hi <b>'.$vol.'</b>. Setup how SoupTeam contacts you by editing your <a href="member-profile.php">Profile</a> |
 		<a href="logout.php">Logout</a>
 		<a href="http://wiki.occupyboston.org/wiki/user:soupTeam">| About SoupTeam</a></p>';
