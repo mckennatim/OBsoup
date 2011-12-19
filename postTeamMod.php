@@ -11,8 +11,7 @@ fb('how are you today');
 $pid=$_REQUEST['pid'];
 $vid=$_REQUEST['vid'];
 $box=$_REQUEST['box'];
-mysql_connect (DB_HOST, DB_USER, DB_PASSWORD) or die("can't even connect");
-mysql_select_db (DB_DATABASE) or die("db unavailable");	
+
 
 $trying="remove vod as a volunteer";
 $qry = "UPDATE team

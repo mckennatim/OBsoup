@@ -12,11 +12,11 @@ $pid=$_REQUEST['pid'];
 $pg=$_REQUEST['pg'];
 
 require_once('auth.php');
-$vid=$_REQUEST['vid'];
+
+$vid=$_SESSION['SESS_ID'];
 $box=$_REQUEST['box'];
 fb("pid is ".$pid);
-mysql_connect (DB_HOST, DB_USER, DB_PASSWORD) or die("can't even connect");
-mysql_select_db (DB_DATABASE) or die("db unavailable");	
+
 fb($box);
 while (list ($key,$val) = @each ($box)) {
 	$qry = "UPDATE team
