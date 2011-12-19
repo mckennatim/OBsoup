@@ -47,7 +47,7 @@ fb('the volid is '.$organizer);
 						 })
 						 .makeEditable({
 							sUpdateURL: "updateRoleRec.php",
-							sAddURL: "addRoleRec.php",
+							sAddURL: "addNewRoleRec.php",
 							sAddHttpMethod: "GET", 
 							sDeleteURL: "deleteRoleRec.php",
 							sDeleteHttpMethod: "GET"
