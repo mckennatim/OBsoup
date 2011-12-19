@@ -16,8 +16,8 @@ $organizer=$_SESSION['SESS_NAME'];
 $vid=$_SESSION['SESS_ID'];
 $oemailjjj=$_SESSION['SESS_EMAIL'];
 fb('the volid '.$vid.' is '.$organizer);
-$oid=145;
-$title ="soup";
+$oid=$_GET['oid'];
+$title =$_GET['type'];
 
 mysql_connect (DB_HOST, DB_USER, DB_PASSWORD) or die("can't even connect");
 mysql_select_db (DB_DATABASE) or die("db unavailable");
@@ -127,12 +127,13 @@ $info = $row['info'];
 		<section class="round">
 			<form id="form1" name="Update" method="get" action="saveProject.php">
 				<input type="hidden" name="pid"  value="<?=$pid?>" />
+				<input type="hidden" name="oid"  value="<?=$oid?>" />
 				<input type="hidden" name="vid"  value="<?=$vid?>" />
 				<h1>Create a <input name="title" value="<?=$title?>"/>	project</h1>
 
 				<p></p>
 				<label>The team needs to be in place :</label>
-				<input name="leadtime" size="2" class="cen" value=""/>
+				<input name="leadtime" size="2" class="cen" value="0"/>
 				<label>days before </label>
 				<label>project date:</label>
 				<input name="projdate" size="12" id="projdate" value=""/>
@@ -176,10 +177,11 @@ $info = $row['info'];
 </form>
 <div class="container">
 <section class="round">
-<div class="add_delete_toolbar" />
+
 <i>Customize the roles you need for your project by adding deleting or changing(editing) the roles listed below.
-Edit cells by dbl.clicking, enter when done; there are buttons to add or delete roles.<i>
+Edit cells by dbl.clicking, enter when done; there are buttons to add or delete roles.</i>
 <table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
+		<div class="add_delete_toolbar" />
 	<thead>
 		<tr>
 			<th>trid</th>
@@ -201,6 +203,7 @@ Edit cells by dbl.clicking, enter when done; there are buttons to add or delete 
 
 	</tbody>
 </table>
+
 </div>
 </section>
 </div>

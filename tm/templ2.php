@@ -7,8 +7,6 @@ require_once('fb.php');
 ob_start(); //gotta have this
 fb('how are you today');
 
-mysql_connect (DB_HOST, DB_USER, DB_PASSWORD) or die("can't even connect");
-mysql_select_db (DB_DATABASE) or die("db unavailable");	
 
 
 function createUpdateTable($sql){
@@ -31,7 +29,8 @@ $get1 .="fb(\$sql);\n";
 $get1 .="\$result = mysql_query(\$sql) or die(\$trying);\n";	
 $get1 .="\$r = mysql_fetch_assoc(\$result);\n";	
 /*
-$sql="SELECT * FROM volunteers WHERE id ='".$id."'";
+$trying = "";
+$sql="SELECT * FROM  WHERE id ='".$id."'";
 fb($sql);
 $result = mysql_query($sql) or die($trying);
 $row = 	$arow = mysql_fetch_assoc($result);
@@ -39,13 +38,14 @@ $row = 	$arow = mysql_fetch_assoc($result);
 */
 	for ($i=0;$i<$numfields;$i++){
 		$row  = mysql_field_name($res, $i);
+		$table = mysql_tablename($res,$i);
 		$sz = mysql_field_len($res, $i);
 		$fn.= $row."\n";
-		$gn.= "\$_GET('".$row."');\n";
+		$gn.= "\$_GET['".$row."'];\n";
 		$vn.= "$".$row."\n";
-		$en.= "$".$row." = \$_GET('".$row."');\n";
-		$pn.= "$".$row." = \$_POST('".$row."');\n";
-		$rn.= "$".$row." = \$_REQUEST('".$row."');\n";		
+		$en.= "$".$row." = \$_GET['".$row."'];\n";
+		$pn.= "$".$row." = \$_POST['".$row."'];\n";
+		$rn.= "$".$row." = \$_REQUEST['".$row."'];\n";		
 		$bn.= "'$".$row."', ";
 		$cn.= "`".$row."`, ";
 		$se  .= "`".$row."` = '$".$row."',\n";	
@@ -64,7 +64,7 @@ echo $get1."\n\n";
 	echo $fn."\n\n";
 	echo $gn."\n\n";
 	echo $bn."\n\n";
-	echo $cn."\n\n";
+	echo "INSERT INTO table " . $cn . " VALUES ".$bn."\n\n";
 	echo $en."\n\n";
 	echo $pn."\n\n";
 	echo $rn."\n\n";
@@ -102,9 +102,10 @@ string dl 128 not_null
 string type 9 not_null enum
 
 
+
 */
 
-$sql="SELECT * FROM volunteers";
+$sql="SELECT * FROM proutlines";
 fb($sql);
 createUpdateTable($sql);
 ?>

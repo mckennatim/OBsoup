@@ -5,8 +5,6 @@ require_once('fb.php');
 ob_start(); //gotta have this
 fb('in cpu');
 
-mysql_connect (DB_HOST, DB_USER, DB_PASSWORD) or die("can't even connect");
-mysql_select_db (DB_DATABASE) or die("db unavailable");
 
 function copyOutline($outlid){
 	$sql="SELECT * FROM prOutlines WHERE oid=145 LIMIT 1";
@@ -50,8 +48,8 @@ function listProjects(){
 	$sql = "Select * FROM projects WHERE status = 'recruiting' ORDER BY projdate";
 	$result = mysql_query($sql) or die($trying);
 
-	$ht .= '<table><thead class="plabels"><td colspan="4">Projects in need of volunteers</td>
-	</thead></table>';
+	$ht .= '<table><thead class="plabels"><td height="5px" colspan="4">Projects in need of volunteers
+	</td></thead>';
 	while ($arow = mysql_fetch_assoc($result)) {
 	    //fb($arow);
 		$pid = $arow["pid"];
@@ -101,14 +99,13 @@ function listProjects(){
 		$ht.='</div></table>';
 		//fb('soup-editProject.php?pid='.$pid.'&vid='.$arow["vid"]);
 	}
-	$ht .='</div>';
 /// projects late
     $trying ="listing projects"; //fb($trying);
 	$sql = "Select * FROM projects WHERE status = 'late' ORDER BY projdate";
 	$result = mysql_query($sql) or die($trying);
 
 	$ht .= '<table><thead class="plabels"><td colspan="4">Projects late.</td>
-	</thead></table>';
+	</thead>';
 	while ($arow = mysql_fetch_assoc($result)) {
 	    //fb("in late " .$arow);
 		$pid = $arow["pid"];
@@ -221,7 +218,7 @@ function listProjects(){
 	$result = mysql_query($sql) or die($trying);
 
 	$ht .= '<table><thead class="plabels"><td colspan="4">Projects in process.</td>
-	</thead></table>';
+	</thead>';
 	while ($arow = mysql_fetch_assoc($result)) {
 	    //fb($arow);
 		$pid = $arow["pid"];
@@ -370,7 +367,7 @@ function listProjects(){
 		$wh .= ". ";
 		//fb($wh);
 		$ht .= '<table bgcolor="#D7D7FF" border="1" cellpadding="10">';
-		$ht .= '<div id="border"><tr><td></td><td class="topp">
+		$ht .= '<div id="border" ><tr><td></td><td class="topp">
 		<a href="soup-joinTeam.php?pid='.$pid.'">'.$arow["title"].' project</td>
 		<td><a class="proj_button round" href="soup-editProject.php?pid='.$pid.'">Edit</a></td>
 		<td><small><center>projectID:<br/> '.$pid.'</center></small></td>
@@ -507,7 +504,9 @@ function notifyReady($arow){
 
 function curPageURL() {
  $pageURL = 'http';
- if ($_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
+ if (isset($_SERVER["HTTPS"])) {
+    if ($_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
+ }
  $pageURL .= "://";
  if ($_SERVER["SERVER_PORT"] != "80") {
   $pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];

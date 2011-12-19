@@ -110,3 +110,5 @@ SELECT `zip`, `latitude`, `longitude`, `email` FROM zip_codes
 LEFT JOIN volunteers
 ON zip_codes.zip=volunteers.zipcode 
 WHERE  email ='mckenna.tim@gmail.com'	
+
+UPDATE volunteers SET `passwd` = '$pwd' WHERE email='$email' 

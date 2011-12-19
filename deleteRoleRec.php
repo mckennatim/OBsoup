@@ -12,8 +12,8 @@ fb('how are you today');
 
   /* Delete a record by id */ 
 
-$sql= "DELETE FROM team
-WHERE trid = '$id'";
+$sql= "DELETE FROM roles 
+WHERE rid = '$id'";
 mysql_query($sql) or die("Dead inserting");
 
   echo "ok";

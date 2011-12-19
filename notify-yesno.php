@@ -7,7 +7,7 @@ require_once('tm/cpu.php');
 
 ob_start(); //gotta have this
 fb('how are you toda y');
-$pid=$_GET[pid];
+if (isset($_GET['pid'])) $pid=$_GET['pid'];
 
 $thisurl = curPageURL();//in cpu
 $purl = parse_url($thisurl);
@@ -23,12 +23,12 @@ $joinurl = "http://".$host.$path."/soup-joinTeam.php?pid=".$pid;
 $homeurl = "http://".$host.$path."/soup.php";
 
 mysql_connect (DB_HOST, DB_USER, DB_PASSWORD) or die("can't even connect");
-mysql_select_db (DB_DATABASE) or die("db unavailable");	
+mysql_select_db (DB_DATABASE) or die("db unavailable");
 
-$trying ="get organizer vid"; //fb($trying);	
+$trying ="get organizer vid"; //fb($trying);
 $sql = "SELECT `vid`, `location`, `title`, `organizer` ,`projdate`, `leadtime`, `zipcode`
-FROM projects 
-WHERE pid = '$pid' LIMIT 1";	
+FROM projects
+WHERE pid = '$pid' LIMIT 1";
 fb($sql);
 $result = mysql_query($sql) or die($trying);
 $ida = mysql_fetch_assoc($result);
@@ -47,10 +47,10 @@ $teamby = date("l\, m/d/Y",$timestr);
 $projdate = date("l\, m/d/Y",$sprojdate);
 fb($teamby);
 
-$trying ="get organizer data"; //fb($trying);	
+$trying ="get organizer data"; //fb($trying);
 $sql = "SELECT `email`
-FROM volunteers 
-WHERE id = '$vid' LIMIT 1";	
+FROM volunteers
+WHERE id = '$vid' LIMIT 1";
 fb($sql);
 $result = mysql_query($sql) or die($trying);
 $vinfo = mysql_fetch_assoc($result);
@@ -68,34 +68,34 @@ fb($tmessage);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html><head>
 	<title>NO Hot Soup</title>
-	<link type="text/css" href="stylesheets/blueprint/screen.css" rel="stylesheet" />	
-	<link type="text/css" href="stylesheets/custom.css" rel="stylesheet" />	
-	<link type="text/css" href="stylesheets/ob.css" rel="stylesheet" />		
-<body> 
+	<link type="text/css" href="stylesheets/blueprint/screen.css" rel="stylesheet" />
+	<link type="text/css" href="stylesheets/custom.css" rel="stylesheet" />
+	<link type="text/css" href="stylesheets/ob.css" rel="stylesheet" />
+<body>
 	<div class="container">
 		<header>
 			<nav class="round">
 			</nav>
 			<section class="round">
-				<a href="soup.php"><img src="images/soupbanner.jpg" class="stretch" alt="soup banner" /></a> 
-				
+				<a href="soup.php"><img src="images/soupbanner.jpg" class="stretch" alt="soup banner" /></a>
+
 			</section>
 		</header>
 		<section class="round">
 		<h3 class="err">Would you like to notify volunteers?</h3>
-		<h4><p align="justify">Perhaps you have only modified the project a little and don't 
+		<h4><p align="justify">Perhaps you have only modified the project a little and don't
 		need to email everybody again. </p></h4>
 		<a class="notify_button round" href="soup.php">NO, don't notify now</a></p>
-		<h4><p align="justify">Clicking YES will send a message to SoupTeam volunteers in your area. 
-		Besides the current SoupTeam members, consider letting some friends know 
+		<h4><p align="justify">Clicking YES will send a message to SoupTeam volunteers in your area.
+		Besides the current SoupTeam members, consider letting some friends know
 		about your project. Make it a party. Adding their emails below will send them your message plus
 		a link to your project page. </p></h4>
 <form id="form1" name="Update" method="post" action="notify-volunteers.php">
-	<input type="hidden" name="pid" id="pid" value="<?=$pid?>" />	
-	<input type="hidden" name="zip" id="zip" value="<?=$zip?>" />	
+	<input type="hidden" name="pid" id="pid" value="<?=$pid?>" />
+	<input type="hidden" name="zip" id="zip" value="<?=$zip?>" />
 	<input class="notify_button round" type="submit" value="YES, notify SoupTm&friends" />
 	<p align="center">Thsi will take a minute</p>
-	
+
   Type email addressess of friends, separated by commas.	<br/>
   <label>
   to: <textarea name="emails" id="emails" cols="50" rows="2"></textarea>
@@ -112,7 +112,7 @@ fb($tmessage);
   Here is some template text that you can change however you want. But please try to leave the url links in.
   <br/>
   <label>
-  note to friends:<br> 
+  note to friends:<br>
   <textarea name="friend" id="friend" cols="60" rows="5"><?=$fmessage?></textarea>
   </label><br/>
   <label>

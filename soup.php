@@ -63,7 +63,14 @@ mysql_query($qry) or die("Dead writing currentdata");
         <script src="media/js/jquery-ui.js" type="text/javascript"></script>
         <script src="media/js/jquery.validate.js" type="text/javascript"></script>
         <script src="media/js/jquery.dataTables.editable.js" type="text/javascript"></script>
-
+<script type="text/javascript" charset = "utf-8">
+$(document).ready( function ()
+{
+    $("#createproj").click(function() {
+      $("#createproj").load('template-select.php');
+    });
+});
+</script>
 
 <body>
 	<div class="container">
@@ -71,7 +78,7 @@ mysql_query($qry) or die("Dead writing currentdata");
 			<nav class="round">
 			</nav>
 			<section class="round">
-				<img src="images/soupbanner.jpg" class="stretch" alt="soup banner" />
+				<a hrer="soup.php"><img src="images/soupbanner.jpg" class="stretch" alt="soup banner" title="click on banner to return to home page"/> </a>
 				<?echo loginHeader();
 				if( isset($_SESSION['ERRMSG_ARR']) && is_array($_SESSION['ERRMSG_ARR']) && count($_SESSION['ERRMSG_ARR']) >0 ) {
 					echo '<ul class="err">';
@@ -88,9 +95,10 @@ mysql_query($qry) or die("Dead writing currentdata");
 			</section>
 		</header>
 		<section class="round" id="border">
-
-		<big><a href="soup-createProject.php">Create a new project</a></big><br/>
+		<div id="createproj">
+		<span class="newproj" title="click here to create a new project">Create a new project</span><br/>
 		</section>
+		</div>
 	</div>
 
 <div class="container">

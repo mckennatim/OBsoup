@@ -1,29 +1,23 @@
 <?php 
 /*
-getRoles gest the roles associated with this project outl;ine and copies
-them into some new team records associated with the new project
+copy default roles associated with project outline oid 1
+to new roles with temporary oid =2
 */
 session_start();
 include_once('tm/dbinfo.php');
 require_once('tm/FirePHP.class.php');
 require_once('tm/fb.php');
 ob_start(); //gotta have this
-fb('how are you today');	
+fb('getBlank template');
 
-$sql = "SELECT * FROM currentdata WHERE cdid=1";
+$oid=$_REQUEST['oid'];
 
-fb($sql);
-$result = mysql_query($sql) or die("Dead finding last project id");
-$pida = mysql_fetch_assoc($result);
-$pid = $pida['pid'];
-
-//get roles asociated with project outline oid
-
-$qry = "SELECT `trid`, `pid`, `role`, `roledesc`
-FROM team
-WHERE pid='$pid'";
-fb($qry);
+$qry = "SELECT `rid`, `oid`, `role`, `roledesc`
+FROM roles
+WHERE oid=$oid";
+//fb($qry);
 $roler = mysql_query($qry) or die("Dead finding units uid");
+
 
 echo jsonJQ($roler);
 

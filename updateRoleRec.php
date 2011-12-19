@@ -4,22 +4,22 @@ include_once('tm/dbinfo.php');
 require_once('tm/FirePHP.class.php');
 require_once('tm/fb.php');
 ob_start(); //gotta have this
-fb('how are you today');
+fb('update Role Rec');
   
   $id = $_REQUEST['id'] ;
   $value = mysql_real_escape_string($_REQUEST['value']) ;
   $column = $_REQUEST['columnName'] ;
-  $columnPosition = $_REQUEST['columnPosition'] ;
-  $columnId = $_REQUEST['columnId'] ;
-  $rowId = $_REQUEST['rowId'] ;
+//  $columnPosition = $_REQUEST['columnPosition'] ;
+//  $columnId = $_REQUEST['columnId'] ;
+//  $rowId = $_REQUEST['rowId'] ;
 
 fb($column);
-fb($columnPosition);
-fb($columnid);
+//fb($columnPosition);
+//fb($columnid);
 
-$sql= "UPDATE team
+$sql= "UPDATE roles
 SET `$column`='$value'
-WHERE trid='$id'"; 
+WHERE rid='$id'"; 
 fb($sql);
 mysql_query($sql) or die("Dead updating");
 

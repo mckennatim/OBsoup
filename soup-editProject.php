@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 include_once('tm/dbinfo.php');
 require_once('tm/FirePHP.class.php');
@@ -11,9 +11,9 @@ $organizer=$_SESSION['SESS_NAME'];
 $id=$_SESSION['SESS_ID'];
 fb('id is '.$id);
 fb('the volid is '.$organizer);
-$pid = $_GET[pid];
-$vid = $_GET[vid];
-fb('vid is '.$vid);
+if (isset($_GET['pid'])) $pid=$_GET['pid'];
+if (isset($_GET['vid'])) $vid = $_GET['vid'];
+//fb('vid is '.$vid);
 /*$errmsg_arr = array();
 
 if ($id!==$vid){
@@ -24,6 +24,32 @@ if ($id!==$vid){
     header("location: soup.php");
 }
 fb($id . 'is id. '.$vid.' is vid. past error message');*/
+
+
+$qry = "UPDATE currentdata SET `pid`=$pid";
+fb($qry);
+mysql_query($qry) or die("Dead writing currentdata");
+
+$qry = "SELECT *
+FROM projects
+WHERE pid='$pid' limit 1";
+fb($qry);
+$result = mysql_query($qry) or die("Dead finding units uid");
+$row = 	$arow = mysql_fetch_assoc($result);
+$projdate = $row['projdate'];
+$projdate = fdate($row['projdate']);
+$leadtime = $row['leadtime'];
+$location = $row['location'];
+$title = $row['title'];
+$desc = $row['description'];
+$info = $row['info'];
+$sitecontacts = $row['sitecontacts'];
+$link = $row['link'];
+$zipcode = $row['zipcode'];
+$organizer = $row['organizer'];
+$vid = $row['vid'];
+$oid = $row['oid'];
+$status = $row['status'];
 
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
@@ -36,7 +62,6 @@ fb($id . 'is id. '.$vid.' is vid. past error message');*/
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<link rel="shortcut icon" type="image/ico" href="http://www.sprymedia.co.uk/media/images/favicon.ico">
 
-		<title>Using DataTable with Editable plugin - Getting the data source via ajax request</title>
 		<style type="text/css" title="currentStyle">
 			@import "media/css/demo_page.css";
 			@import "media/css/demo_table.css";
@@ -62,9 +87,9 @@ fb($id . 'is id. '.$vid.' is vid. past error message');*/
 						 .makeEditable({
 							sUpdateURL: "updateTeamRec.php",
 							sAddURL: "addTeamRec.php",
-							sAddHttpMethod: "GET", //Used only on google.code live example because google.code server do not support POST request
+							sAddHttpMethod: "GET", 
 							sDeleteURL: "deleteTeamRec.php",
-							sDeleteHttpMethod: "GET", //Used only on google.code live example because google.code server do not support POST request
+							sDeleteHttpMethod: "GET"
 				});
 				$("#zipcode").blur(function()
 				{
@@ -79,6 +104,19 @@ fb($id . 'is id. '.$vid.' is vid. past error message');*/
 						"json"	//dataType
 					);
 				});
+				$("#aeproj").click(function() {
+				    $("#eform").load('template-editForm.php',
+				    {
+				    	'link': '<?php echo addslashes($link); ?>',
+				    	'desc': '<?php echo addslashes($desc); ?>',
+				    	'info': '<?php echo addslashes($info); ?>',
+				    	'oid': '<?php echo addslashes($oid); ?>',
+				    	'pid': '<?php echo addslashes($pid); ?>',
+				    	'title': '<?php echo addslashes($title); ?>',
+				    	'sitecontacts': '<?php echo addslashes($sitecontacts); ?>'
+				    }
+			    );
+				});
 			});
 			$(function() {
 				$( "#projdate" ).datepicker();
@@ -86,36 +124,6 @@ fb($id . 'is id. '.$vid.' is vid. past error message');*/
 
 		</script>
 	</head>
-<?
-
-
-mysql_connect (DB_HOST, DB_USER, DB_PASSWORD) or die("can't even connect");
-mysql_select_db (DB_DATABASE) or die("db unavailable");
-
-$qry = "UPDATE currentdata SET `pid`=$pid";
-fb($qry);
-mysql_query($qry) or die("Dead writing currentdata");
-
-$qry = "SELECT *
-FROM projects
-WHERE pid='$pid' limit 1";
-fb($qry);
-$result = mysql_query($qry) or die("Dead finding units uid");
-$row = 	$arow = mysql_fetch_assoc($result);
-$projdate = $row['projdate'];
-$projdate = fdate($row['projdate']);
-$leadtime = $row['leadtime'];
-$location = $row['location'];
-$title = $row['title'];
-$desc = $row['description'];
-$info = $row['info'];
-$sitecontacts = $row['sitecontacts'];
-$link = $row['link'];
-$zipcode = $row['zipcode'];
-$organizer = $row['organizer'];
-$vid = $row['vid'];
-$status = $row['status'];
-?>
 <body>
 	<div class="container">
 		<header>
@@ -126,10 +134,12 @@ $status = $row['status'];
 			</section>
 		</header>
 		<section class="round">
+			<div id="eform">
 			<form id="form1" name="Update" method="get" action="saveEditedProject.php">
 				<h1>Edit this <input name="title" value="<?=$title?>"/>	project</h1>
 				<input type="hidden" name="pid"  value="<?=$pid?>" />
 				<input type="hidden" name="vid"  value="<?=$vid?>" />
+				<input type="hidden" name="oid"  value="<?=$oid?>" />
 				<label>project status:</label>
 				<big><?=$status?></big>
 				<label>project id:</label>
@@ -163,8 +173,13 @@ $status = $row['status'];
 				<label>info:</label><br/>
 				<textarea name="info" cols="50" rows="3"><?=$info?></textarea>
 				<br />
-				<input class="notify_button round" type="submit" value="Save your edited soup project" /><br />
+				<input class="notify_button round" type="submit" value="Save your edited project" title
+				="this saves your editied project"/><br/>
+				<div id="eproj"><a id="aeproj" class="notify_button round"
+				title="only click here if you want to create a new project template">
+				Create a template from this</a></div><br />
 			</form>
+			</div>
 		</section>
 	</div>
  <form id="formAddNewRow" action="#" title="Add new record">

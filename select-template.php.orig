@@ -1,0 +1,110 @@
+<?
+session_start();
+include_once('tm/dbinfo.php');
+require_once('tm/FirePHP.class.php');
+require_once('tm/fb.php');
+require_once('tm/cpu.php');
+require_once('auth.php');
+ob_start(); //gotta have this
+fb('now in soup-editProject');
+$organizer=$_SESSION['SESS_NAME'];
+$id=$_SESSION['SESS_ID'];
+fb('id is '.$id);
+fb('the volid is '.$organizer);
+if (isset($_GET['pid'])) $pid=$_GET['pid'];
+if (isset($_GET['vid'])) $vid = $_GET[vid];
+//fb('vid is '.$vid);
+/*$errmsg_arr = array();
+
+if ($id!==$vid){
+    $errmsg_arr[] = "not the organizer";
+	$_SESSION['ERRMSG_ARR'] = $errmsg_arr;
+	session_write_close();
+	fb("id dosn't equal");
+    header("location: soup.php");
+}
+fb($id . 'is id. '.$vid.' is vid. past error message');*/
+
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+
+	<title>Hot Soup</title>
+	<link type="text/css" href="stylesheets/blueprint/screen.css" rel="stylesheet" />
+	<link type="text/css" href="stylesheets/custom.css" rel="stylesheet" />
+	<link type="text/css" href="stylesheets/ob.css" rel="stylesheet" />
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<link rel="shortcut icon" type="image/ico" href="http://www.sprymedia.co.uk/media/images/favicon.ico">
+
+		<title>Using DataTable with Editable plugin - Getting the data source via ajax request</title>
+		<style type="text/css" title="currentStyle">
+			@import "media/css/demo_page.css";
+			@import "media/css/demo_table.css";
+			@import "media/css/demo_validation.css";
+			@import "media/css/themes/base/jquery-ui.css";
+			@import "media/css/themes/smoothness/jquery-ui-1.7.2.custom.css";
+		</style>
+
+        <script src="media/js/jquery-1.4.4.min.js" type="text/javascript"></script>
+        <script src="media/js/jquery.dataTables.min.js" type="text/javascript"></script>
+        <script src="media/js/jquery.jeditable.js" type="text/javascript"></script>
+        <script src="media/js/jquery-ui.js" type="text/javascript"></script>
+        <script src="media/js/jquery.validate.js" type="text/javascript"></script>
+        <script src="media/js/jquery.dataTables.editable.js" type="text/javascript"></script>
+
+		<script type="text/javascript" charset="utf-8">
+			$(document).ready( function () {
+				$("#zipcode").blur(function()
+				{
+					$.get(
+						"tm/zcompl.php",  //url
+						{zip: $("#zipcode").val()},  //data
+						function(data) {  //success
+							//alert(data.city);
+							var loc = data.city + ', ' + data.state;
+							$("#location").val(loc);
+						},
+						"json"	//dataType
+					);
+				});
+			});
+			$(function() {
+				$( "#projdate" ).datepicker();
+			});
+
+		</script>
+	</head>
+<?php
+$pros="";
+$trying ="listing proutlines"; //fb($trying);
+$sql = "Select * FROM proutlines";
+$result = mysql_query($sql) or die($trying);
+while ($arow = mysql_fetch_assoc($result)) {
+    $pros .= $arow['title'] ."<br/>";
+}
+
+?>
+<body>
+<header>
+
+</header>
+		<section class="round">
+		<table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
+	<thead>
+		<tr>
+			<th>type</th>
+			<th>project description</th>
+		</tr>
+	</thead>
+	<tbody>
+	<tr>
+	<td id="<?php echo $pros; ?>" class="prolist"><?php echo $pros; ?></td>
+	<td id="prodesc"></td>
+	</tr>
+	</tbody>
+</table>
+</section>
+</div>
+</body>
+<html>
+

@@ -10,21 +10,23 @@
 border-width: .2em;
 border-style: solid;
 border-color: #900;
-} 
+}
 table
 {
 border-collapse:collapse;
 }
 table,thead
 {
-border-width:.3em
+border-width:.3em;
 border-color: #900;
 }
-thead.plabels
+.plabels
 {
-height:110%;
-font-size:160%;
-color: #00248F;
+font-size:140%;
+color: #900;
+border-style: solid;
+border-width:.1px;
+border-color: #900;
 }
 td.topp
 {
@@ -86,6 +88,13 @@ a.proj_button {
   -webkit-border-radius: 10px;
   border-radius: 10px;
 }
-input.cen { 
+input.cen {
   text-align: center;
+}
+span.newproj {
+    font-size:140%;
+    color: #00248F;
+}
+span.newproj:hover{
+    text-decoration: underline
 }

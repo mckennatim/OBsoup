@@ -8,9 +8,6 @@ fb('how are you today');
 
 $pid =7;
 
-mysql_connect (DB_HOST, DB_USER, DB_PASSWORD) or die("can't even connect");
-mysql_select_db (DB_DATABASE) or die("db unavailable");	
-
 $qry = "SELECT `trid`, `role`, `roledesc`, `id`
 FROM team  
 WHERE pid='$pid'";
