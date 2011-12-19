@@ -14,7 +14,7 @@ fb('the volid is '.$organizer);
 
 if (isset($_GET['pid'])) $pid = $_GET['pid'];
 
-if (isset($_GET['vid'])) $vid = $_GET[vid];
+if (isset($_GET['vid'])) $vid = $_GET['vid'];
 
 //fb('vid is '.$vid);
 /*$errmsg_arr = array();
@@ -84,7 +84,7 @@ for ($i=0;$i<sizeof($pros) ;$i++)
 {
     echo '<tr><td title="hover for description, click to create project" id="'.$prod[$i].
     '" class="prolist" ><a href="soup-createproject.php?type='.$pros[$i].'&oid='.$proid[$i].
-        '">'.$pros[$i].'</a></td><td><a class="proj_button round" href="template-edit.php?oid='.$proid[$i].'">Edit</a></td></tr>';
+        '">'.$pros[$i].'</a></td><td><a class="edit_button round" href="template-edit.php?oid='.$proid[$i].'">Edit</a></td></tr>';
 }
 ?>
 </tbody>

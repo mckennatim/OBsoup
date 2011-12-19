@@ -80,6 +80,18 @@ a.proj_button {
   font-weight: bold;
   padding: 2%;
 }
+a.edit_button {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  text-align: center;
+  width: 30%;
+  color: #FFCCFF;
+  background: #FF5959;
+  font-size: 60%;
+  font-weight: bold;
+  padding: 2%;
+}
 .button {
     background: #9cf;
 }
