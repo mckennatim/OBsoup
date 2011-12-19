@@ -44,7 +44,7 @@ function listProjects(){
 	$ht = '<div STYLE=" height: 600px; font-size: 14px; overflow: auto;">';
 	$ht.='<div id="border">';
 ///recruiting projects
-    $trying ="listing projects"; //fb($trying);
+    $trying ="recruiting projects"; //fb($trying);
 	$sql = "Select * FROM projects WHERE status = 'recruiting' ORDER BY projdate";
 	$result = mysql_query($sql) or die($trying);
 
@@ -100,7 +100,7 @@ function listProjects(){
 		//fb('soup-editProject.php?pid='.$pid.'&vid='.$arow["vid"]);
 	}
 /// projects late
-    $trying ="listing projects"; //fb($trying);
+    $trying ="projects late"; //fb($trying);
 	$sql = "Select * FROM projects WHERE status = 'late' ORDER BY projdate";
 	$result = mysql_query($sql) or die($trying);
 
@@ -156,7 +156,7 @@ function listProjects(){
 		$ht.='</div></table>';
 	}
 ///ready projects
-    $trying ="listing projects"; //fb($trying);
+    $trying ="ready projects"; //fb($trying);
 	$sql = "Select * FROM projects WHERE status = 'ready' ORDER BY projdate";
 	$result = mysql_query($sql) or die($trying);
 
@@ -213,7 +213,7 @@ function listProjects(){
 	}
 	//$ht .='</div>';
 /// projectsi n process
-    $trying ="listing projects"; //fb($trying);
+    $trying ="in process projects"; //fb($trying);
 	$sql = "Select * FROM projects WHERE status = 'in process' ORDER BY projdate";
 	$result = mysql_query($sql) or die($trying);
 
@@ -271,8 +271,8 @@ function listProjects(){
 		//$ht .='</div>';
 
 /// projects done
-    $trying ="listing projects"; //fb($trying);
-	$sql = "Select * FROM projects WHERE status = 'done' ORDER BY DESC projdate";
+    $trying ="done projects"; //fb($trying);
+	$sql = "Select * FROM projects WHERE status = 'done' ORDER BY projdate DESC";
 	$result = mysql_query($sql) or die($trying);
 
 	$ht .= '<table><thead class="plabels"><td colspan="4">Projects done.</td>
@@ -328,7 +328,7 @@ function listProjects(){
 	}
 
 /// projects dead
-    $trying ="listing projects"; //fb($trying);
+    $trying ="dead projects"; //fb($trying);
 	$sql = "Select * FROM projects WHERE status = 'dead' ORDER BY projdate";
 	$result = mysql_query($sql) or die($trying);
 
