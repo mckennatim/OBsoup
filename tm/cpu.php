@@ -272,7 +272,7 @@ function listProjects(){
 
 /// projects done
     $trying ="listing projects"; //fb($trying);
-	$sql = "Select * FROM projects WHERE status = 'done' ORDER BY projdate";
+	$sql = "Select * FROM projects WHERE status = 'done' ORDER BY DESC projdate";
 	$result = mysql_query($sql) or die($trying);
 
 	$ht .= '<table><thead class="plabels"><td colspan="4">Projects done.</td>
