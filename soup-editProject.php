@@ -193,9 +193,9 @@ $status = $row['status'];
 </form>
 <div class="container">
 <section class="round">
-<div class="add_delete_toolbar" />
 Edit cells by double clicking, plus you can add or delete roles for your project.
 <table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
+<div class="add_delete_toolbar" />
 	<thead>
 		<tr>
 			<th>trid</th>
