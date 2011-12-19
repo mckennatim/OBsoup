@@ -23,6 +23,6 @@ $trying ="update oid "; //fb($trying);
 $sql = "UPDATE `roles` SET `oid` = '$oid' WHERE `oid`=2"; 
 mysql_query($sql) or die($trying);
 
-
+header("location: soup.php");
 
 ?>
