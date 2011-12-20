@@ -106,6 +106,12 @@ LEFT JOIN volunteers
 USING ( id )
 WHERE pid='7'
 
+SELECT `pid`, `vid`,  `email`
+FROM projects  
+LEFT JOIN volunteers
+USING ( id )
+WHERE pid='13'
+
 SELECT `zip`, `latitude`, `longitude`, `email` FROM zip_codes
 LEFT JOIN volunteers
 ON zip_codes.zip=volunteers.zipcode 
