@@ -6,39 +6,36 @@ require_once('tm/fb.php');
 ob_start(); //gotta have this
 fb('in notify-volunteers');
 fb($_POST);
-$pid=$_POST[pid];
-$emails=$_POST[emails];
-$from=$_POST[from];
-$friend=$_POST[friend];
-$subject=$_POST[subject];
-$everyone=$_POST[everyone];
-$pzip=$_POST[zip]; 
+$pid=$_POST['pid'];
+$emails=$_POST['emails'];
+$from=$_POST['from'];
+$friend=$_POST['friend'];
+$subject=$_POST['subject'];
+$everyone=$_POST['everyone'];
+$pzip=$_POST['zip'];
+$baseurl=$_POST['baseurl'];  
 $frev = $friend."<br/><br/>".$everyone;
 
+fb( "some project named ".$pid. " just got created, time to notify the volunteers");
+
+//who to notify
 $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 $headers .= 'From: '.$from. "\r\n";
+
+//notify the organizer
+$orgmessage="You have created a project. As people sign up you can view their contact information by visiting "
+	  . $baseurl . "soup-teamContacts.php?pid=" . $pid . ". From there you can also email your team. <br/><br/> The following message went out to soup team members:
+ 	<br/><br/>" . $everyone . ".<br/><br/> This message went out to your personal contacts: <br/><br/>" . $friend;
+
+mail($from, "RE: your new project", $orgmessage, $headers);
+
+//notify personal contacts
 if (strlen($emails)>5){
 	mail($emails, $subject, $frev, $headers);
 }
 
-mysql_connect (DB_HOST, DB_USER, DB_PASSWORD) or die("can't even connect");
-mysql_select_db (DB_DATABASE) or die("db unavailable");	
-
-fb( "some project named ".$pid. " just got created, time to notify the volunteers");
-//who to notify
-//notify the organizer
-
-$headers  = 'MIME-Version: 1.0' . "\r\n";
-$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-$headers .= 'From: '.$from. "\r\n";
-
-$trying ="get volunteers who newpremail = on"; //fb($trying);	
-$sql = "SELECT `email`, `zipcode`, `within` FROM volunteers
-WHERE newpremail = 'on'";	
-fb($sql);
-$result = mysql_query($sql) or die($trying);
-
+//find data about proj zip
 $trying ="get lat long of proj"; //fb($trying);	
 $sql = "SELECT `zip`, `latitude`, `longitude` FROM zip_codes
 WHERE  zip ='".$pzip."'";	
@@ -48,6 +45,13 @@ $prow = mysql_fetch_assoc($presult);
 $plat = $prow['latitude'];
 $plong = $prow['longitude'];
 
+//get all volunteers who want to me notified when newpremail
+$trying ="get volunteers who newpremail = on"; //fb($trying);	
+$sql = "SELECT `email`, `zipcode`, `within` FROM volunteers
+WHERE newpremail = 'on'";	
+fb($sql);
+$result = mysql_query($sql) or die($trying);
+//notify volunteers if project within their range
 while ($trow = mysql_fetch_assoc($result)) {
 	$zip = $trow['zipcode'];
 	$within = $trow['within'];
@@ -74,8 +78,6 @@ while ($trow = mysql_fetch_assoc($result)) {
 		mail($trow['email'], $subject, $everyone, $headers);
 	}
 }
-fb("done");
-fb("location: soup.php");
 
 header("location: soup.php");
 

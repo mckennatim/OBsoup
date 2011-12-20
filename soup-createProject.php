@@ -14,13 +14,12 @@ if (isset($_GET['month'])){
 
 $organizer=$_SESSION['SESS_NAME'];
 $vid=$_SESSION['SESS_ID'];
-$oemailjjj=$_SESSION['SESS_EMAIL'];
+$oemail=$_SESSION['SESS_EMAIL'];
 fb('the volid '.$vid.' is '.$organizer);
 $oid=$_GET['oid'];
 $title =$_GET['type'];
 
-mysql_connect (DB_HOST, DB_USER, DB_PASSWORD) or die("can't even connect");
-mysql_select_db (DB_DATABASE) or die("db unavailable");
+
 //create a pid one greter than whatjever is in current data and update current data
 $qry="SELECT pid
 FROM currentdata

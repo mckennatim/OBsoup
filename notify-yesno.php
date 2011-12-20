@@ -19,11 +19,9 @@ $pinfo = pathinfo($whpath);
 //fb($pinfo);
 $path = $pinfo['dirname'];
 //fb($path);
+$baseurl = "http://" . $host . $path . "/";
 $joinurl = "http://".$host.$path."/soup-joinTeam.php?pid=".$pid;
 $homeurl = "http://".$host.$path."/soup.php";
-
-mysql_connect (DB_HOST, DB_USER, DB_PASSWORD) or die("can't even connect");
-mysql_select_db (DB_DATABASE) or die("db unavailable");
 
 $trying ="get organizer vid"; //fb($trying);
 $sql = "SELECT `vid`, `location`, `title`, `organizer` ,`projdate`, `leadtime`, `zipcode`
@@ -93,6 +91,7 @@ fb($tmessage);
 <form id="form1" name="Update" method="post" action="notify-volunteers.php">
 	<input type="hidden" name="pid" id="pid" value="<?=$pid?>" />
 	<input type="hidden" name="zip" id="zip" value="<?=$zip?>" />
+	<input type="hidden" name="baseurl" id="baseurl" value="<?=$baseurl?>" />
 	<input class="notify_button round" type="submit" value="YES, notify SoupTm&friends" />
 	<p align="center">Thsi will take a minute</p>
 
@@ -102,7 +101,7 @@ fb($tmessage);
   </label>
   <br/>
   <label>
-  from: <input type="text" name="from" id="from" size=35" value="<?=$email?>"/>
+  from: <input type="text" name="from" id="from" size="35" value="<?php echo $email; ?>"/>
   </label>
   <br/>
   <label>
@@ -126,8 +125,6 @@ fb($tmessage);
 
 <div class="container">
 <section class="round">
-<div class="add_delete_toolbar" />
-
 
 </div>
 </section>

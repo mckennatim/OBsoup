@@ -6,10 +6,10 @@ require_once('tm/fb.php');
 //require_once('auth.php');
 ob_start(); //gotta have this
 
-$pid = $_GET[pid];
-fb('how are you today');
-$volunteerID=$_SESSION['SESS_ID'];
-fb('the volid is '.$volunteerID);
+$pid = $_GET['pid'];
+fb('in soup-teamContacts');
+//$volunteerID=$_SESSION['SESS_ID'];
+//('the volid is '.$volunteerID);
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html><head>
@@ -119,6 +119,11 @@ function mkTbl($r){
 		}else{
 			$mule[] = $arow['otheremail'];
 		}
+		$phones="";
+		$mphone="";
+		$hphone="";
+		$emails="";
+		
 		foreach($arow as $key=>$val){
 			if ($arow['orgcancall'] == 'on'){
 				$hphone = str_replace(" ","-",$arow['phone']);
@@ -131,7 +136,7 @@ function mkTbl($r){
 				$js.='<td>'.$val.'</td>';
 			}
 		}
-		$js.=$emails.$phones.'</tr>';
+		$js.=$emails . $phones . '</tr>';
 	}
 	$mule =array_unique($mule);//unique email addresses
 	$ret['mule'] = $mule;
@@ -186,7 +191,7 @@ function mkTbl($r){
 				<?=$pid?></td><td>
 		</tr><tr><td colspan="3">			
 				Team needed to be in place by
-				<big><b><?=$teamby?> <?=$leadtime?></b></big> 
+				<big><b> <?=$leadtime?></b></big> 
 				days before project date of
 				<big><b><?=$projdate?></b></big> <br/>
 		</td></tr><tr><td>		
