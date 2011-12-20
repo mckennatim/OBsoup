@@ -109,7 +109,7 @@ WHERE pid='7'
 SELECT `pid`, `vid`,  `email`
 FROM projects  
 LEFT JOIN volunteers
-USING ( id )
+ON volunteers. id = projects.vid
 WHERE pid='13'
 
 SELECT `zip`, `latitude`, `longitude`, `email` FROM zip_codes

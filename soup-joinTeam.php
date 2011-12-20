@@ -192,7 +192,7 @@ function mkTbl($r){
 				<big><b><?=$teamby?>, <?=$leadtime?></b></big>
 				days before project date of
 				<big><b><?=$projdate?></b></big> <br/>
-		</td></tr><tr><td>
+		</td></tr><tr><td colspan="2">
 				<label>link: </label>
 				<a href=<?=$link?>><?=$link?></a></td><td>
 				ocupy site contact(s):
