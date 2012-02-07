@@ -1,0 +1,70 @@
+<blockquote style="border: 0px solid blue; font: 16px/24px Times, serif; font-style: italic; padding: 2em;">
+<b>stone soup</b><br/>
+There's an old story about someone bringing into town a pot full of water with a stone in it. The cook asks neighbors to throw in a little something to give the soup more flavor...
+</blockquote>
+
+Welcome to SoupTeam for Occupy Boston!  
+
+As members of the greater Boston community we support the [http://www.occupyboston.org/2011/11/30/occupy-boston-ratifies-declaration-occupation/ Declaration of Occupation] and the constitutional right to camp at Dewey Square as protected free speech. 
+
+So we make soup or work together on other projects. 
+
+The soupteam.com site is one way to organize a project that is going to take place at a certain date/time. You can create project and then send out the word to recruit a team to pull it off.
+
+Here's how to do a soup project:
+
+= [http://soupteam.com SoupTeam] -Hot soup for Occupy Boston =
+====FAQ====
+;How do I volunteer for a project: Got http://soupteam.com login and set your profile and then find an interesting project. Scroll down to the roles and check off the role(s) you would like to take on and then click the button. 
+;How do I organize a soup project: Login and fill in a profile and hit Create a project. You determine the date and location and can modify the name, description, info and roles for your project. Then you go to a page where you send out notifications to soupTeam members and friends. Whenever anybody volunteers for your project, the status is updated so you can check http://soupteam.com to see. You will be notified by email as people sign on to your project and you will get access to a page with team members' contact info.
+;I don't like using web sites, I'd rather be called: Understandable. But please try. Call or email Tim (see below) if you need help navigating or have suggestions. HINT: Clicking on the banner image on any page gets you back to the home page.
+;I don't like giving anyone my password: Once you submit your password is encrypted into a 32 character string that can't be decoded. It is compared to the encryption of your password when you login to see if it is the same. That's you can't get your old password mailed to you. It's unobtainable from the encryption.
+;Why do I have to login anyway?: As as a way to have some assurance that you are who you say you are. To be sure that nobody can volunteer you or unvolunteer you but you. So when you click on a role to volunteer the system can associate the clicker with an person who can bbe contacted.
+;I don't want people using my information: Two things here. 1)Mostly it is only your first name that is seen on the site. The exception is that the organizer gets at least your email so that you can be contacted. (In your profile you can choose to give the organizer of a project you have volunteered for your phone number.)
+;I don't want more junk in my mailbox or calls: Totally understandable. You can choose which new project you want to be notified about based upon distance from you and select if you want to be notified (by robomail) when a project has gotten all its volunteers and is ready to go. You also determine whether or not your project organizer can call you. 
+;I'm not sure I want strangers making soup at my house: You have a couple of options. One is to organize your friends to volunteer for all the roles that are in your house or Two you could volunteer for all the roles that would happen in your house and later get friends to help with those roles.
+;What ingredients can I use? :About 30% of the occupiers are vegetarian but 70% eat meat.
+;How large is the thermos? :3.5 gallons
+;How much soup is that? :Approximately 40 12 ounce servings.
+;How do you cook that much soup?: Our biggest pot is 4 gallons so we could do it in one batch. The prep feels like %20 more work than making soup for your household since you have help. Blended soups are a more work since you have to do so many batches but the time to do that wasn't that great.
+;How heavy is the thermos when it is full? :about 45lb
+;How do I drop off soup? : Drive to the s southeast corner of the camp, open your window and yell "drop off" or pull over, get out and let anyone know that you are delivering hot food and need it to be unloaded from your car.
+;When do we pick up the thermos?: We delivered soup at around 5pm on a Sunday. We stopped around 8pm and dinner was still being served and there was still soup left. We guess that by 9 it was empty. You could pick it up the next day but we suggest picking it up early since it needs to be cleaned. 
+;Still have questions about how to do a soup project?; email: Tim at mckenna.tim@gmail.com or Peri at perimckenna@yahhoo.com or call/text Tim 857-498-2574, Peri 617-817-8501
+
+====Ready to host a soup making party?====
+*pick out a recipe
+*pick a date and time that the soup will be hot and ready for pickup
+*assemble the ingredients or assign this to a team member
+*invite friends and their pots, blenders or ingredients
+*list the ingredients for the occupiers
+*receive the empty container and clean
+
+====Want to solicit soup from a restaurant?====
+*Make the connection
+*agree to a date and time to pick up hot soup
+*list the ingredients for the occupiers
+
+====Want to volunteer to pick up hot soup and deliver to Dewey Square?====
+*sign up with a soup maker at a day and time that works for you
+*Pick up soup and drive to Dewey Square*
+*drive to drop off and announce soup delivery*
+Map here
+
+====Want to volunteer to pick up an empty thermos?====
+*sign up for the night of a dropoff to pick up
+*pick up the empty thermos at the food tent*
+*bring it back to the soup kitchen
+*clean the thermos
+
+====Cleaning the thermos====
+:Clean as you normally would using dishsoap. Our friends at Harvest Catering instructed us to add two tablespoons of bleach to the washing water.
+
+
+====PROJECTS====
+[[user:soupTeam/blankSoup]]
+*[[user:soupTeam/soup pumpkin chickpea]] 11/21/11 2pm  Peri, Susan,
+*[[user:soupTeam/Women's march Man Soup]] 12/4/11 5pm Bob Follansbee and Tim McKenna
+*[[user:soupTeam/WC Acting4EconomicJustice Soup]]
+*[[user:soupTeam/Lydia's Cabbage Soup w/ meat]]
+*[[user:soupTeam/caroling]]

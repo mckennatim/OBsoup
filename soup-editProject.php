@@ -87,7 +87,7 @@ $status = $row['status'];
 						 .makeEditable({
 							sUpdateURL: "updateTeamRec.php",
 							sAddURL: "addTeamRec.php",
-							sAddHttpMethod: "GET", 
+							sAddHttpMethod: "GET",
 							sDeleteURL: "deleteTeamRec.php",
 							sDeleteHttpMethod: "GET"
 				});
@@ -99,7 +99,7 @@ $status = $row['status'];
 						function(data) {  //success
 							//alert(data.city);
 							var loc = data.city + ', ' + data.state;
-							$("#location").val(loc);
+							$("#location").dfval(loc);
 						},
 						"json"	//dataType
 					);
